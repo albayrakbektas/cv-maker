@@ -1,14 +1,16 @@
 <template>
   <div class="section">
     <CollapsibleSection title="Languages">
-      <CollapsibleContent>
-        <form>
-          <FormField
-            :form-field="languageField"
-            v-model="languageField.value"
-          />
-          <InputRange v-model="range" />
-        </form>
+      <CollapsibleContent
+        v-for="(item, index) of $store.state.cvData.languages"
+        :key="index"
+      >
+        <CardEdit
+          :card="item"
+          :is-skill="true"
+          type="languages"
+          section="languages"
+        />
       </CollapsibleContent>
     </CollapsibleSection>
   </div>
@@ -17,11 +19,10 @@
 <script>
 import CollapsibleSection from "@/components/collapse/CollapsibleSection";
 import CollapsibleContent from "@/components/collapse/CollapsibleContent";
-import FormField from "@/components/form/FormField";
-import InputRange from "@/components/form/InputRange";
+import CardEdit from "@/components/card/CardEditing";
 export default {
   name: "LanguageCollapsible",
-  components: { InputRange, FormField, CollapsibleContent, CollapsibleSection },
+  components: { CardEdit, CollapsibleContent, CollapsibleSection },
   watch: {
     "languageField.value": function (val) {
       this.$store.state.languages[0].subtitle[0] = val;

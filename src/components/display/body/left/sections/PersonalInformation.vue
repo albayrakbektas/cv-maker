@@ -5,82 +5,106 @@
         <form>
           <div class="row">
             <div class="photo-input">
-              <label for="photo">Photo</label>
+              <div class="photo-header">
+                <label for="photo">Photo</label>
+                <i @click="edit" class="fa-solid fa-ellipsis-vertical"></i>
+              </div>
               <input
                 v-if="isSlotActive"
                 name="photo"
-                v-model="profilePicture"
+                v-model="$store.state.cvData.personalInformation.profilePicture"
               />
-              <ProfileUpload v-else />
+              <ProfileUpload :is-editing="isEditing" v-else />
             </div>
-            <FormField
-              class="name-input"
-              :form-field="nameField"
-              v-model="nameField.value"
-            />
-            <FormField
-              class="surname-input"
-              :form-field="surnameField"
-              v-model="surnameField.value"
-            />
-            <FormField
-              class="mail-input"
-              :form-field="mailField"
-              v-model="mailField.value"
+            <div class="two-rows">
+              <div class="two-columns">
+                <div class="input-container">
+                  <label for="givenName">Given Name</label>
+                  <input
+                    name="givenName"
+                    v-model="$store.state.cvData.personalInformation.givenName"
+                  />
+                </div>
+                <div class="input-container">
+                  <label for="familyName">Family Name</label>
+                  <input
+                    name="familyName"
+                    v-model="$store.state.cvData.personalInformation.familyName"
+                  />
+                </div>
+              </div>
+              <div class="input-container">
+                <label for="email">Email Address</label>
+                <input
+                  name="email"
+                  v-model="$store.state.cvData.personalInformation.email"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="input-container">
+            <label for="headline">Headline</label>
+            <input
+              name="headline"
+              v-model="$store.state.cvData.personalInformation.headline"
             />
           </div>
-          <div class="row row-full">
-            <FormField
-              class="title-input"
-              :form-field="headlineField"
-              v-model="headlineField.value"
+          <div class="input-container">
+            <label for="phone">Phone number</label>
+            <input
+              name="phone"
+              v-model="$store.state.cvData.personalInformation.phone"
             />
           </div>
-          <div class="row row-full">
-            <FormField
-              class="title-input"
-              :form-field="phoneField"
-              v-model="phoneField.value"
+          <div class="input-container">
+            <label for="address">Address</label>
+            <input
+              name="address"
+              v-model="$store.state.cvData.personalInformation.address"
             />
           </div>
-          <div class="row row-full">
-            <FormField
-              class="title-input"
-              :form-field="addressField"
-              v-model="addressField.value"
+          <div class="input-container">
+            <label for="postCode">Post code</label>
+            <input
+              name="postCode"
+              v-model="$store.state.cvData.personalInformation.postCode"
+            />
+            <div class="input-container">
+              <label for="city">City</label>
+              <input
+                name="city"
+                v-model="$store.state.cvData.personalInformation.city"
+              />
+            </div>
+          </div>
+          <div class="input-container">
+            <label for="website">Website</label>
+            <input
+              name="website"
+              v-model="
+                $store.state.cvData.personalInformation.personalDetail[0]
+                  .content
+              "
             />
           </div>
-          <div class="row row-two">
-            <FormField
-              class="title-input"
-              :form-field="postCodeField"
-              v-model="postCodeField.value"
-            />
-            <FormField
-              class="title-input"
-              :form-field="cityField"
-              v-model="cityField.value"
+          <div class="input-container">
+            <label for="linkedin">Linkedin</label>
+            <input
+              name="linkedin"
+              v-model="
+                $store.state.cvData.personalInformation.personalDetail[1]
+                  .content
+              "
             />
           </div>
-          <div class="row row-full">
-            <FormField
-              class="title-input"
-              :form-field="websiteField"
-              v-model="websiteField.value"
-            />
-          </div>
-          <div class="row row-full">
-            <FormField
-              class="title-input"
-              :form-field="linkedinField"
-              v-model="linkedinField.value"
-            />
-          </div>
-          <div class="row row-full">
-            <FormField
-              class="title-input"
-              :form-field="githubField"
-              v-model="githubField.value"
+          <div class="input-container">
+            <label for="github">Github</label>
+            <input
+              name="github"
+              v-model="
+                $store.state.cvData.personalInformation.personalDetail[2]
+                  .content
+              "
             />
           </div>
         </form>
@@ -90,167 +114,128 @@
 </template>
 
 <script>
-import FormField from "@/components/form/FormField";
 import CollapsibleContent from "@/components/collapse/CollapsibleContent";
 import CollapsibleSection from "@/components/collapse/CollapsibleSection";
 import ProfileUpload from "@/components/display/header/ProfileUpload";
+import { getCv } from "@/firebaseMethods";
 
 export default {
   name: "PersonalInformation",
   components: {
     ProfileUpload,
-    FormField,
     CollapsibleContent,
     CollapsibleSection,
   },
-  methods: {},
+  methods: {
+    edit() {
+      this.isEditing = !this.isEditing;
+    },
+  },
+  async mounted() {
+    getCv(this.$store.state.user.uid, this.$route.params.id)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
   watch: {
-    "nameField.value": function (val) {
-      this.$store.state.personalInformation.name = val;
+    givenName: function (val) {
+      console.log(val);
+      this.$store.state.cvData.personalInformation.givenName = val;
     },
-    "surnameField.value": function (val) {
-      this.$store.state.personalInformation.surname = val;
+    familyName: function (val) {
+      this.$store.state.cvData.personalInformation.familyName = val;
     },
-    "mailField.value": function (val) {
-      this.$store.state.personalInformation.mail = val;
+    email: function (val) {
+      this.$store.state.cvData.personalInformation.email = val;
     },
-    "headlineField.value": function (val) {
-      this.$store.state.personalInformation.headline = val;
+    headline: function (val) {
+      this.$store.state.cvData.personalInformation.headline = val;
     },
-    "phoneField.value": function (val) {
-      this.$store.state.personalInformation.phone = val;
+    phone: function (val) {
+      this.$store.state.cvData.personalInformation.phone = val;
     },
-    "addressField.value": function (val) {
-      this.$store.state.personalInformation.address = val;
+    address: function (val) {
+      this.$store.state.cvData.personalInformation.address = val;
     },
-    "postCodeField.value": function (val) {
-      this.$store.state.personalInformation.postCode = val;
+    postCode: function (val) {
+      this.$store.state.cvData.personalInformation.postCode = val;
     },
-    "cityField.value": function (val) {
-      this.$store.state.personalInformation.city = val;
+    city: function (val) {
+      this.$store.state.cvData.personalInformation.city = val;
     },
-    "websiteField.value": function (val) {
-      let data = this.$store.state.personalInformation.personalDetail.find(
-        (x) => x.subtitle.includes("Website")
-      );
+    website: function (val) {
+      let data =
+        this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
+          x.subtitle.includes("Website")
+        );
       data.content = val;
     },
-    "linkedinField.value": function (val) {
-      let data = this.$store.state.personalInformation.personalDetail.find(
-        (x) => x.subtitle.includes("LinkedIn")
-      );
+    linkedin: function (val) {
+      let data =
+        this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
+          x.subtitle.includes("LinkedIn")
+        );
       data.content = val;
     },
-    "githubField.value": function (val) {
-      let data = this.$store.state.personalInformation.personalDetail.find(
-        (x) => x.subtitle.includes("Github")
-      );
+    github: function (val) {
+      let data =
+        this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
+          x.subtitle.includes("Github")
+        );
       data.content = val;
     },
   },
   data() {
     return {
+      isEditing: false,
+      personalInformation: {
+        profilePicture: "",
+        name: "",
+        surname: "",
+        mail: "",
+        headline: "",
+        phone: "",
+        address: "",
+        postCode: "",
+        city: "",
+        website: "",
+        linkedIn: "",
+        personalDetail: {
+          website: "website",
+          linkedin: "linkedin",
+          github: "github",
+        },
+        // personalDetail: [
+        //   {
+        //     subtitle: ["Website"],
+        //     content: "",
+        //   },
+        //   {
+        //     subtitle: ["LinkedIn"],
+        //     content: "",
+        //   },
+        //   {
+        //     subtitle: ["Github"],
+        //     content: "",
+        //   },
+        // ],
+      },
       isSlotActive: false,
-      name: "",
-      password: "",
       profilePicture: "",
-      errorMessage: false,
-      profileField: {
-        tag: "input",
-        type: "text",
-        name: "photo",
-        label: "Photo",
-        placeholder: "",
-        value: "",
-      },
-      nameField: {
-        tag: "input",
-        type: "text",
-        name: "name",
-        label: "Given name",
-        placeholder: "",
-        value: "",
-      },
-      surnameField: {
-        tag: "input",
-        type: "text",
-        name: "surname",
-        label: "Family name",
-        placeholder: "",
-        value: "",
-      },
-      mailField: {
-        tag: "input",
-        type: "text",
-        name: "mail",
-        label: "Email address",
-        placeholder: "",
-        value: "",
-      },
-      headlineField: {
-        tag: "input",
-        type: "text",
-        name: "headline",
-        label: "Headline",
-        placeholder: "",
-        value: "",
-      },
-      phoneField: {
-        tag: "input",
-        type: "text",
-        name: "phone",
-        label: "Phone number",
-        placeholder: "",
-        value: "",
-      },
-      addressField: {
-        tag: "input",
-        type: "text",
-        name: "address",
-        label: "Address",
-        placeholder: "",
-        value: "",
-      },
-      postCodeField: {
-        tag: "input",
-        type: "text",
-        name: "postCode",
-        label: "Post Code",
-        placeholder: "",
-        value: "",
-      },
-      cityField: {
-        tag: "input",
-        type: "text",
-        name: "city",
-        label: "City",
-        placeholder: "",
-        value: "",
-      },
-      websiteField: {
-        tag: "input",
-        type: "text",
-        name: "website",
-        label: "Website",
-        placeholder: "",
-        value: "",
-      },
-      linkedinField: {
-        tag: "input",
-        type: "text",
-        name: "linkedIn",
-        label: "LinkedIn",
-        placeholder: "",
-        value: "",
-      },
-      githubField: {
-        tag: "input",
-        type: "text",
-        name: "github",
-        label: "Github",
-        placeholder: "",
-        value: "",
-      },
+      givenName: "",
+      familyName: "",
+      email: "",
+      headline: "",
+      phone: "",
+      address: "",
+      postCode: "",
+      city: "",
+      website: "",
+      linkedin: "",
+      github: "",
     };
   },
 };
@@ -262,32 +247,54 @@ export default {
 }
 .row {
   display: grid;
-  grid-template-areas: "photo name name surname surname" "photo mail mail mail mail";
-  gap: 5px;
+  grid-template-columns: 1fr 3fr;
 }
-.row-full {
-  grid-template-areas: none;
+.two-rows {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-rows: repeat(2, 1fr);
 }
-.row-two {
+.two-columns {
+  display: grid;
+  gap: 0.5rem;
   grid-template-columns: repeat(2, 1fr);
+}
+.photo-header {
+  display: flex;
+  justify-content: space-between;
 }
 .photo-input {
   display: grid;
   grid-template-rows: auto 1fr;
   height: 182px;
-  grid-area: photo;
   text-align: left;
   input {
     border-radius: 8px;
   }
 }
-.name-input {
-  grid-area: name;
+i {
+  cursor: pointer;
 }
-.surname-input {
-  grid-area: surname;
+form {
+  text-align: left;
 }
-.mail-input {
-  grid-area: mail;
+input {
+  /*width: 100%;*/
+  /*width: -moz-available;*/
+  /*width: -webkit-fill-available;*/
+  /*width: fill-available;*/
+  padding: 0.5rem;
+}
+label {
+  display: inline-block;
+}
+.row-two {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+.input-container {
+  display: grid;
+  margin: 0.5rem 0;
 }
 </style>

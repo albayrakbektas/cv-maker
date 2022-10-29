@@ -1,15 +1,13 @@
 <template>
   <div class="collapsible-content">
     <slot></slot>
-    <SpanIcon :button="button" />
   </div>
 </template>
 
 <script>
-import SpanIcon from "@/components/button/SpanIcon";
 export default {
   name: "CollapsibleContent",
-  components: { SpanIcon },
+  components: {},
   data() {
     return {
       button: {

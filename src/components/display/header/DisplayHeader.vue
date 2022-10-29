@@ -1,10 +1,10 @@
 <template>
-  <div class="display-header">
+  <div class="display-header pd">
     <h1 class="header-name">
-      {{ $store.state.personalInformation.name }}
-      {{ $store.state.personalInformation.surname }}
+      {{ $store.state.cvData.personalInformation.givenName }}
+      {{ $store.state.cvData.personalInformation.familyName }}
     </h1>
-    <h4>{{ $store.state.personalInformation.headline }}</h4>
+    <h4>{{ $store.state.cvData.personalInformation.headline }}</h4>
     <div class="header-bottom">
       <AnchorIcon
         v-for="(item, index) of anchorList"
@@ -21,24 +21,23 @@ export default {
   name: "DisplayHeader",
   components: { AnchorIcon },
   watch: {
-    "$store.state.personalInformation.mail": function (val) {
+    "$store.state.cvData.personalInformation.email": function (val) {
       this.anchorList[1].href = "mailto:" + val;
       this.anchorList[1].content = val;
     },
-    "$store.state.personalInformation.phone": function (val) {
+    "$store.state.cvData.personalInformation.phone": function (val) {
       this.anchorList[0].href = "tel:" + val;
       this.anchorList[0].content = val;
     },
-    "$store.state.personalInformation.address": function (val) {
+    "$store.state.cvData.personalInformation.address": function (val) {
       this.anchorList[2].href = val;
       this.address = val;
     },
-    "$store.state.personalInformation.postCode": function (val) {
+    "$store.state.cvData.personalInformation.postCode": function (val) {
       this.anchorList[2].href = val;
       this.postCode = val;
     },
-    "$store.state.personalInformation.city": function (val) {
-      console.log(val);
+    "$store.state.cvData.personalInformation.city": function (val) {
       this.anchorList[2].href = val;
       this.city = val;
     },
@@ -97,15 +96,19 @@ export default {
 <style scoped lang="scss">
 .display-header {
   background: linear-gradient(159deg, #2d2d3a 0%, #2b2b35 100%);
-  padding: 15px 30px;
-  min-height: 70px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-items: end;
 }
 .header-name {
-  //white-space: pre-wrap;
+  line-height: 1.1rem;
 }
 .header-bottom {
   display: grid;
   grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  margin-top: 15px;
+  gap: 10px;
 }
 h1,
 h4 {
@@ -116,7 +119,7 @@ h4 {
   margin-block-end: 0;
 }
 h4 {
-  translate: 0 -50%;
+  padding-top: 5px;
   filter: brightness(50%);
 }
 </style>

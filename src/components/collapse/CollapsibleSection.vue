@@ -1,11 +1,11 @@
 <template>
-  <div class="collapsible-section">
+  <div class="collapsible-section" :class="{ 'section-active': isSlotActive }">
     <div
       @click.stop="openSlot"
       class="collapsible-section-header"
       :class="{ 'disabled-header': isSlotActive }"
     >
-      <h1>Personal Information</h1>
+      <h1>{{ title }}</h1>
       <ButtonMain @button-handler="closeSlot">
         <i class="fa-solid fa-chevron-down"></i>
       </ButtonMain>
@@ -20,12 +20,18 @@ import ButtonMain from "@/components/button/ButtonMain";
 export default {
   name: "CollapsibleSection",
   components: { ButtonMain },
+  props: {
+    title: String,
+  },
   data() {
     return {
       isSlotActive: false,
     };
   },
   methods: {
+    sendData() {
+      this.$emit("clicked", this.isSlotActive);
+    },
     openSlot() {
       if (this.isSlotActive !== true) {
         this.isSlotActive = true;
@@ -42,6 +48,8 @@ export default {
 .collapsible-section {
   border-bottom: 1px solid rgba(139, 139, 139, 0.3);
 }
+.section-active {
+}
 .collapsible-section-header {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -55,8 +63,15 @@ export default {
 }
 .slot-wrapper {
   height: 0;
+  visibility: hidden;
+  overflow: hidden;
 }
 .slot-active {
-  height: 100%;
+  height: auto;
+  max-height: 100vh;
+  visibility: visible;
+  overflow: scroll;
+  display: grid;
+  gap: 15px;
 }
 </style>

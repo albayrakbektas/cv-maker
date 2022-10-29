@@ -1,16 +1,16 @@
 <template>
   <div class="display-body-left pd">
     <h1 style="display: none">{{ smt }}</h1>
-    <BodyRowCard :title="educationTitle">
+    <BodyRowCard :title="education.title">
       <DisplayRowCard
-        v-for="(item, index) of educationCards"
+        v-for="(item, index) of education.cards"
         :card="item"
         :key="index"
       />
     </BodyRowCard>
-    <BodyRowCard :title="employmentTitle">
+    <BodyRowCard :title="employment.title">
       <DisplayRowCard
-        v-for="(item, index) of employmentCards"
+        v-for="(item, index) of employment.cards"
         :card="item"
         :key="index"
       />
@@ -28,46 +28,38 @@
 <script>
 import BodyRowCard from "@/components/card/BodyRowCard";
 import DisplayRowCard from "@/components/card/DisplayRowCard";
-import { mapGetters } from "vuex";
-// import { mapState } from "vuex";
+import { getCv } from "@/firebaseMethods";
 export default {
   name: "DisplayBodyLeft",
   components: { DisplayRowCard, BodyRowCard },
-  computed: {
-    // ...mapState({
-    //   cards: (state) => state.education.cards[0].title,
-    // }),
-    ...mapGetters["getCards"],
-  },
+  props: {},
   watch: {
-    // "this.$store.getters.getCards": function (val) {
-    //   this.smt = val;
-    // },
     "$store.state.isChanging": {
       handler: function (val) {
         this.smt = val;
-        this.educationCards = this.$store.state.education.cards;
-        this.educationTitle = this.$store.state.education.title;
-        this.employmentCards = this.$store.state.employment.cards;
-        this.employmentTitle = this.$store.state.employment.title;
-        this.referencesCards = this.$store.state.reference.cards;
-        this.referencesTitle = this.$store.state.reference.title;
+        this.education = this.$store.state.cvData.education;
+        this.employment = this.$store.state.cvData.employment;
       },
       immediate: true,
       deep: true,
     },
   },
-  created() {
-    this.educationCards = this.$store.state.education.cards;
-    this.educationTitle = this.$store.state.education.title;
-    this.employmentCards = this.$store.state.employment.cards;
-    this.employmentTitle = this.$store.state.employment.title;
-    this.referencesCards = this.$store.state.reference.cards;
-    this.referencesTitle = this.$store.state.reference.title;
+  created() {},
+  async mounted() {
+    getCv(this.$store.state.user.uid, this.$route.params.id)
+      .then((res) => {
+        this.education = res.education;
+        this.employment = res.employment;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
   data() {
     return {
       smt: "",
+      education: {},
+      employment: {},
       educationCards: [],
       educationTitle: "",
       employmentCards: [],

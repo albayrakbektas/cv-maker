@@ -1,46 +1,50 @@
 <template>
   <div class="section">
     <CollapsibleSection title="References">
-      <CollapsibleContent>
-        <form>
-          <FormField
-            :form-field="positionField"
-            v-model="positionField.value"
-          />
-          <div class="row-two">
-            <FormField
-              :form-field="employerField"
-              v-model="employerField.value"
-            />
-            <FormField :form-field="cityField" v-model="cityField.value" />
-          </div>
-          <div class="row-two">
-            <div class="row-two">
-              <FormField
-                :form-field="startMonthField"
-                v-model="startMonthField.value"
-              />
-              <FormField
-                :form-field="startYearField"
-                v-model="startYearField.value"
-              />
-            </div>
-            <div class="row-two">
-              <FormField
-                :form-field="endMonthField"
-                v-model="endMonthField.value"
-              />
-              <FormField
-                :form-field="endYearField"
-                v-model="endYearField.value"
-              />
-            </div>
-          </div>
-          <FormField
-            :form-field="descriptionField"
-            v-model="descriptionField.value"
-          />
-        </form>
+      <CollapsibleContent
+        v-for="(item, index) of $store.state.cvData.reference.cards"
+        :key="index"
+      >
+        <CardEdit :card="item" section="reference" />
+        <!--        <form>-->
+        <!--          <FormField-->
+        <!--            :form-field="positionField"-->
+        <!--            v-model="positionField.value"-->
+        <!--          />-->
+        <!--          <div class="row-two">-->
+        <!--            <FormField-->
+        <!--              :form-field="employerField"-->
+        <!--              v-model="employerField.value"-->
+        <!--            />-->
+        <!--            <FormField :form-field="cityField" v-model="cityField.value" />-->
+        <!--          </div>-->
+        <!--          <div class="row-two">-->
+        <!--            <div class="row-two">-->
+        <!--              <FormField-->
+        <!--                :form-field="startMonthField"-->
+        <!--                v-model="startMonthField.value"-->
+        <!--              />-->
+        <!--              <FormField-->
+        <!--                :form-field="startYearField"-->
+        <!--                v-model="startYearField.value"-->
+        <!--              />-->
+        <!--            </div>-->
+        <!--            <div class="row-two">-->
+        <!--              <FormField-->
+        <!--                :form-field="endMonthField"-->
+        <!--                v-model="endMonthField.value"-->
+        <!--              />-->
+        <!--              <FormField-->
+        <!--                :form-field="endYearField"-->
+        <!--                v-model="endYearField.value"-->
+        <!--              />-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--          <FormField-->
+        <!--            :form-field="descriptionField"-->
+        <!--            v-model="descriptionField.value"-->
+        <!--          />-->
+        <!--        </form>-->
       </CollapsibleContent>
     </CollapsibleSection>
   </div>
@@ -49,10 +53,14 @@
 <script>
 import CollapsibleSection from "@/components/collapse/CollapsibleSection";
 import CollapsibleContent from "@/components/collapse/CollapsibleContent";
-import FormField from "@/components/form/FormField";
+import CardEdit from "@/components/card/CardEditing";
 export default {
   name: "ReferenceMain",
-  components: { FormField, CollapsibleContent, CollapsibleSection },
+  components: { CardEdit, CollapsibleContent, CollapsibleSection },
+  mounted() {
+    this.positionField.value =
+      this.$store.state.cvData.reference.cards.card.title;
+  },
   watch: {
     "positionField.value": function (val) {
       this.card.title = val;

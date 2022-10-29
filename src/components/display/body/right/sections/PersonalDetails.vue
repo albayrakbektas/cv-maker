@@ -15,12 +15,14 @@ export default {
   name: "PersonalDetails",
   components: { DisplayTwoRows, BodyRowCard },
   watch: {
-    "$store.state.personalInformation.personalDetail": function () {
-      this.detailsList = this.$store.state.personalInformation.personalDetail;
+    "$store.state.cvData.personalInformation.personalDetail": function () {
+      this.detailsList =
+        this.$store.state.cvData.personalInformation.personalDetail;
     },
   },
   mounted() {
-    this.detailsList = this.$store.state.personalInformation.personalDetail;
+    this.detailsList =
+      this.$store.state.cvData.personalInformation.personalDetail;
   },
   data() {
     return {
