@@ -2,7 +2,10 @@
   <div class="display-row-card">
     <div class="row row-two">
       <span class="card-title">{{ card.title }}</span>
-      <span class="card-date">{{ card.dateStart }} - {{ card.dateEnd }}</span>
+      <span class="card-date"
+        >{{ card.dateStart.month }} {{ card.dateStart.year }} -
+        {{ card.dateEnd.month }} {{ card.dateEnd.year }}</span
+      >
     </div>
     <DisplayTwoRows class="dtr" :card="card.rowCard" />
   </div>

@@ -56,6 +56,29 @@ export const writeUserData = (userId, cvId, cv) => {
     });
 };
 
+export const writeSectionCard = (userId, cvId, section, card) => {
+  set(
+    ref(database, userId + "/" + cvId + "/" + section + "/cards/" + card.id),
+    card
+  )
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export const deleteSectionCard = (userId, cvId, section) => {
+  set(ref(database, userId + "/" + cvId + "/" + section + "/cards/"), null)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 export const signout = async () => {
   await signOut(auth)
     .then(() => {

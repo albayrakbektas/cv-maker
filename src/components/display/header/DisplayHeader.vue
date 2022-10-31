@@ -30,15 +30,18 @@ export default {
       this.anchorList[0].content = val;
     },
     "$store.state.cvData.personalInformation.address": function (val) {
-      this.anchorList[2].href = val;
+      this.anchorList[2].href =
+        "https://www.google.com/maps/place/%C4%B0zmir/data=!4m2!3m1!1s0x14bbd862a762cacd:0x628cbba1a59ce8fe?sa=X&ved=2ahUKEwj9mfm7sIX7AhVxQPEDHTskChkQ8gF6BQiOARAB";
       this.address = val;
     },
     "$store.state.cvData.personalInformation.postCode": function (val) {
-      this.anchorList[2].href = val;
+      this.anchorList[2].href =
+        "https://www.google.com/maps/place/%C4%B0zmir/data=!4m2!3m1!1s0x14bbd862a762cacd:0x628cbba1a59ce8fe?sa=X&ved=2ahUKEwj9mfm7sIX7AhVxQPEDHTskChkQ8gF6BQiOARAB";
       this.postCode = val;
     },
     "$store.state.cvData.personalInformation.city": function (val) {
-      this.anchorList[2].href = val;
+      this.anchorList[2].href =
+        "https://www.google.com/maps/place/%C4%B0zmir/data=!4m2!3m1!1s0x14bbd862a762cacd:0x628cbba1a59ce8fe?sa=X&ved=2ahUKEwj9mfm7sIX7AhVxQPEDHTskChkQ8gF6BQiOARAB";
       this.city = val;
     },
     anchorList: {

@@ -4,8 +4,14 @@
       <FormSkill v-if="isSkill" :data="card" :type="type" />
       <FormCard v-if="!isSkill" :data="card" :section="section" />
       <div class="editing-form-bottom">
-        <SpanIcon :button="deleteButton" />
-        <SpanIcon :button="saveButton" />
+        <SpanIcon
+          @button-handler="deleteCard(section, card)"
+          :button="deleteButton"
+        />
+        <SpanIcon
+          @button-handler="saveCard(section, card)"
+          :button="saveButton"
+        />
       </div>
     </div>
     <CardShortcut v-if="!isEditing" @event-handler="editHandler" :card="card" />
@@ -17,6 +23,8 @@ import SpanIcon from "@/components/button/SpanIcon";
 import FormCard from "@/components/card/FormCard";
 import CardShortcut from "@/components/card/CardShortcut";
 import FormSkill from "@/components/form/FormSkill";
+import { writeSectionCard } from "@/firebaseMethods";
+import { mapGetters } from "vuex";
 export default {
   name: "CardEdit",
   components: { FormSkill, SpanIcon, FormCard, CardShortcut },
@@ -25,7 +33,12 @@ export default {
     isSkill: Boolean,
     type: String,
     section: String,
+    directlyEdit: Boolean,
   },
+  computed: {
+    ...mapGetters(["getCardById"]),
+  },
+  mounted() {},
   data() {
     return {
       isEditing: false,
@@ -40,6 +53,19 @@ export default {
   methods: {
     editHandler() {
       this.isEditing = !this.isEditing;
+    },
+    deleteCard(section, card) {
+      this.$store.state.cvData[section].cards.shift();
+      console.log(card);
+      this.isEditing = !this.isEditing;
+    },
+    saveCard(section, card) {
+      writeSectionCard(
+        this.$store.state.user.uid,
+        this.$route.params.id,
+        section,
+        card
+      );
     },
   },
 };

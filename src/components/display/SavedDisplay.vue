@@ -9,6 +9,12 @@
       <hr />
       <DisplayBodyRight />
     </div>
+    <div class="cc">
+      <h6>This cv created by Bektas Albayrak</h6>
+      <a target="_blank" href="https://github.com/albayrakbektas/cv-maker"
+        >https://github.com/albayrakbektas/cv-maker</a
+      >
+    </div>
   </div>
 </template>
 
@@ -74,5 +80,18 @@ export default {
   grid-template-columns: 3fr auto 1fr;
   //border: 1px solid #8c8c8e;
   //border-bottom: none;
+}
+.cc {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  display: none;
+  h6 {
+    margin: 0;
+  }
+  a {
+    font-size: 12px;
+    text-decoration: underline;
+  }
 }
 </style>

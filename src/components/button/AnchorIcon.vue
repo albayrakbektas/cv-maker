@@ -1,5 +1,5 @@
 <template>
-  <a :href="anchor.href">
+  <a target="_blank" :href="anchor.href">
     <i v-show="anchor.content" :class="anchor.iconClass"></i>
     {{ anchor.content }}
   </a>

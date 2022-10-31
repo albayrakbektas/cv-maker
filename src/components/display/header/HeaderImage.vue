@@ -11,9 +11,9 @@ export default {
     };
   },
   watch: {
-    "$store.state.cvData.personalInformation.profilePicture": function (val) {
-      this.displayImage(val);
-    },
+    // "$store.state.cvData.personalInformation.profilePicture": function (val) {
+    //   this.displayImage(val);
+    // },
   },
   methods: {
     displayImage(file) {

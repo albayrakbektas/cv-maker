@@ -141,52 +141,52 @@ export default {
       });
   },
   watch: {
-    givenName: function (val) {
-      console.log(val);
-      this.$store.state.cvData.personalInformation.givenName = val;
-    },
-    familyName: function (val) {
-      this.$store.state.cvData.personalInformation.familyName = val;
-    },
-    email: function (val) {
-      this.$store.state.cvData.personalInformation.email = val;
-    },
-    headline: function (val) {
-      this.$store.state.cvData.personalInformation.headline = val;
-    },
-    phone: function (val) {
-      this.$store.state.cvData.personalInformation.phone = val;
-    },
-    address: function (val) {
-      this.$store.state.cvData.personalInformation.address = val;
-    },
-    postCode: function (val) {
-      this.$store.state.cvData.personalInformation.postCode = val;
-    },
-    city: function (val) {
-      this.$store.state.cvData.personalInformation.city = val;
-    },
-    website: function (val) {
-      let data =
-        this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
-          x.subtitle.includes("Website")
-        );
-      data.content = val;
-    },
-    linkedin: function (val) {
-      let data =
-        this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
-          x.subtitle.includes("LinkedIn")
-        );
-      data.content = val;
-    },
-    github: function (val) {
-      let data =
-        this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
-          x.subtitle.includes("Github")
-        );
-      data.content = val;
-    },
+    // "personalInformation.givenName": function (val) {
+    //   console.log(val);
+    //   this.$store.state.cvData.personalInformation.givenName = val;
+    // },
+    // familyName: function (val) {
+    //   this.$store.state.cvData.personalInformation.familyName = val;
+    // },
+    // email: function (val) {
+    //   this.$store.state.cvData.personalInformation.email = val;
+    // },
+    // headline: function (val) {
+    //   this.$store.state.cvData.personalInformation.headline = val;
+    // },
+    // phone: function (val) {
+    //   this.$store.state.cvData.personalInformation.phone = val;
+    // },
+    // address: function (val) {
+    //   this.$store.state.cvData.personalInformation.address = val;
+    // },
+    // postCode: function (val) {
+    //   this.$store.state.cvData.personalInformation.postCode = val;
+    // },
+    // city: function (val) {
+    //   this.$store.state.cvData.personalInformation.city = val;
+    // },
+    // website: function (val) {
+    //   let data =
+    //     this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
+    //       x.subtitle.includes("Website")
+    //     );
+    //   data.content = val;
+    // },
+    // linkedin: function (val) {
+    //   let data =
+    //     this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
+    //       x.subtitle.includes("LinkedIn")
+    //     );
+    //   data.content = val;
+    // },
+    // github: function (val) {
+    //   let data =
+    //     this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
+    //       x.subtitle.includes("Github")
+    //     );
+    //   data.content = val;
+    // },
   },
   data() {
     return {
@@ -208,34 +208,8 @@ export default {
           linkedin: "linkedin",
           github: "github",
         },
-        // personalDetail: [
-        //   {
-        //     subtitle: ["Website"],
-        //     content: "",
-        //   },
-        //   {
-        //     subtitle: ["LinkedIn"],
-        //     content: "",
-        //   },
-        //   {
-        //     subtitle: ["Github"],
-        //     content: "",
-        //   },
-        // ],
       },
       isSlotActive: false,
-      profilePicture: "",
-      givenName: "",
-      familyName: "",
-      email: "",
-      headline: "",
-      phone: "",
-      address: "",
-      postCode: "",
-      city: "",
-      website: "",
-      linkedin: "",
-      github: "",
     };
   },
 };

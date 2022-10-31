@@ -2,11 +2,22 @@
   <div class="section">
     <CollapsibleSection title="Education">
       <CollapsibleContent
-        v-for="(item, index) in $store.state.cvData.education.cards"
+        v-for="(item, index) in $store.state.cv.education.cards"
         :key="index"
       >
         <CardEdit :card="item" section="education" />
       </CollapsibleContent>
+      <SpanIcon
+        @button-handler="addEducation"
+        class="span-icon"
+        :button="button"
+      />
+      <CardEdit
+        :directly-edit="true"
+        v-show="isNewForm"
+        :data="$store.state.cv.education.cards"
+        section="education"
+      />
     </CollapsibleSection>
   </div>
 </template>
@@ -15,24 +26,55 @@
 import CollapsibleSection from "@/components/collapse/CollapsibleSection";
 import CollapsibleContent from "@/components/collapse/CollapsibleContent";
 import CardEdit from "@/components/card/CardEditing";
+import SpanIcon from "@/components/button/SpanIcon";
+import { v4 as uuidv4 } from "uuid";
 export default {
   name: "EducationMain",
   components: {
+    SpanIcon,
     CardEdit,
     CollapsibleContent,
     CollapsibleSection,
   },
   methods: {
-    // getState() {
-    //   let cv = this.$store.state.cvData;
-    //   console.log(cv);
-    // },
+    addEducation() {
+      let card = {
+        id: uuidv4(),
+        title: "",
+        dateStart: {
+          month: "",
+          year: "",
+        },
+        dateEnd: {
+          month: "",
+          year: "",
+        },
+        rowCard: {
+          subtitle: ["", ""],
+          content: "",
+        },
+      };
+      this.$store.dispatch("addCard", { section: "education", card });
+      this.isNewForm = true;
+    },
   },
   mounted() {},
   data() {
-    return {};
+    return {
+      isNewForm: false,
+      newCard: {},
+      button: {
+        grid: "is",
+        span: "Add new education",
+        iconClass: "fa-solid fa-plus",
+      },
+    };
   },
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.span-icon {
+  width: fit-content;
+}
+</style>

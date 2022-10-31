@@ -25,7 +25,7 @@ export default {
   components: { CardEdit, CollapsibleContent, CollapsibleSection },
   watch: {
     "languageField.value": function (val) {
-      this.$store.state.languages[0].subtitle[0] = val;
+      this.$store.state.languages[0].content = val;
     },
     range: function (val) {
       this.$store.state.languages[0].content = Number(val);
