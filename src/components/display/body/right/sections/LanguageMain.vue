@@ -12,6 +12,7 @@
 <script>
 import DisplayTwoRows from "@/components/card/DisplayTwoRows";
 import BodyRowCard from "@/components/card/BodyRowCard";
+import { getCv } from "@/firebaseMethods";
 
 export default {
   name: "LanguageMain",
@@ -20,13 +21,15 @@ export default {
     "$store.state.isChanging": {
       handler: function (val) {
         console.log(val);
-        this.detailsList = this.$store.state.cvData.languages;
+        this.detailsList = this.$store.state.cvData.languages.cards;
       },
       deep: true,
     },
   },
-  mounted() {
-    this.detailsList = this.$store.state.languages;
+  async mounted() {
+    getCv(this.$store.state.user.uid, this.$route.params.id).then((res) => {
+      this.detailsList = res.languages.cards;
+    });
   },
   data() {
     return {

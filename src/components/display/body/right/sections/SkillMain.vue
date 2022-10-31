@@ -21,14 +21,14 @@ export default {
     "$store.state.isChanging": {
       handler: function (val) {
         console.log(val);
-        this.detailsList = this.$store.state.cvData.skills;
+        this.detailsList = this.$store.state.cvData.skills.cards;
       },
       deep: true,
     },
   },
   async mounted() {
     getCv(this.$store.state.user.uid, this.$route.params.id).then((res) => {
-      this.detailsList = res.skills;
+      this.detailsList = res.skills.cards;
     });
   },
   data() {
