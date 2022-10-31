@@ -8,7 +8,22 @@ export default new Vuex.Store({
     user: {},
     isChanging: false,
     cv: {
-      personalInformation: {},
+      personalInformation: {
+        profilePicture: "",
+        givenName: "",
+        familyName: "",
+        email: "",
+        headline: "",
+        phone: "",
+        address: "",
+        postCode: "",
+        city: "",
+        personalDetail: [
+          { content: "", subtitle: ["", ""] },
+          { content: "", subtitle: ["", ""] },
+          { content: "", subtitle: ["", ""] },
+        ],
+      },
       education: {
         title: "",
         cards: [],
