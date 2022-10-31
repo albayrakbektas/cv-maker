@@ -214,8 +214,8 @@ export default new Vuex.Store({
   },
   mutations: {
     addCard: (state, payload) => {
-      console.log(state.cv);
-      state.cv[payload.section]["cards"].push(payload.card);
+      console.log(state.cvData);
+      state.cvData[payload.section]["cards"][payload.card.id] = payload.card;
     },
   },
   actions: {
