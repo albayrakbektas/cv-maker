@@ -69,8 +69,11 @@ export const writeSectionCard = (userId, cvId, section, card) => {
     });
 };
 
-export const deleteSectionCard = (userId, cvId, section) => {
-  set(ref(database, userId + "/" + cvId + "/" + section + "/cards/"), null)
+export const deleteSectionCard = (userId, cvId, section, cardId) => {
+  set(
+    ref(database, userId + "/" + cvId + "/" + section + "/cards/" + cardId),
+    null
+  )
     .then((res) => {
       console.log(res);
     })

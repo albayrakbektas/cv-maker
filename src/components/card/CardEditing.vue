@@ -5,7 +5,7 @@
       <FormCard v-if="!isSkill" :data="card" :section="section" />
       <div class="editing-form-bottom">
         <SpanIcon
-          @button-handler="deleteCard(section, card)"
+          @button-handler="deleteCard(section, card.id)"
           :button="deleteButton"
         />
         <SpanIcon
@@ -23,7 +23,7 @@ import SpanIcon from "@/components/button/SpanIcon";
 import FormCard from "@/components/card/FormCard";
 import CardShortcut from "@/components/card/CardShortcut";
 import FormSkill from "@/components/form/FormSkill";
-import { writeSectionCard } from "@/firebaseMethods";
+import { deleteSectionCard, writeSectionCard } from "@/firebaseMethods";
 import { mapGetters } from "vuex";
 export default {
   name: "CardEdit",
@@ -54,9 +54,13 @@ export default {
     editHandler() {
       this.isEditing = !this.isEditing;
     },
-    deleteCard(section, card) {
-      this.$store.state.cvData[section].cards.shift();
-      console.log(card);
+    deleteCard(section, cardId) {
+      deleteSectionCard(
+        this.$store.state.user.uid,
+        this.$route.params.id,
+        section,
+        cardId
+      );
       this.isEditing = !this.isEditing;
     },
     saveCard(section, card) {
