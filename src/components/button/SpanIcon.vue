@@ -25,6 +25,7 @@ export default {
   grid-template-areas: "left right";
   justify-content: space-between;
   align-items: center;
+  width: fit-content;
 }
 span {
   padding-left: 5px;
