@@ -2,7 +2,7 @@
   <div class="section">
     <CollapsibleSection title="Languages">
       <CollapsibleContent
-        v-for="(item, index) of $store.state.cvData.languages"
+        v-for="(item, index) of $store.state.cvData.languages.cards"
         :key="index"
       >
         <CardEdit
@@ -12,6 +12,11 @@
           section="languages"
         />
       </CollapsibleContent>
+      <SpanIcon
+        @button-handler="addEducation"
+        class="span-icon"
+        :button="button"
+      />
     </CollapsibleSection>
   </div>
 </template>
@@ -20,20 +25,46 @@
 import CollapsibleSection from "@/components/collapse/CollapsibleSection";
 import CollapsibleContent from "@/components/collapse/CollapsibleContent";
 import CardEdit from "@/components/card/CardEditing";
+import SpanIcon from "@/components/button/SpanIcon";
+import { v4 as uuidv4 } from "uuid";
+import { writeSectionCard } from "@/firebaseMethods";
 export default {
   name: "LanguageCollapsible",
-  components: { CardEdit, CollapsibleContent, CollapsibleSection },
+  components: { SpanIcon, CardEdit, CollapsibleContent, CollapsibleSection },
   watch: {
-    "languageField.value": function (val) {
-      this.$store.state.languages[0].content = val;
-    },
-    range: function (val) {
-      this.$store.state.languages[0].content = Number(val);
+    // "languageField.value": function (val) {
+    //   this.$store.state.languages[0].content = val;
+    // },
+    // range: function (val) {
+    //   this.$store.state.languages[0].content = Number(val);
+    // },
+  },
+  methods: {
+    addEducation() {
+      let card = {
+        id: uuidv4(),
+        subtitle: ["", ""],
+        content: "",
+      };
+      writeSectionCard(
+        this.$store.state.user.uid,
+        this.$route.params.id,
+        "languages",
+        card
+      );
+      this.$store.dispatch("addCard", { section: "languages", card });
+      this.isNewForm = true;
     },
   },
   data() {
     return {
       range: "",
+      languageList: null,
+      button: {
+        grid: "is",
+        span: "Add new language",
+        iconClass: "fa-solid fa-plus",
+      },
       languageField: {
         tag: "input",
         type: "text",
