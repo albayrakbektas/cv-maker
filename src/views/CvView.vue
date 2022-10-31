@@ -14,12 +14,14 @@
 <script>
 import CardMain from "@/components/card/CardMain";
 import { signout, writeUserData } from "@/firebaseMethods";
-import { v4 as uuidv4 } from "uuid";
 import SavedDisplay from "@/components/display/SavedDisplay";
 
 export default {
   name: "CvView",
   components: { SavedDisplay, CardMain },
+  mounted() {
+    console.log(this.$route.params.id);
+  },
   methods: {
     async signOut() {
       await signout();
@@ -27,7 +29,7 @@ export default {
     },
     save() {
       let userId = this.$store.state.user.uid;
-      let cvId = uuidv4().split("-").join("");
+      let cvId = this.$route.params.id;
       const {
         personalInformation,
         education,
