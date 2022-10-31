@@ -1,19 +1,29 @@
 <template>
-  <router-link :to="'/cv/' + createUid()">
+  <div @click="createNewCv">
     <div class="new-cv-container">
       <h3>Create new Cv</h3>
       <i class="fa-solid fa-plus"></i>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
 import { v4 as uuidv4 } from "uuid";
+import { writeUserData } from "@/firebaseMethods";
 export default {
   name: "NewCv",
   methods: {
     createUid() {
       return uuidv4().split("-").join("");
+    },
+    createNewCv() {
+      let cvId = this.createUid();
+      let newCv = this.$store.state.cv;
+      newCv.id = cvId;
+      writeUserData(this.$store.state.user.uid, cvId, newCv);
+      this.$store.state.cvData = this.$store.state.cv;
+      console.log(this.$store.state.cvData);
+      this.$router.push("cv/" + cvId);
     },
   },
 };
@@ -33,5 +43,8 @@ h3 {
 }
 i {
   align-self: start;
+}
+div {
+  cursor: pointer;
 }
 </style>
