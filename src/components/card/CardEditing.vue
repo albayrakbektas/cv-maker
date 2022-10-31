@@ -70,6 +70,7 @@ export default {
         section,
         card
       );
+      this.isEditing = !this.isEditing;
     },
   },
 };

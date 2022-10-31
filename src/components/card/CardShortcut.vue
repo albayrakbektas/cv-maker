@@ -58,6 +58,7 @@ export default {
 <style scoped lang="scss">
 * {
   text-align: left;
+  margin: 0;
 }
 .card-container {
   width: auto;
