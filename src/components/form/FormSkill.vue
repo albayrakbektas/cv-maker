@@ -27,12 +27,6 @@ export default {
   },
   watch: {
     "card.content": function (val) {
-      console.log(
-        "1    " +
-          this.type +
-          val +
-          this.$store.state.cvData[this.type][0].subtitle[0]
-      );
       this.$store.state.cvData[this.type].forEach((skill) => {
         if (skill.content === this.card.content) {
           this.card.content = val;
@@ -40,7 +34,6 @@ export default {
       });
     },
     "card.subtitle[0]": function (val) {
-      console.log("2   " + val + this.$store.state.cvData[this.type]);
       this.$store.state.cvData[this.type].forEach((skill) => {
         if (skill.content === this.card.content) {
           this.card.subtitle[0] = val;
@@ -52,14 +45,6 @@ export default {
     return {
       range: "",
       card: {},
-      skillField: {
-        tag: "input",
-        type: "text",
-        name: "skill",
-        label: "Skill",
-        placeholder: "",
-        value: "",
-      },
     };
   },
 };

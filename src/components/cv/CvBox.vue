@@ -14,21 +14,6 @@ export default {
   props: {
     cv: Object,
   },
-  mounted() {
-    console.log(this.cv);
-  },
-  methods: {
-    async saveState() {
-      const cv = await this.cv;
-      this.$store.state.personalInformation = cv.personalInformation;
-      this.$store.state.skills = cv.skills;
-      this.$store.state.reference = cv.reference;
-      this.$store.state.languages = cv.languages;
-      this.$store.state.employment = cv.employment;
-      this.$store.state.education = cv.education;
-      console.log(this.$store.state);
-    },
-  },
 };
 </script>
 

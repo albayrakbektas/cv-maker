@@ -43,7 +43,6 @@ export default {
     },
     async getUser() {
       this.user = await getUser();
-      console.log(this.user);
     },
   },
   watch: {

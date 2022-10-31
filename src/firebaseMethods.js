@@ -11,7 +11,6 @@ import store from "@/store";
 export const register = async (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed in
       const user = userCredential.user;
       console.log(user);
     })
@@ -38,58 +37,40 @@ export const getUser = async () => {
   let userId = "";
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log("userid1: " + userId);
       return (userId = user.uid);
     }
   });
-  console.log("userid2: " + userId);
   return userId;
 };
 
 export const writeUserData = (userId, cvId, cv) => {
-  set(ref(database, userId + "/" + cvId), cv)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  set(ref(database, userId + "/" + cvId), cv).catch((error) => {
+    console.log(error);
+  });
 };
 
 export const writeSectionCard = (userId, cvId, section, card) => {
   set(
     ref(database, userId + "/" + cvId + "/" + section + "/cards/" + card.id),
     card
-  )
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  ).catch((error) => {
+    console.log(error);
+  });
 };
 
 export const deleteSectionCard = (userId, cvId, section, cardId) => {
   set(
     ref(database, userId + "/" + cvId + "/" + section + "/cards/" + cardId),
     null
-  )
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  ).catch((error) => {
+    console.log(error);
+  });
 };
 
 export const signout = async () => {
-  await signOut(auth)
-    .then(() => {
-      console.log("signedOut");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  await signOut(auth).catch((error) => {
+    console.log(error);
+  });
 };
 
 export const getCvList = async (userId) => {

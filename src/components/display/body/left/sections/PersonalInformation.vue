@@ -132,13 +132,9 @@ export default {
     },
   },
   async mounted() {
-    getCv(this.$store.state.user.uid, this.$route.params.id)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getCv(this.$store.state.user.uid, this.$route.params.id).catch((err) => {
+      console.log(err);
+    });
   },
   watch: {
     // "personalInformation.givenName": function (val) {

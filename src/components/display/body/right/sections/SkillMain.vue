@@ -19,8 +19,7 @@ export default {
   components: { DisplayTwoRows, BodyRowCard },
   watch: {
     "$store.state.isChanging": {
-      handler: function (val) {
-        console.log(val);
+      handler: function () {
         this.detailsList = this.$store.state.cvData.skills.cards;
       },
       deep: true,

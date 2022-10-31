@@ -19,9 +19,7 @@ import SavedDisplay from "@/components/display/SavedDisplay";
 export default {
   name: "CvView",
   components: { SavedDisplay, CardMain },
-  mounted() {
-    console.log(this.$route.params.id);
-  },
+  mounted() {},
   methods: {
     async signOut() {
       await signout();

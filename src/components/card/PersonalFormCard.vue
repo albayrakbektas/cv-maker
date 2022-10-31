@@ -71,17 +71,11 @@ import ProfileUpload from "@/components/display/header/ProfileUpload";
 export default {
   name: "PersonalFormCard",
   components: { ProfileUpload },
-  methods: {
-    getState() {
-      let cv = this.$store.state.cvData;
-      console.log(cv);
-    },
-  },
+  methods: {},
   props: {
     data: Object,
   },
   mounted() {
-    console.log(this.data);
     this.card = this.data;
   },
   data() {
@@ -112,10 +106,6 @@ form {
   text-align: left;
 }
 input {
-  /*width: 100%;*/
-  /*width: -moz-available;*/
-  /*width: -webkit-fill-available;*/
-  /*width: fill-available;*/
   padding: 0.5rem;
   margin: 0.1rem 0 1.2rem 0;
 }

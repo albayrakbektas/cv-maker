@@ -21,8 +21,6 @@ export default {
       let newCv = this.$store.state.cv;
       newCv.id = cvId;
       writeUserData(this.$store.state.user.uid, cvId, newCv);
-      this.$store.state.cvData = this.$store.state.cv;
-      console.log(this.$store.state.cvData);
       this.$router.push("cv/" + cvId);
     },
   },

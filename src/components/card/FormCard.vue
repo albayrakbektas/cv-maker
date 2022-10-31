@@ -85,12 +85,7 @@
 export default {
   name: "FormCard",
   methods: {
-    getState() {
-      let cv = this.$store.state.cvData;
-      console.log(cv);
-    },
     changeWatch() {
-      console.log(this.card);
       this.$store.state.isChanging = !this.$store.state.isChanging;
       if (this.section === "reference") {
         this.card.rowCard.content = this.phone + ", " + this.email;
@@ -103,7 +98,6 @@ export default {
   },
   mounted() {
     this.card = this.data;
-    console.log(this.data);
     this.card.rowCard.content = this.card.rowCard.content.split(", ");
     this.phone = this.card.rowCard.content[0];
     this.email = this.card.rowCard.content[1];

@@ -73,13 +73,9 @@ export default new Vuex.Store({
     getCardById: (state) => (section, cardId) => {
       return state.cvData[section]["cards"][cardId];
     },
-    // getCards(state) {
-    //   return state.education.cards;
-    // },
   },
   mutations: {
     addCard: (state, payload) => {
-      console.log(state.cvData);
       state.cvData[payload.section]["cards"][payload.card.id] = payload.card;
     },
   },

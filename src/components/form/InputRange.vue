@@ -25,7 +25,6 @@ export default {
   watch: {
     value: function (val) {
       this.degree = this.valueToText(val);
-      console.log(this.degree);
     },
   },
   methods: {

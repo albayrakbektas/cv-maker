@@ -35,13 +35,11 @@ export default {
     };
   },
   async mounted() {
-    await getCv(this.$store.state.user.uid, this.$route.params.id)
-      .then((res) => {
+    await getCv(this.$store.state.user.uid, this.$route.params.id).then(
+      (res) => {
         this.cv = res;
-      })
-      .then(() => {
-        console.log(this.cv);
-      });
+      }
+    );
   },
   methods: {
     exportToPDF() {
@@ -51,16 +49,6 @@ export default {
         filename: "vue-pdf",
       });
     },
-    // async saveState() {
-    //   const cv = await this.cv;
-    //   this.$store.state.personalInformation = cv.personalInformation;
-    //   this.$store.state.skills = cv.skills;
-    //   this.$store.state.reference = cv.reference;
-    //   this.$store.state.languages = cv.languages;
-    //   this.$store.state.employment = cv.employment;
-    //   this.$store.state.education = cv.education;
-    //   console.log(this.$store.state);
-    // },
   },
 };
 </script>
@@ -69,7 +57,6 @@ export default {
 .display-main {
   border-radius: 8px;
   overflow: hidden;
-  //box-shadow: 5px 5px 15px #8c8c8e;
 }
 .display-header-container {
   display: grid;
@@ -78,8 +65,6 @@ export default {
 .display-main-body {
   display: grid;
   grid-template-columns: 3fr auto 1fr;
-  //border: 1px solid #8c8c8e;
-  //border-bottom: none;
 }
 .cc {
   position: absolute;
