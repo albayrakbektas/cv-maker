@@ -4,6 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import LoginView from "@/views/LoginView";
 import RegisterView from "@/views/RegisterView";
 import CvView from "@/views/CvView";
+import { auth } from "@/main";
 
 Vue.use(VueRouter);
 
@@ -48,14 +49,14 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-//   const isAuthenticated = auth.currentUser;
-//   if (requiresAuth && !isAuthenticated) {
-//     next("/login");
-//   } else {
-//     next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+  const isAuthenticated = auth.currentUser;
+  if (requiresAuth && !isAuthenticated) {
+    next("/login");
+  } else {
+    next();
+  }
+});
 
 export default router;
