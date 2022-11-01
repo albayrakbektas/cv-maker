@@ -21,7 +21,7 @@ export const register = async (email, password) => {
     });
 };
 
-export const signIn = async (email, password) => {
+export const signIn = (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       store.state.user = userCredential.user;

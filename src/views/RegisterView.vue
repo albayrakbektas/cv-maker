@@ -10,10 +10,10 @@
           </div>
         </div>
       </form>
-      <button @click="getUser">getuser</button>
       <div class="error-message">
         <div class="card">
-          <router-link to="/login">to login</router-link>
+          <span>Already have an account?</span>
+          <router-link to="/login">Log in</router-link>
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@ export default {
         tag: "input",
         type: "text",
         name: "education",
-        label: "Education",
+        label: "Email",
         placeholder: "",
         value: "",
       },
@@ -93,8 +93,8 @@ export default {
 }
 .error-message {
   position: absolute;
-  bottom: 30px;
-  right: 30px;
+  bottom: 0;
+  right: 0;
 }
 .card {
   height: 45px;
@@ -102,7 +102,20 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 0 5px;
-  background: linear-gradient(159deg, #2d2d3a 0%, #2b2b35 100%);
+}
+.form-button-field {
+  width: fit-content;
+}
+button {
+  cursor: pointer;
+  padding: 12.5px 22px;
+}
+span {
+  padding-right: 5px;
+}
+a {
+  color: #800080;
+  font-weight: 900;
 }
 @media (max-width: 500px) {
   .login {

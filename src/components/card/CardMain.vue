@@ -32,5 +32,8 @@ export default {
 <style scoped lang="scss">
 .card-main {
   overflow: hidden;
+  padding: 0.5rem 2rem;
+  background-color: aqua;
+  margin-top: 70px;
 }
 </style>

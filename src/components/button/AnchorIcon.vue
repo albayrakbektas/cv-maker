@@ -22,7 +22,7 @@ a {
   align-items: center;
   color: #8c8c8e;
   text-decoration: none;
-  font-size: 0.7rem;
+  font-size: 0.55rem;
 }
 i {
   color: #8c8c8e;

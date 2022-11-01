@@ -1,5 +1,5 @@
 <template>
-  <BodyRowCard v-if="data" title="Skills">
+  <BodyRowCard title="Skills">
     <DisplayTwoRows
       v-for="(item, index) of getSectionCards"
       :key="index"

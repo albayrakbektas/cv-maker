@@ -28,13 +28,19 @@ const routes = [
     component: RegisterView,
   },
   {
-    path: "/cv/:id",
+    path: "/cv/:id?",
     name: "cv",
     component: CvView,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/about",
     name: "about",
+    meta: {
+      requiresAuth: true,
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -53,9 +59,9 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const isAuthenticated = auth.currentUser;
   if (requiresAuth && !isAuthenticated) {
-    next("/login");
+    return next("/login");
   } else {
-    next();
+    return next();
   }
 });
 

@@ -116,6 +116,7 @@ i {
 .show-hide {
   opacity: 0;
   transition: 1s ease-in-out;
+  cursor: pointer;
 }
 .fa-solid {
   opacity: 1;

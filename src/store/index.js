@@ -106,6 +106,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    updateCvData: (state, payload) => {
+      state.cvData = payload;
+    },
     addCard: (state, payload) => {
       state.cvData[payload.section]["cards"][payload.card.id] = payload.card;
     },
@@ -113,20 +116,6 @@ export default new Vuex.Store({
       state.cvData.personalInformation[payload.property] = payload.value;
     },
     setPersonalDetails: (state, payload) => {
-      // for (
-      //   let i = 0;
-      //   i < state.cvData.personalInformation.personalDetail.length;
-      //   i++
-      // ) {
-      //   if (
-      //     state.cvData.personalInformation.personalDetail[i].subtitle[0] ===
-      //     payload.title
-      //   ) {
-      //     state.cvData.personalInformation.personalDetail[i].content =
-      //       payload.value;
-      //     count++;
-      //   }
-
       state.cvData.personalInformation.personalDetail[payload.title] = {
         content: payload.value,
         subtitle: [payload.title, ""],
@@ -135,6 +124,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    updateCvData: ({ commit }, payload) => {
+      commit("updateCvData", payload);
+    },
     addCard: ({ commit }, payload) => {
       commit("addCard", payload);
     },

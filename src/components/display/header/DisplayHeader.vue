@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$route.name === 'cv'" class="display-header pd">
+  <div v-if="$route.name === 'cv'" class="display-header">
     <h1 class="header-name">
       {{ getPersonalInformationProperties.givenName }}
       {{ getPersonalInformationProperties.familyName }}
@@ -114,9 +114,13 @@ export default {
   display: grid;
   grid-template-rows: auto auto 1fr;
   align-items: end;
+  height: 5.5rem;
+  box-sizing: border-box;
+  padding: 1rem;
 }
 .header-name {
   line-height: 1.1rem;
+  font-weight: normal;
 }
 .header-bottom {
   display: grid;

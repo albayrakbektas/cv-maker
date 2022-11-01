@@ -8,12 +8,13 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Poppins, sans-serif;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  font-family: Poppins, sans-serif;
 }
 i {
   font-weight: 900;
@@ -22,7 +23,8 @@ i {
   padding: 30px;
 }
 h1 {
-  font-size: 1.4rem;
+  font-size: 1.55rem;
+  letter-spacing: 0;
 }
 h4 {
   font-size: 0.8rem;

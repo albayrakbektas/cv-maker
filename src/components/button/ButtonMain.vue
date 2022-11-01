@@ -1,5 +1,9 @@
 <template>
-  <button type="button" @click.stop="$emit('button-handler')">
+  <button
+    :style="buttonStyle"
+    type="button"
+    @click.stop="$emit('button-handler')"
+  >
     <slot></slot>
   </button>
 </template>
@@ -7,6 +11,9 @@
 <script>
 export default {
   name: "ButtonMain",
+  props: {
+    buttonStyle: Object,
+  },
 };
 </script>
 

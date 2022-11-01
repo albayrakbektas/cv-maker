@@ -1,5 +1,5 @@
 <template>
-  <img v-if="file" :src="getPersonalInformationProperties" alt="" />
+  <img :src="getPersonalInformationProperties" alt="" />
 </template>
 
 <script>
@@ -26,7 +26,8 @@ export default {
 
 <style scoped>
 img {
-  height: 131px;
+  height: 5.5rem;
+  width: 5.5rem;
   object-fit: cover;
 }
 </style>
