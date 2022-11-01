@@ -23,6 +23,6 @@ button {
   background: none;
   border: 1px solid #8b8b8b;
   border-radius: 8px;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 }
 </style>

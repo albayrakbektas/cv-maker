@@ -32,6 +32,10 @@ h4 {
 form {
   //padding: 0 0 15px 0;
 }
+input {
+  background-color: rgba(244, 244, 255, 1);
+  border: 1px solid rgba(240, 248, 255, 1);
+}
 a {
   text-decoration: none;
   color: unset;

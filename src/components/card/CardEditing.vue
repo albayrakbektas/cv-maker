@@ -9,6 +9,9 @@
           :button="deleteButton"
         />
         <SpanIcon
+          :icon-style="spanStyle"
+          :span-style="spanStyle"
+          :button-style="saveButtonStyle"
           @button-handler="saveCard(section, card)"
           :button="saveButton"
         />
@@ -48,6 +51,17 @@ export default {
         span: "",
       },
       saveButton: { iconClass: "fa-solid fa-check", grid: "is", span: "Ok" },
+      spanStyle: {
+        color: "#ffffff",
+        fontWeight: "900",
+        fontSize: "1rem",
+      },
+      saveButtonStyle: {
+        backgroundColor: "rgba(0, 0, 0, 1)",
+        backgroundImage:
+          "linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3))",
+        height: "45px",
+      },
     };
   },
   methods: {

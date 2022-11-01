@@ -45,9 +45,11 @@
             <label for="address">Address</label>
             <input name="address" v-model="address" />
           </div>
-          <div class="input-container">
-            <label for="postCode">Post code</label>
-            <input name="postCode" v-model="postCode" />
+          <div class="two-columns">
+            <div class="input-container">
+              <label for="postCode">Post code</label>
+              <input name="postCode" v-model="postCode" />
+            </div>
             <div class="input-container">
               <label for="city">City</label>
               <input name="city" v-model="city" />
@@ -237,80 +239,9 @@ export default {
       this.isEditing = !this.isEditing;
     },
   },
-  // async mounted() {
-  //   getCv(this.$store.state.user.uid, this.$route.params.id).catch((err) => {
-  //     console.log(err);
-  //   });
-  // },
-  watch: {
-    // "personalInformation.givenName": function (val) {
-    //   console.log(val);
-    //   this.$store.state.cvData.personalInformation.givenName = val;
-    // },
-    // familyName: function (val) {
-    //   this.$store.state.cvData.personalInformation.familyName = val;
-    // },
-    // email: function (val) {
-    //   this.$store.state.cvData.personalInformation.email = val;
-    // },
-    // headline: function (val) {
-    //   this.$store.state.cvData.personalInformation.headline = val;
-    // },
-    // phone: function (val) {
-    //   this.$store.state.cvData.personalInformation.phone = val;
-    // },
-    // address: function (val) {
-    //   this.$store.state.cvData.personalInformation.address = val;
-    // },
-    // postCode: function (val) {
-    //   this.$store.state.cvData.personalInformation.postCode = val;
-    // },
-    // city: function (val) {
-    //   this.$store.state.cvData.personalInformation.city = val;
-    // },
-    // website: function (val) {
-    //   let data =
-    //     this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
-    //       x.subtitle.includes("Website")
-    //     );
-    //   data.content = val;
-    // },
-    // linkedin: function (val) {
-    //   let data =
-    //     this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
-    //       x.subtitle.includes("LinkedIn")
-    //     );
-    //   data.content = val;
-    // },
-    // github: function (val) {
-    //   let data =
-    //     this.$store.state.cvData.personalInformation.personalDetail.find((x) =>
-    //       x.subtitle.includes("Github")
-    //     );
-    //   data.content = val;
-    // },
-  },
   data() {
     return {
       isEditing: false,
-      // personalInformation: {
-      //   profilePicture: "",
-      //   name: "",
-      //   surname: "",
-      //   mail: "",
-      //   headline: "",
-      //   phone: "",
-      //   address: "",
-      //   postCode: "",
-      //   city: "",
-      //   website: "",
-      //   linkedIn: "",
-      //   personalDetail: {
-      //     website: "website",
-      //     linkedin: "linkedin",
-      //     github: "github",
-      //   },
-      // },
       isSlotActive: false,
     };
   },
@@ -327,7 +258,6 @@ export default {
 }
 .two-rows {
   display: grid;
-  gap: 0.5rem;
   grid-template-rows: repeat(2, 1fr);
 }
 .two-columns {
@@ -335,18 +265,19 @@ export default {
   gap: 0.5rem;
   grid-template-columns: repeat(2, 1fr);
 }
-.photo-header {
-  display: flex;
-  justify-content: space-between;
-}
 .photo-input {
   display: grid;
   grid-template-rows: auto 1fr;
-  height: 182px;
   text-align: left;
+  margin-right: 1rem;
+  padding: 0.5rem 0;
   input {
     border-radius: 8px;
   }
+}
+.photo-header {
+  display: flex;
+  justify-content: space-between;
 }
 i {
   cursor: pointer;
@@ -359,6 +290,7 @@ input {
 }
 label {
   display: inline-block;
+  margin-bottom: 0.25rem;
 }
 .row-two {
   display: grid;

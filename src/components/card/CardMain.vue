@@ -33,7 +33,7 @@ export default {
 .card-main {
   overflow: hidden;
   padding: 0.5rem 2rem;
-  background-color: aqua;
+  background-color: #ffffff;
   margin-top: 70px;
 }
 </style>
