@@ -1,5 +1,10 @@
 <template>
-  <div id="display-main" class="display-main" ref="document">
+  <div
+    v-if="$route.name === 'cv'"
+    id="display-main"
+    class="display-main"
+    ref="document"
+  >
     <div class="display-main-container">
       <div class="display-container">
         <div class="display-header-container">
@@ -75,7 +80,7 @@ export default {
   top: 70px;
   bottom: 0;
   overflow: visible;
-  background-color: wheat;
+  background-color: rgba(250, 250, 250, 1);
 }
 .display-main-container {
   position: relative;
