@@ -29,9 +29,6 @@ export default {
     };
   },
   methods: {
-    sendData() {
-      this.$emit("clicked", this.isSlotActive);
-    },
     openSlot() {
       if (this.isSlotActive !== true) {
         this.isSlotActive = true;

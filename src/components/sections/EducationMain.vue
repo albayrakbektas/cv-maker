@@ -1,10 +1,7 @@
 <template>
   <div class="section">
     <CollapsibleSection title="Education">
-      <CollapsibleContent
-        v-for="(item, index) in $store.state.cvData.education.cards"
-        :key="index"
-      >
+      <CollapsibleContent v-for="(item, index) in getSectionCards" :key="index">
         <CardEdit :card="item" section="education" />
       </CollapsibleContent>
       <SpanIcon
@@ -15,7 +12,7 @@
       <CardEdit
         :directly-edit="true"
         v-show="isNewForm"
-        :data="$store.state.cvData.education.cards"
+        :data="getSectionCards"
         section="education"
       />
     </CollapsibleSection>
@@ -36,6 +33,11 @@ export default {
     CardEdit,
     CollapsibleContent,
     CollapsibleSection,
+  },
+  computed: {
+    getSectionCards() {
+      return this.$store.getters.getSectionCards("education");
+    },
   },
   methods: {
     addEducation() {
@@ -69,7 +71,6 @@ export default {
   data() {
     return {
       isNewForm: false,
-      newCard: {},
       button: {
         grid: "is",
         span: "Add new education",

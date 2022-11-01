@@ -1,22 +1,18 @@
 <template>
   <div class="section">
-    <CollapsibleSection title="Employment">
-      <CollapsibleContent
-        v-for="(item, index) in $store.state.cvData.employment.cards"
-        :key="index"
-      >
-        <CardEdit :card="item" section="employment" />
+    <CollapsibleSection title="Skills">
+      <CollapsibleContent v-for="(item, index) of getSectionCards" :key="index">
+        <CardEdit
+          :card="item"
+          :is-skill="true"
+          type="skills"
+          section="skills"
+        />
       </CollapsibleContent>
       <SpanIcon
         @button-handler="addEducation"
         class="span-icon"
         :button="button"
-      />
-      <CardEdit
-        :directly-edit="true"
-        v-show="isNewForm"
-        :data="$store.state.cvData.employment"
-        section="employment"
       />
     </CollapsibleSection>
   </div>
@@ -26,52 +22,45 @@
 import CollapsibleSection from "@/components/collapse/CollapsibleSection";
 import CollapsibleContent from "@/components/collapse/CollapsibleContent";
 import CardEdit from "@/components/card/CardEditing";
+import { writeSectionCard } from "@/firebaseMethods";
 import SpanIcon from "@/components/button/SpanIcon";
 import { v4 as uuidv4 } from "uuid";
-import { writeSectionCard } from "@/firebaseMethods";
 export default {
-  name: "EmploymentMain",
+  name: "SkillCollapsible",
   components: {
     SpanIcon,
     CardEdit,
     CollapsibleContent,
     CollapsibleSection,
   },
+  computed: {
+    getSectionCards() {
+      return this.$store.getters.getSectionCards("skills");
+    },
+  },
   methods: {
     addEducation() {
       let card = {
         id: uuidv4(),
-        title: "",
-        dateStart: {
-          month: "",
-          year: "",
-        },
-        dateEnd: {
-          month: "",
-          year: "",
-        },
-        rowCard: {
-          subtitle: ["", ""],
-          content: "",
-        },
+        subtitle: ["", ""],
+        content: "",
       };
       writeSectionCard(
         this.$store.state.user.uid,
         this.$route.params.id,
-        "employment",
+        "skills",
         card
       );
-      this.$store.dispatch("addCard", { section: "employment", card });
+      this.$store.dispatch("addCard", { section: "skills", card });
       this.isNewForm = true;
     },
   },
   data() {
     return {
-      isNewForm: false,
-      newCard: {},
+      range: "",
       button: {
         grid: "is",
-        span: "Add new employment",
+        span: "Add new skill",
         iconClass: "fa-solid fa-plus",
       },
     };
@@ -79,4 +68,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped></style>

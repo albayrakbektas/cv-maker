@@ -1,11 +1,14 @@
 <template>
-  <div class="display-body-right pd">
+  <div v-if="$route.name === 'cv'" class="display-body-right pd">
     <PersonalDetails />
     <SkillMain />
     <LanguageMain />
-    <BodyRowCard :title="referencesTitle">
+    <BodyRowCard
+      v-if="data"
+      :title="getSectionCards ? getSectionCards.title : null"
+    >
       <DisplayRowCard
-        v-for="(item, index) of this.$store.state.cvData.reference.cards"
+        v-for="(item, index) of getSectionCards"
         :card="item"
         :key="index"
       />
@@ -28,14 +31,17 @@ export default {
     SkillMain,
     PersonalDetails,
   },
-  created() {
-    this.referencesCards = this.$store.state.reference.cards;
-    this.referencesTitle = this.$store.state.reference.title;
+  computed: {
+    getSectionCards() {
+      return this.$store.getters.getSectionCards("reference");
+    },
+  },
+  mounted() {
+    this.data = this.$store.getters.getSectionCards("reference");
   },
   data() {
     return {
-      referencesCards: [],
-      referencesTitle: "",
+      data: null,
     };
   },
 };

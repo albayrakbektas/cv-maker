@@ -3,7 +3,8 @@
     <div class="row row-two">
       <span class="card-title">{{ card.title }}</span>
       <span class="card-date"
-        >{{ card.dateStart.month }} {{ card.dateStart.year }} -
+        >{{ card.dateStart.month }} {{ card.dateStart.year }}
+        {{ card.dateStart.year && card.dateEnd.year ? "-" : "" }}
         {{ card.dateEnd.month }} {{ card.dateEnd.year }}</span
       >
     </div>

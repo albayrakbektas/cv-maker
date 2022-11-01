@@ -1,15 +1,12 @@
 <template>
   <div class="section">
-    <CollapsibleSection title="Skills">
-      <CollapsibleContent
-        v-for="(item, index) of $store.state.cvData.skills.cards"
-        :key="index"
-      >
+    <CollapsibleSection title="Languages">
+      <CollapsibleContent v-for="(item, index) of getSectionCards" :key="index">
         <CardEdit
           :card="item"
           :is-skill="true"
-          type="skills"
-          section="skills"
+          type="languages"
+          section="languages"
         />
       </CollapsibleContent>
       <SpanIcon
@@ -25,21 +22,16 @@
 import CollapsibleSection from "@/components/collapse/CollapsibleSection";
 import CollapsibleContent from "@/components/collapse/CollapsibleContent";
 import CardEdit from "@/components/card/CardEditing";
-import { getCv, writeSectionCard } from "@/firebaseMethods";
 import SpanIcon from "@/components/button/SpanIcon";
 import { v4 as uuidv4 } from "uuid";
+import { writeSectionCard } from "@/firebaseMethods";
 export default {
-  name: "SkillCollapsible",
-  components: {
-    SpanIcon,
-    CardEdit,
-    CollapsibleContent,
-    CollapsibleSection,
-  },
-  async mounted() {
-    getCv(this.$store.state.user.uid, this.$route.params.id).then((res) => {
-      this.skillList = res.skills;
-    });
+  name: "LanguageCollapsible",
+  components: { SpanIcon, CardEdit, CollapsibleContent, CollapsibleSection },
+  computed: {
+    getSectionCards() {
+      return this.$store.getters.getSectionCards("languages");
+    },
   },
   methods: {
     addEducation() {
@@ -51,29 +43,21 @@ export default {
       writeSectionCard(
         this.$store.state.user.uid,
         this.$route.params.id,
-        "skills",
+        "languages",
         card
       );
-      this.$store.dispatch("addCard", { section: "skills", card });
+      this.$store.dispatch("addCard", { section: "languages", card });
       this.isNewForm = true;
     },
   },
   data() {
     return {
-      skillList: null,
       range: "",
+      languageList: null,
       button: {
         grid: "is",
-        span: "Add new skill",
+        span: "Add new language",
         iconClass: "fa-solid fa-plus",
-      },
-      skillField: {
-        tag: "input",
-        type: "text",
-        name: "skill",
-        label: "Skill",
-        placeholder: "",
-        value: "",
       },
     };
   },

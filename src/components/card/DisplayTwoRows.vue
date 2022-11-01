@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="card && (card.content || range)">
     <div v-if="isAnchor(card.subtitle[0])">
       <a target="_blank" :href="card.content" class="display-two-rows">
         <span class="card-subtitle"
@@ -44,7 +44,9 @@ export default {
       }
     },
     setWidth() {
-      this.$refs["progress-in"].style.width = `${20 * this.$props.range}%`;
+      if (this.range) {
+        this.$refs["progress-in"].style.width = `${20 * this.$props.range}%`;
+      }
     },
   },
 };

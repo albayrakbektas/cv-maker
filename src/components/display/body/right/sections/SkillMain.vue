@@ -1,7 +1,7 @@
 <template>
-  <BodyRowCard title="Skills">
+  <BodyRowCard v-if="data" title="Skills">
     <DisplayTwoRows
-      v-for="(item, index) of detailsList"
+      v-for="(item, index) of getSectionCards"
       :key="index"
       :card="item"
       :range="Number(item.content)"
@@ -12,27 +12,21 @@
 <script>
 import DisplayTwoRows from "@/components/card/DisplayTwoRows";
 import BodyRowCard from "@/components/card/BodyRowCard";
-import { getCv } from "@/firebaseMethods";
 
 export default {
   name: "SkillMain",
   components: { DisplayTwoRows, BodyRowCard },
-  watch: {
-    "$store.state.isChanging": {
-      handler: function () {
-        this.detailsList = this.$store.state.cvData.skills.cards;
-      },
-      deep: true,
+  computed: {
+    getSectionCards() {
+      return this.$store.getters.getSectionCards("skills");
     },
   },
-  async mounted() {
-    getCv(this.$store.state.user.uid, this.$route.params.id).then((res) => {
-      this.detailsList = res.skills.cards;
-    });
+  mounted() {
+    this.data = this.$store.getters.getSectionCards("skills");
   },
   data() {
     return {
-      detailsList: [],
+      data: null,
     };
   },
 };

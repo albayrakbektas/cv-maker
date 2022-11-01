@@ -132,10 +132,6 @@ form {
   text-align: left;
 }
 input {
-  /*width: 100%;*/
-  /*width: -moz-available;*/
-  /*width: -webkit-fill-available;*/
-  /*width: fill-available;*/
   padding: 0.5rem;
   margin: 0.1rem 0 1.2rem 0;
 }

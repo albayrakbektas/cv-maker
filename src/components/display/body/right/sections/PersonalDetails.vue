@@ -1,7 +1,7 @@
 <template>
-  <BodyRowCard title="Personal Details">
+  <BodyRowCard v-if="$route.name === 'cv'" title="Personal Details">
     <DisplayTwoRows
-      v-for="(item, index) of detailsList"
+      v-for="(item, index) of getAllPersonalDetail"
       :key="index"
       :card="item"
     />
@@ -14,20 +14,10 @@ import DisplayTwoRows from "@/components/card/DisplayTwoRows";
 export default {
   name: "PersonalDetails",
   components: { DisplayTwoRows, BodyRowCard },
-  watch: {
-    "$store.state.cvData.personalInformation.personalDetail": function () {
-      this.detailsList =
-        this.$store.state.cvData.personalInformation.personalDetail;
+  computed: {
+    getAllPersonalDetail() {
+      return this.$store.getters.getAllPersonalDetail;
     },
-  },
-  mounted() {
-    this.detailsList =
-      this.$store.state.cvData.personalInformation.personalDetail;
-  },
-  data() {
-    return {
-      detailsList: [],
-    };
   },
 };
 </script>

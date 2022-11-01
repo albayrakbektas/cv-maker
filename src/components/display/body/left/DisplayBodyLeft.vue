@@ -1,16 +1,15 @@
 <template>
-  <div class="display-body-left pd">
-    <h1 style="display: none">{{ smt }}</h1>
-    <BodyRowCard :title="education.title">
+  <div v-if="$route.name === 'cv'" class="display-body-left pd">
+    <BodyRowCard :title="getSection.education.title">
       <DisplayRowCard
-        v-for="(item, index) of education.cards"
+        v-for="(item, index) of getSection.education.cards"
         :card="item"
         :key="index"
       />
     </BodyRowCard>
-    <BodyRowCard :title="employment.title">
+    <BodyRowCard :title="getSection.employment.title">
       <DisplayRowCard
-        v-for="(item, index) of employment.cards"
+        v-for="(item, index) of getSection.employment.cards"
         :card="item"
         :key="index"
       />
@@ -28,44 +27,51 @@
 <script>
 import BodyRowCard from "@/components/card/BodyRowCard";
 import DisplayRowCard from "@/components/card/DisplayRowCard";
-import { getCv } from "@/firebaseMethods";
 export default {
   name: "DisplayBodyLeft",
   components: { DisplayRowCard, BodyRowCard },
   props: {},
-  watch: {
-    "$store.state.isChanging": {
-      handler: function (val) {
-        this.smt = val;
-        this.education = this.$store.state.cvData.education;
-        this.employment = this.$store.state.cvData.employment;
-      },
-      immediate: true,
-      deep: true,
+  computed: {
+    getSection() {
+      return {
+        education: this.$store.getters.getSection("education"),
+        employment: this.$store.getters.getSection("employment"),
+      };
     },
   },
+  // watch: {
+  //   "$store.state.isChanging": {
+  //     handler: function (val) {
+  //       this.smt = val;
+  //       this.education = this.$store.state.cvData.education;
+  //       this.employment = this.$store.state.cvData.employment;
+  //     },
+  //     immediate: true,
+  //     deep: true,
+  //   },
+  // },
   created() {},
-  async mounted() {
-    getCv(this.$store.state.user.uid, this.$route.params.id)
-      .then((res) => {
-        this.education = res.education;
-        this.employment = res.employment;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
+  // async mounted() {
+  //   getCv(this.$store.state.user.uid, this.$route.params.id)
+  //     .then((res) => {
+  //       this.education = res.education;
+  //       this.employment = res.employment;
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // },
   data() {
     return {
-      smt: "",
-      education: {},
-      employment: {},
-      educationCards: [],
-      educationTitle: "",
-      employmentCards: [],
-      employmentTitle: "",
-      referencesCards: [],
-      referencesTitle: "",
+      // smt: "asdasdasds",
+      // education: {},
+      // employment: {},
+      // educationCards: [],
+      // educationTitle: "",
+      // employmentCards: [],
+      // employmentTitle: "",
+      // referencesCards: [],
+      // referencesTitle: "",
     };
   },
 };

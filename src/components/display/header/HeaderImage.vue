@@ -1,5 +1,5 @@
 <template>
-  <img :src="$store.state.cvData.personalInformation.profilePicture" alt="" />
+  <img v-if="file" :src="getPersonalInformationProperties" alt="" />
 </template>
 
 <script>
@@ -10,22 +10,16 @@ export default {
       file: "",
     };
   },
-  watch: {
-    // "$store.state.cvData.personalInformation.profilePicture": function (val) {
-    //   this.displayImage(val);
-    // },
-  },
-  methods: {
-    displayImage(file) {
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = function () {
-        console.log(reader.result);
-      };
-      reader.onerror = function (error) {
-        console.log("Error: ", error);
-      };
+  computed: {
+    getPersonalInformationProperties() {
+      return this.$store.getters.getPersonalInformationProperties(
+        "profilePicture"
+      );
     },
+  },
+  mounted() {
+    this.file =
+      this.$store.getters.getPersonalInformationProperties("profilePicture");
   },
 };
 </script>

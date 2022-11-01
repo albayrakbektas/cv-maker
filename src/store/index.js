@@ -18,11 +18,7 @@ export default new Vuex.Store({
         address: "",
         postCode: "",
         city: "",
-        personalDetail: [
-          { content: "", subtitle: ["", ""] },
-          { content: "", subtitle: ["", ""] },
-          { content: "", subtitle: ["", ""] },
-        ],
+        personalDetail: [],
       },
       education: {
         title: "",
@@ -34,7 +30,22 @@ export default new Vuex.Store({
       reference: {},
     },
     cvData: {
-      personalInformation: {},
+      personalInformation: {
+        profilePicture: "",
+        givenName: "",
+        familyName: "",
+        email: "",
+        headline: "",
+        phone: "",
+        address: "",
+        postCode: "",
+        city: "",
+        personalDetail: [
+          { content: "", subtitle: ["", ""] },
+          { content: "", subtitle: ["", ""] },
+          { content: "", subtitle: ["", ""] },
+        ],
+      },
       education: {
         title: "",
         cards: [],
@@ -55,11 +66,31 @@ export default new Vuex.Store({
     getPersonalInformation(state) {
       return state.cvData.personalInformation;
     },
+    getPersonalInformationProperties: (state) => (property) => {
+      return state.cvData.personalInformation[property];
+    },
+    getAllPersonalDetail: (state) => {
+      return state.cvData.personalInformation.personalDetail;
+    },
+    getPersonalInformationPersonalDetail: (state) => (title) => {
+      let list = Object.keys(state.cvData.personalInformation.personalDetail);
+      for (let i = 0; i < list.length; i++) {
+        if (list[i] === title) {
+          return state.cvData.personalInformation.personalDetail[title].content;
+        }
+      }
+    },
     getEducation(state) {
       return state.cvData.education;
     },
     getEmployment(state) {
       return state.cvData.employment;
+    },
+    getSection: (state) => (section) => {
+      return state.cvData[section];
+    },
+    getSectionCards: (state) => (section) => {
+      return state.cvData[section]["cards"];
     },
     getReference(state) {
       return state.cvData.reference;
@@ -78,10 +109,40 @@ export default new Vuex.Store({
     addCard: (state, payload) => {
       state.cvData[payload.section]["cards"][payload.card.id] = payload.card;
     },
+    setPersonalInformationProperties: (state, payload) => {
+      state.cvData.personalInformation[payload.property] = payload.value;
+    },
+    setPersonalDetails: (state, payload) => {
+      // for (
+      //   let i = 0;
+      //   i < state.cvData.personalInformation.personalDetail.length;
+      //   i++
+      // ) {
+      //   if (
+      //     state.cvData.personalInformation.personalDetail[i].subtitle[0] ===
+      //     payload.title
+      //   ) {
+      //     state.cvData.personalInformation.personalDetail[i].content =
+      //       payload.value;
+      //     count++;
+      //   }
+
+      state.cvData.personalInformation.personalDetail[payload.title] = {
+        content: payload.value,
+        subtitle: [payload.title, ""],
+      };
+      console.log(state.cvData.personalInformation.personalDetail);
+    },
   },
   actions: {
     addCard: ({ commit }, payload) => {
       commit("addCard", payload);
+    },
+    setPersonalInformationProperties: ({ commit }, payload) => {
+      commit("setPersonalInformationProperties", payload);
+    },
+    setPersonalDetails: ({ commit }, payload) => {
+      commit("setPersonalDetails", payload);
     },
   },
   modules: {},

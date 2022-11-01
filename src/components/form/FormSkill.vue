@@ -33,12 +33,15 @@ export default {
         }
       });
     },
-    "card.subtitle[0]": function (val) {
-      this.$store.state.cvData[this.type].forEach((skill) => {
-        if (skill.content === this.card.content) {
-          this.card.subtitle[0] = val;
-        }
-      });
+    "card.subtitle": {
+      handler: function (val) {
+        this.$store.state.cvData[this.type].forEach((skill) => {
+          if (skill.content === this.card.content) {
+            this.card.subtitle[0] = val;
+          }
+        });
+      },
+      deep: true,
     },
   },
   data() {

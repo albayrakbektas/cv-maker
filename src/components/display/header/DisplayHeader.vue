@@ -1,10 +1,10 @@
 <template>
-  <div class="display-header pd">
+  <div v-if="$route.name === 'cv'" class="display-header pd">
     <h1 class="header-name">
-      {{ $store.state.cvData.personalInformation.givenName }}
-      {{ $store.state.cvData.personalInformation.familyName }}
+      {{ getPersonalInformationProperties.givenName }}
+      {{ getPersonalInformationProperties.familyName }}
     </h1>
-    <h4>{{ $store.state.cvData.personalInformation.headline }}</h4>
+    <h4>{{ getPersonalInformationProperties.headline }}</h4>
     <div class="header-bottom">
       <AnchorIcon
         v-for="(item, index) of anchorList"
@@ -20,6 +20,18 @@ import AnchorIcon from "@/components/button/AnchorIcon";
 export default {
   name: "DisplayHeader",
   components: { AnchorIcon },
+  computed: {
+    getPersonalInformationProperties() {
+      return {
+        givenName:
+          this.$store.getters.getPersonalInformationProperties("givenName"),
+        familyName:
+          this.$store.getters.getPersonalInformationProperties("familyName"),
+        headline:
+          this.$store.getters.getPersonalInformationProperties("headline"),
+      };
+    },
+  },
   watch: {
     "$store.state.cvData.personalInformation.email": function (val) {
       this.anchorList[1].href = "mailto:" + val;

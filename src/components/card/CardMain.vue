@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import PersonalInformation from "@/components/display/body/left/sections/PersonalInformation";
-import EducationMain from "@/components/display/body/left/sections/EducationMain";
-import EmploymentMain from "@/components/display/body/left/sections/EmploymentMain";
-import ReferenceMain from "@/components/display/body/left/sections/ReferenceMain";
-import LanguageCollapsible from "@/components/display/body/left/sections/LanguageCollapsible";
-import SkillCollapsible from "@/components/display/body/left/sections/SkillCollapsible";
+import PersonalInformation from "@/components/sections/PersonalInformation";
+import EducationMain from "@/components/sections/EducationMain";
+import EmploymentMain from "@/components/sections/EmploymentMain";
+import ReferenceMain from "@/components/sections/ReferenceMain";
+import LanguageCollapsible from "@/components/sections/LanguageCollapsible";
+import SkillCollapsible from "@/components/sections/SkillCollapsible";
 export default {
   name: "CardMain",
   components: {

@@ -38,8 +38,12 @@ export default {
     await getCv(this.$store.state.user.uid, this.$route.params.id).then(
       (res) => {
         this.cv = res;
+        this.$store.state.cvData = res;
       }
     );
+    // .then(() => {
+    //   console.log(this.$store.state.cvData);
+    // });
   },
   methods: {
     exportToPDF() {

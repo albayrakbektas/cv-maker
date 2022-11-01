@@ -6,8 +6,8 @@
     <i class="fa-solid fa-camera"></i>
     <input type="file" @change="selectFile" />
     <img
-      v-if="$store.state.cvData.personalInformation.profilePicture"
-      :src="$store.state.cvData.personalInformation.profilePicture"
+      v-if="getPersonalInformationProperties"
+      :src="getPersonalInformationProperties"
       alt=""
     />
   </div>
@@ -30,6 +30,13 @@ export default {
   },
   props: {
     isEditing: Boolean,
+  },
+  computed: {
+    getPersonalInformationProperties() {
+      return this.$store.getters.getPersonalInformationProperties(
+        "profilePicture"
+      );
+    },
   },
   methods: {
     selectFile(event) {
