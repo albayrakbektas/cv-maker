@@ -1,7 +1,7 @@
 <template>
   <router-link :to="'/cv/' + cv.id">
     <div class="cv-box-container">
-      <SavedDisplay :cv="cv" class="scl" />
+      <SavedDisplay class="scl" />
     </div>
   </router-link>
 </template>
@@ -33,8 +33,8 @@ export default {
 <style scoped lang="scss">
 .cv-box-container {
   border: 1px dashed #2b2b35;
-  height: 40vh;
-  width: 15vw;
+  height: 21rem;
+  width: 14rem;
   display: grid;
   grid-template-rows: auto auto;
   align-items: center;

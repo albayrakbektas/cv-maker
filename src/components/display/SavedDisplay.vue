@@ -1,12 +1,19 @@
 <template>
   <div
-    v-if="$route.name === 'cv'"
+    v-if="$route.name === 'cv' || $route.name === 'home'"
     id="display-main"
     class="display-main"
     ref="document"
+    :class="{ isPreviewDisplayMain: $route.name === 'home' }"
   >
-    <div class="display-main-container">
-      <div class="display-container">
+    <div
+      class="display-main-container"
+      :class="{ isPreviewDisplayMainContainer: $route.name === 'home' }"
+    >
+      <div
+        class="display-container"
+        :class="{ isPreviewDisplayContainer: $route.name === 'home' }"
+      >
         <div class="display-header-container">
           <HeaderImage />
           <DisplayHeader />
@@ -23,7 +30,10 @@
           >
         </div>
       </div>
-      <div class="display-footer"></div>
+      <div
+        class="display-footer"
+        :class="{ isPreviewDisplayFooter: $route.name === 'home' }"
+      ></div>
     </div>
   </div>
 </template>
@@ -95,6 +105,7 @@ export default {
   left: 60%;
   right: 10%;
   overflow: hidden;
+  box-shadow: -5px 5px 15px #808080;
 }
 .display-header-container {
   display: grid;
@@ -127,5 +138,22 @@ export default {
     font-size: 12px;
     text-decoration: underline;
   }
+}
+.isPreviewDisplayMain {
+  height: 21rem !important;
+  width: 14rem !important;
+  position: unset !important;
+}
+.isPreviewDisplayMainContainer {
+  height: 21rem !important;
+  width: 14rem !important;
+}
+.isPreviewDisplayContainer {
+  position: unset !important;
+  height: 21rem !important;
+  width: 14rem !important;
+}
+.isPreviewDisplayFooter {
+  display: none !important;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cv-main-container">
     <h1>Cv's</h1>
     <div class="cv-container">
       <NewCv />
@@ -30,7 +30,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+h1 {
+  text-align: left;
+}
+.cv-main-container {
+  padding: 2rem;
+}
 .cv-container {
   display: flex;
+  gap: 2rem;
 }
 </style>

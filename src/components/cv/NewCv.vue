@@ -30,8 +30,8 @@ export default {
 <style scoped lang="scss">
 .new-cv-container {
   border: 1px dashed #2b2b35;
-  height: 40vh;
-  width: 15vw;
+  height: 21rem;
+  width: 14rem;
   display: grid;
   grid-template-rows: auto auto;
   align-items: center;
