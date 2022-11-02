@@ -58,16 +58,18 @@ export default {
         type: "text",
         name: "education",
         label: "Email",
-        placeholder: "",
+        placeholder: "Email",
         value: "",
+        icon: "fa-solid fa-user",
       },
       passwordField: {
         tag: "input",
         type: "text",
         name: "password",
         label: "Password",
-        placeholder: "",
+        placeholder: "Password",
         value: "",
+        icon: "fa-solid fa-lock",
       },
     };
   },
@@ -80,14 +82,16 @@ export default {
 }
 .login {
   position: relative;
-  width: 50%;
+  width: 30%;
   margin: auto;
+  padding: 2rem 4rem;
   translate: 0 50%;
+  border: 1px solid black;
 }
 .error-message {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 2rem;
+  right: 4rem;
 }
 .card {
   height: 45px;
@@ -102,6 +106,13 @@ export default {
 button {
   cursor: pointer;
   padding: 12.5px 22px;
+  background-color: rgba(0, 0, 0, 1);
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0.3),
+    rgba(255, 0, 0, 0.5)
+  );
+  color: #ffffff;
 }
 span {
   padding-right: 5px;

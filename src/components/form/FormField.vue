@@ -1,6 +1,15 @@
 <template>
   <div class="form-field">
-    <label :for="formField.name">{{ formField.label }}</label>
+    <!--    <label :for="formField.name">{{ formField.label }}</label>-->
+    <label
+      :for="formField.name"
+      :class="[
+        { 'label-yellow-bg': data },
+        { 'textarea-label': formField.tag === 'textarea' },
+      ]"
+    >
+      <i :class="formField.icon"></i>
+    </label>
     <input
       v-if="formField.tag === 'input'"
       :type="formField.type"
@@ -73,29 +82,33 @@ input,
 textarea {
   width: 100%;
   height: 50px;
-  padding: 0 15px;
-  background: white;
+  padding: 0 15px 0 60px;
+  background: linear-gradient(159deg, #252532 0%, #23232d 100%);
   outline: none;
-  border: 1px solid grey;
-  color: black;
-  font-weight: 600;
-  font-size: 1rem;
+  border: none;
+  color: #ff0000;
   box-sizing: border-box;
-  border-radius: 8px;
+  caret-color: #ff0000;
+}
+.label-yellow-bg {
+  background-color: rgba(255, 0, 0, 1) !important;
+  i {
+    color: #20202a !important;
+  }
 }
 label {
-  float: left;
-  font-weight: 400;
-}
-textarea {
-  height: 150px;
-  padding: 15px 0 15px 65px;
-}
-.textarea-label {
-  height: 150px;
-  align-items: baseline;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #20202a;
+  transition: 0.4s ease-in-out;
   i {
-    transform: translateY(20px);
+    font-weight: 900;
   }
 }
 i {
@@ -116,9 +129,15 @@ i {
 .show-hide {
   opacity: 0;
   transition: 1s ease-in-out;
+  color: #ff0000;
   cursor: pointer;
 }
 .fa-solid {
   opacity: 1;
+}
+input:-webkit-autofill {
+  -webkit-text-fill-color: #ff0000 !important;
+  -webkit-box-shadow: 0 0 0 10rem #23232d inset !important;
+  background-clip: content-box !important;
 }
 </style>

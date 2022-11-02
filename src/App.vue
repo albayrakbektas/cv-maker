@@ -8,13 +8,13 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Poppins, sans-serif;
+  font-family: Poppins, sans-serif !important;
 }
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  font-family: Poppins, sans-serif;
+  font-family: Poppins, sans-serif !important;
 }
 i {
   font-weight: 900;
@@ -39,5 +39,12 @@ input {
 a {
   text-decoration: none;
   color: unset;
+}
+button {
+  translate: 0 0;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    translate: 0 -2px;
+  }
 }
 </style>

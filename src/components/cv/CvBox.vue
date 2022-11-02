@@ -15,17 +15,10 @@ export default {
   props: {
     cv: Object,
   },
-  computed: {
-    // computedCv() {
-    //   return this.$store.getters.getCv;
-    // },
-  },
   created() {
     getCv(this.$store.state.user.uid, this.cv.id).then((res) => {
-      console.log(res);
       this.$store.state.cvData = res;
     });
-    // console.log(this.computedCv);
   },
 };
 </script>

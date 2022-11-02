@@ -24,7 +24,6 @@
           :button="DownloadButton"
         />
       </div>
-      <!--      <button @click="signOut">signout</button>-->
     </div>
     <div class="body">
       <CardMain />
@@ -109,10 +108,6 @@ export default {
         filename: "vue-pdf",
       });
     },
-    // async signOut() {
-    //   await signout();
-    //   await this.$router.push("/login");
-    // },
     save() {
       let userId = this.$store.state.user.uid;
       let cvId = this.$route.params.id;
