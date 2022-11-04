@@ -1,5 +1,10 @@
 <template>
-  <div v-if="$route.name === 'cv'" class="display-header">
+  <div
+    v-if="$route.name === 'cv'"
+    :style="{ backgroundColor: `${getStyleProperty}` }"
+    id="display-header"
+    class="display-header"
+  >
     <h1 class="header-name">
       {{ getPersonalInformationProperties.givenName }}
       {{ getPersonalInformationProperties.familyName }}
@@ -30,6 +35,9 @@ export default {
         headline:
           this.$store.getters.getPersonalInformationProperties("headline"),
       };
+    },
+    getStyleProperty() {
+      return this.$store.getters.getCvStyleProperty("color");
     },
   },
   watch: {
@@ -110,7 +118,7 @@ export default {
 
 <style scoped lang="scss">
 .display-header {
-  background: linear-gradient(159deg, #2d2d3a 0%, #2b2b35 100%);
+  //background: linear-gradient(159deg, #2d2d3a 0%, #2b2b35 100%);
   display: grid;
   grid-template-rows: auto auto 1fr;
   align-items: end;

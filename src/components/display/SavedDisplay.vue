@@ -33,7 +33,25 @@
       <div
         class="display-footer"
         :class="{ isPreviewDisplayFooter: $route.name === 'home' }"
-      ></div>
+      >
+        <TooltipButton
+          v-for="(item, index) of footerLeftButtons"
+          :button="item"
+          :key="item.leftIcon + index"
+        />
+        <div class="display-footer-mid">
+          <TooltipButton
+            v-for="(item, index) of footerMidButtons"
+            :button="item"
+            :key="item.leftIcon + index"
+          />
+        </div>
+        <TooltipButton
+          v-for="(item, index) of footerRightButtons"
+          :button="item"
+          :key="item.leftIcon + index"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -44,16 +62,56 @@ import DisplayBodyLeft from "@/components/display/body/left/DisplayBodyLeft";
 import DisplayBodyRight from "@/components/display/body/right/DisplayBodyRight";
 import html2pdf from "html2pdf.js/src";
 import HeaderImage from "@/components/display/header/HeaderImage";
+import TooltipButton from "@/components/button/TooltipButton";
 // import { getCv } from "@/firebaseMethods";
 export default {
   name: "SavedDisplay",
-  components: { HeaderImage, DisplayBodyRight, DisplayBodyLeft, DisplayHeader },
+  components: {
+    TooltipButton,
+    HeaderImage,
+    DisplayBodyRight,
+    DisplayBodyLeft,
+    DisplayHeader,
+  },
   props: {},
-  // data() {
-  //   return {
-  //     cv: {},
-  //   };
-  // },
+  data() {
+    return {
+      footerLeftButtons: [
+        {
+          toolTip: {
+            type: "fontFamily",
+            list: ["selam", "naber", "anslkdasdasda", "Poppins"],
+          },
+          leftIcon: "fa-solid fa-table",
+        },
+      ],
+      footerMidButtons: [
+        {
+          toolTip: {
+            type: "fontFamily",
+            list: ["Arial", "Garamond", "anslkdasdasda", "Poppins"],
+          },
+          leftIcon: "fa-solid fa-font",
+        },
+        {
+          toolTip: {
+            type: "color",
+            list: ["Red", "Blue", "Black", "Gray"],
+          },
+          leftIcon: "fa-solid fa-fill",
+        },
+      ],
+      footerRightButtons: [
+        {
+          toolTip: {
+            type: "fontFamily",
+          },
+          isRemoveIcon: true,
+          leftIcon: "fa-solid fa-expand",
+        },
+      ],
+    };
+  },
   // computed: {
   //   getCv() {
   //     return this.$store.getters.getCv;
@@ -125,6 +183,17 @@ export default {
   bottom: 1rem;
   left: calc(50% + 1rem);
   right: 1rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+.display-footer-mid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  align-items: center;
 }
 .cc {
   position: absolute;

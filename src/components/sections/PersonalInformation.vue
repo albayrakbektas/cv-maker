@@ -86,36 +86,6 @@ export default {
     CollapsibleSection,
   },
   computed: {
-    website: {
-      get() {
-        return this.$store.getters.getPersonalInformationPersonalDetail(
-          "Website"
-        );
-      },
-      set(value) {
-        this.$store.commit("setPersonalDetails", { title: "Website", value });
-      },
-    },
-    linkedin: {
-      get() {
-        return this.$store.getters.getPersonalInformationPersonalDetail(
-          "Linkedin"
-        );
-      },
-      set(value) {
-        this.$store.commit("setPersonalDetails", { title: "Linkedin", value });
-      },
-    },
-    github: {
-      get() {
-        return this.$store.getters.getPersonalInformationPersonalDetail(
-          "Github"
-        );
-      },
-      set(value) {
-        this.$store.commit("setPersonalDetails", { title: "Github", value });
-      },
-    },
     profilePicture: {
       get() {
         return this.$store.state.cvData.personalInformation.profilePicture;
@@ -215,23 +185,35 @@ export default {
         });
       },
     },
-    // website: {
-    //   get() {
-    //     return this.$store.state.cvData.personalInformation.personalDetail.find(
-    //       (x) => {
-    //         x.subtitle.includes("Website");
-    //       }
-    //     );
-    //   },
-    //   set(value) {
-    //     this.$store.commit("setPersonalInformationProperties", {
-    //       property: "city",
-    //       value,
-    //     });
-    //   },
-    // },
-    getPersonalInformationProperties(property) {
-      return this.$store.getters.getPersonalInformationProperties(property);
+    website: {
+      get() {
+        return this.$store.getters.getPersonalInformationPersonalDetail(
+          "Website"
+        );
+      },
+      set(value) {
+        this.$store.commit("setPersonalDetails", { title: "Website", value });
+      },
+    },
+    linkedin: {
+      get() {
+        return this.$store.getters.getPersonalInformationPersonalDetail(
+          "Linkedin"
+        );
+      },
+      set(value) {
+        this.$store.commit("setPersonalDetails", { title: "Linkedin", value });
+      },
+    },
+    github: {
+      get() {
+        return this.$store.getters.getPersonalInformationPersonalDetail(
+          "Github"
+        );
+      },
+      set(value) {
+        this.$store.commit("setPersonalDetails", { title: "Github", value });
+      },
     },
   },
   methods: {

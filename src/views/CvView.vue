@@ -101,7 +101,6 @@ export default {
       });
     },
     exportToPDF() {
-      console.log("ss");
       const document = document.getElementById("display-main");
       html2pdf(document, {
         margin: 0,
@@ -112,6 +111,7 @@ export default {
       let userId = this.$store.state.user.uid;
       let cvId = this.$route.params.id;
       const {
+        style,
         personalInformation,
         education,
         employment,
@@ -121,6 +121,7 @@ export default {
       } = this.$store.state.cvData;
       writeUserData(userId, cvId, {
         id: cvId,
+        style,
         personalInformation,
         education,
         employment,

@@ -30,6 +30,12 @@ export default new Vuex.Store({
       reference: {},
     },
     cvData: {
+      style: {
+        fontFamily: "Poppins",
+        fontSize: "",
+        color: "",
+        lineHeight: "",
+      },
       personalInformation: {
         profilePicture: "",
         givenName: "",
@@ -40,11 +46,20 @@ export default new Vuex.Store({
         address: "",
         postCode: "",
         city: "",
-        personalDetail: [
-          { content: "", subtitle: ["", ""] },
-          { content: "", subtitle: ["", ""] },
-          { content: "", subtitle: ["", ""] },
-        ],
+        personalDetail: {
+          Website: {
+            content: "",
+            subtitle: ["", ""],
+          },
+          Linkedin: {
+            content: "",
+            subtitle: ["", ""],
+          },
+          Github: {
+            content: "",
+            subtitle: ["", ""],
+          },
+        },
       },
       education: {
         title: "",
@@ -62,6 +77,12 @@ export default new Vuex.Store({
     },
     getCvId(state) {
       return state.cvData.id;
+    },
+    getCvStyle(state) {
+      return state.cvData.style;
+    },
+    getCvStyleProperty: (state) => (property) => {
+      return state.cvData.style[property];
     },
     getPersonalInformation(state) {
       return state.cvData.personalInformation;
@@ -112,14 +133,20 @@ export default new Vuex.Store({
     addCard: (state, payload) => {
       state.cvData[payload.section]["cards"][payload.card.id] = payload.card;
     },
+    setStyleProperties: (state, payload) => {
+      state.cvData.style[payload.type] = payload.value;
+      console.log(state.cvData.style);
+    },
     setPersonalInformationProperties: (state, payload) => {
-      state.cvData.personalInformation[payload.property] = payload.value;
+      state.cvData.personalInformation[payload.property] =
+        payload.value.toLowerCase();
     },
     setPersonalDetails: (state, payload) => {
       state.cvData.personalInformation.personalDetail[payload.title] = {
         content: payload.value,
         subtitle: [payload.title, ""],
       };
+
       console.log(state.cvData.personalInformation.personalDetail);
     },
   },
@@ -130,8 +157,11 @@ export default new Vuex.Store({
     addCard: ({ commit }, payload) => {
       commit("addCard", payload);
     },
+    setStyleProperties: ({ commit }, payload) => {
+      commit("setPersonalDetails", payload);
+    },
     setPersonalInformationProperties: ({ commit }, payload) => {
-      commit("setPersonalInformationProperties", payload);
+      commit("setStyleProperties", payload);
     },
     setPersonalDetails: ({ commit }, payload) => {
       commit("setPersonalDetails", payload);
