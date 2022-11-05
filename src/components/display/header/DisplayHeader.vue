@@ -5,7 +5,7 @@
     id="display-header"
     class="display-header"
   >
-    <h1 class="header-name">
+    <h1 class="header-name f-xxl">
       {{ getPersonalInformationProperties.givenName }}
       {{ getPersonalInformationProperties.familyName }}
     </h1>

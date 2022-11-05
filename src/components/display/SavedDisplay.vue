@@ -13,6 +13,7 @@
       <div
         class="display-container"
         :class="{ isPreviewDisplayContainer: $route.name === 'home' }"
+        ref="cv"
       >
         <div class="display-header-container">
           <HeaderImage />
@@ -30,6 +31,8 @@
           >
         </div>
       </div>
+    </div>
+    <div class="display-container footer">
       <div
         class="display-footer"
         :class="{ isPreviewDisplayFooter: $route.name === 'home' }"
@@ -53,6 +56,9 @@
         />
       </div>
     </div>
+    <div class="img-container">
+      <img class="img-canvas" :src="output" alt="canvas" />
+    </div>
   </div>
 </template>
 
@@ -74,8 +80,12 @@ export default {
     DisplayHeader,
   },
   props: {},
+  mounted() {
+    this.print();
+  },
   data() {
     return {
+      output: null,
       footerLeftButtons: [
         {
           toolTip: {
@@ -112,11 +122,19 @@ export default {
       ],
     };
   },
-  // computed: {
-  //   getCv() {
-  //     return this.$store.getters.getCv;
-  //   },
-  // },
+  computed: {
+    getCv() {
+      return this.$store.getters.getCv;
+    },
+  },
+  watch: {
+    getCv: {
+      handler: async function () {
+        await this.print();
+      },
+      deep: true,
+    },
+  },
   // async created() {
   //   this.getCv();
   // await getCv(this.$store.state.user.uid, this.$route.params.id).then(
@@ -130,6 +148,16 @@ export default {
   // });
   // },
   methods: {
+    async print() {
+      const el = this.$refs.cv;
+      // add option type to get the image version
+      // if not provided the promise will return
+      // the canvas.
+      const options = {
+        type: "dataURL",
+      };
+      this.output = await this.$html2canvas(el, options);
+    },
     exportToPDF() {
       const document = this.$refs.document;
       html2pdf(document, {
@@ -143,17 +171,19 @@ export default {
 
 <style scoped lang="scss">
 .display-main {
-  position: fixed;
-  left: 50%;
-  top: 70px;
-  bottom: 0;
-  overflow: visible;
-  background-color: rgba(250, 250, 250, 1);
+  //position: fixed;
+  //left: calc(60%);
+  //top: calc(70px + 1rem);
+  //overflow: visible;
+  //background-color: rgba(250, 250, 250, 1);
+  margin: 80px auto 0;
 }
 .display-main-container {
-  position: relative;
-  height: calc(100vh - 70px);
-  width: 50vw;
+  //position: relative;
+  //height: calc(100vh - 70px);
+  //width: 50vw;
+  position: absolute;
+  opacity: 0;
 }
 .display-container {
   background-color: #ffffff;
@@ -188,6 +218,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 0.5rem;
+  z-index: 99999999999999999;
 }
 .display-footer-mid {
   display: grid;
@@ -224,5 +255,28 @@ export default {
 }
 .isPreviewDisplayFooter {
   display: none !important;
+}
+.img-container {
+  position: relative;
+  height: calc(100vh - 140px - 3rem);
+  width: calc(30vw);
+}
+.img-canvas {
+  //position: fixed;
+  //left: calc(55%);
+  //top: calc(70px + 1rem);
+  //z-index: 999999;
+  //scale: 1;
+  //height: calc(100vh - 260px);
+  //object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.display-container.footer {
+  z-index: 9999999;
+  top: unset;
 }
 </style>

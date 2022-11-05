@@ -6,7 +6,7 @@
           <div class="row">
             <div class="photo-input">
               <div class="photo-header">
-                <label for="photo">Photo</label>
+                <label class="f-il" for="photo">Photo</label>
                 <i @click="edit" class="fa-solid fa-ellipsis-vertical"></i>
               </div>
               <input
@@ -19,52 +19,52 @@
             <div class="two-rows">
               <div class="two-columns">
                 <div class="input-container">
-                  <label for="givenName">Given Name</label>
+                  <label class="f-il" for="givenName">Given Name</label>
                   <input name="givenName" v-model="givenName" />
                 </div>
                 <div class="input-container">
-                  <label for="familyName">Family Name</label>
+                  <label class="f-il" for="familyName">Family Name</label>
                   <input name="familyName" v-model="familyName" />
                 </div>
               </div>
               <div class="input-container">
-                <label for="email">Email Address</label>
+                <label class="f-il" for="email">Email Address</label>
                 <input name="email" v-model="email" />
               </div>
             </div>
           </div>
           <div class="input-container">
-            <label for="headline">Headline</label>
+            <label class="f-il" for="headline">Headline</label>
             <input name="headline" v-model="headline" />
           </div>
           <div class="input-container">
-            <label for="phone">Phone number</label>
+            <label class="f-il" for="phone">Phone number</label>
             <input name="phone" v-model="phone" />
           </div>
           <div class="input-container">
-            <label for="address">Address</label>
+            <label class="f-il" for="address">Address</label>
             <input name="address" v-model="address" />
           </div>
           <div class="two-columns">
             <div class="input-container">
-              <label for="postCode">Post code</label>
+              <label class="f-il" for="postCode">Post code</label>
               <input name="postCode" v-model="postCode" />
             </div>
             <div class="input-container">
-              <label for="city">City</label>
+              <label class="f-il" for="city">City</label>
               <input name="city" v-model="city" />
             </div>
           </div>
           <div class="input-container">
-            <label for="website">Website</label>
+            <label class="f-il" for="website">Website</label>
             <input name="website" v-model="website" />
           </div>
           <div class="input-container">
-            <label for="linkedin">Linkedin</label>
+            <label class="f-il" for="linkedin">Linkedin</label>
             <input name="linkedin" v-model="linkedin" />
           </div>
           <div class="input-container">
-            <label for="github">Github</label>
+            <label class="f-il" for="github">Github</label>
             <input name="github" v-model="github" />
           </div>
         </form>

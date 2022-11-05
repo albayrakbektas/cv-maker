@@ -63,9 +63,13 @@ i {
 .pd {
   padding: 30px;
 }
-h1 {
-  font-size: 1.55rem;
+.f-xxl,
+.f-xl,
+.f-l,
+.f-m,
+.f-s {
   letter-spacing: 0;
+  white-space: pre;
 }
 h4 {
   font-size: 0.8rem;
@@ -76,6 +80,11 @@ form {
 input {
   background-color: rgba(244, 244, 255, 1);
   border: 1px solid rgba(240, 248, 255, 1);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  margin: 0.2rem 0 1.3rem 0;
+  font-size: 1.4rem;
 }
 a {
   text-decoration: none;
@@ -87,5 +96,26 @@ button {
   &:hover {
     translate: 0 -2px;
   }
+}
+* {
+  font-size: 10px;
+}
+.f-xxl {
+  font-size: 2.5rem;
+}
+.f-xl {
+  font-size: 1.5rem;
+}
+.f-il {
+  font-size: 1.4rem;
+}
+.f-l {
+  font-size: 1.3rem;
+}
+.f-m {
+  font-size: 1rem;
+}
+.f-s {
+  font-size: 0.9rem;
 }
 </style>

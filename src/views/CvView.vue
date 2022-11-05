@@ -27,6 +27,7 @@
     </div>
     <div class="body">
       <CardMain />
+      <CanvasDisplay style="display: none" />
       <SavedDisplay ref="cv" />
     </div>
   </div>
@@ -38,12 +39,14 @@ import { getCv, writeUserData } from "@/firebaseMethods";
 import SavedDisplay from "@/components/display/SavedDisplay";
 import SpanIcon from "@/components/button/SpanIcon";
 import html2pdf from "html2pdf.js/src";
+import CanvasDisplay from "@/components/display/CanvasDisplay";
 
 export default {
   name: "CvView",
-  components: { SpanIcon, SavedDisplay, CardMain },
+  components: { CanvasDisplay, SpanIcon, SavedDisplay, CardMain },
   data() {
     return {
+      output: null,
       iconStyle: {
         color: "#ffffff",
         fontWeight: "900",
@@ -90,8 +93,19 @@ export default {
       .then(() => {
         console.log(this.$store.state.cvData);
       });
+    // await this.print();
   },
   methods: {
+    async print() {
+      const el = this.$refs.cv;
+      // add option type to get the image version
+      // if not provided the promise will return
+      // the canvas.
+      const options = {
+        type: "dataURL",
+      };
+      this.output = await this.$html2canvas(el, options);
+    },
     back() {
       this.$router.push("/");
     },
@@ -152,5 +166,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
+  height: 100vh;
+  background-color: #a9a9a9;
 }
 </style>

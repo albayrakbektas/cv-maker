@@ -5,7 +5,7 @@
       class="collapsible-section-header"
       :class="{ 'disabled-header': isSlotActive }"
     >
-      <h1>{{ title }}</h1>
+      <h1 class="f-xxl">{{ title }}</h1>
       <ButtonMain @button-handler="closeSlot">
         <i class="fa-solid fa-chevron-down"></i>
       </ButtonMain>

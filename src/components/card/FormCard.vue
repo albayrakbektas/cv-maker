@@ -1,12 +1,12 @@
 <template>
   <form>
     <div class="input-container">
-      <label for="job">Education</label>
+      <label class="f-il" for="job">Education</label>
       <input @input="changeWatch" name="job" v-model="card.title" />
     </div>
     <div class="row-two">
       <div class="input-container">
-        <label for="company">company</label>
+        <label class="f-il" for="company">company</label>
         <input
           @input="changeWatch"
           name="company"
@@ -14,7 +14,7 @@
         />
       </div>
       <div class="input-container">
-        <label for="city">city</label>
+        <label class="f-il" for="city">city</label>
         <input
           @input="changeWatch"
           name="city"
@@ -25,7 +25,7 @@
     <div v-if="section !== 'reference'" class="row-two">
       <div class="row-two">
         <div class="input-container">
-          <label for="startMonth">startMonth</label>
+          <label class="f-il" for="startMonth">startMonth</label>
           <input
             @input="changeWatch"
             name="startMonth"
@@ -33,7 +33,7 @@
           />
         </div>
         <div class="input-container">
-          <label for="startYear">startYear</label>
+          <label class="f-il" for="startYear">startYear</label>
           <input
             @input="changeWatch"
             name="startYear"
@@ -43,7 +43,7 @@
       </div>
       <div class="row-two">
         <div class="input-container">
-          <label for="endMonth">endMonth</label>
+          <label class="f-il" for="endMonth">endMonth</label>
           <input
             @input="changeWatch"
             name="endMonth"
@@ -51,7 +51,7 @@
           />
         </div>
         <div class="input-container">
-          <label for="endYear">endYear</label>
+          <label class="f-il" for="endYear">endYear</label>
           <input
             @input="changeWatch"
             name="endYear"
@@ -62,16 +62,16 @@
     </div>
     <div class="row-two" v-if="section === 'reference'">
       <div class="input-container">
-        <label for="phone">Phone Number</label>
+        <label class="f-il" for="phone">Phone Number</label>
         <input @input="changeWatch" name="phone" v-model="phone" />
       </div>
       <div class="input-container">
-        <label for="email">Email Address</label>
+        <label class="f-il" for="email">Email Address</label>
         <input @input="changeWatch" name="email" v-model="email" />
       </div>
     </div>
     <div v-else class="input-container">
-      <label for="description">Description</label>
+      <label class="f-il" for="description">Description</label>
       <input
         @input="changeWatch"
         name="description"
@@ -132,8 +132,11 @@ form {
   text-align: left;
 }
 input {
-  padding: 0.5rem;
-  margin: 0.1rem 0 1.2rem 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  margin: 0.2rem 0 1.3rem 0;
+  font-size: 1.4rem;
 }
 label {
   display: inline-block;

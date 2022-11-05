@@ -3,6 +3,8 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
+import VueHtml2Canvas from "vue-html2canvas";
+import "@babel/polyfill";
 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -14,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 library.add(faUserSecret);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.use(VueHtml2Canvas);
 
 Vue.config.productionTip = false;
 

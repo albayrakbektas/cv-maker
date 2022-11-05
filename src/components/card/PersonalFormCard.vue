@@ -111,6 +111,7 @@ input {
 }
 label {
   display: inline-block;
+  font-size: 1.4rem;
 }
 .row-two {
   display: grid;
