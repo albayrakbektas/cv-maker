@@ -49,6 +49,7 @@ export default {
 
 <style scoped lang="scss">
 .display-body-right {
+  min-width: 120px;
   :first-child {
   }
 }

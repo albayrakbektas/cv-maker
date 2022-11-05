@@ -20,11 +20,10 @@ export default {
 h4 {
   text-align: left;
   margin: 0;
-  font-size: 1rem !important;
-  padding-bottom: 10px;
+  padding-bottom: 0.4rem;
 }
 .body-row-card {
-  padding: 15px 0;
+  padding: 1rem 0;
   border-bottom: 1px solid #8c8c8e;
 }
 .content {

@@ -8,9 +8,9 @@
       >
         <i
           v-if="getCvStyle(toolTip.type) === item"
-          class="fa-solid fa-check"
+          class="fa-solid fa-check f-xl"
         ></i>
-        <div class="item">{{ item }}</div>
+        <div class="item f-xl">{{ item }}</div>
       </li>
     </ul>
   </div>

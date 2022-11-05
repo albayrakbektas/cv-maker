@@ -1,8 +1,8 @@
 <template>
   <div class="display-row-card">
     <div class="row row-two">
-      <span class="card-title">{{ card.title }}</span>
-      <span class="card-date"
+      <span class="card-title f-m">{{ card.title }}</span>
+      <span class="card-date f-m"
         >{{ card.dateStart.month }} {{ card.dateStart.year }}
         {{ card.dateStart.year && card.dateEnd.year ? "-" : "" }}
         {{ card.dateEnd.month }} {{ card.dateEnd.year }}</span
@@ -33,16 +33,16 @@ export default {
   line-height: 0.9rem;
 }
 span {
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
+  display: inline-block;
+  overflow: hidden;
 }
 .card-title {
   filter: brightness(60%);
-  font-size: 0.7rem;
+  padding-bottom: 0.2rem;
 }
 .card-date {
   font-weight: 500;
-  font-size: 0.6rem;
 }
 .display-row-card {
   padding: 0 0 10px 0 !important;

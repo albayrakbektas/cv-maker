@@ -2,15 +2,15 @@
   <div @click="changeTooltipVisibility" class="tooltip-button-main-container">
     <TooltipMain v-if="isShown" :tool-tip="button.toolTip" />
     <div class="button">
-      <i :class="button.leftIcon" />
+      <i :class="button.leftIcon" class="f-xl" />
       <div v-if="!button.isRemoveIcon">
         <i
           v-if="isShown"
           :class="
-            button.rightIcon ? button.rightIcon : 'fa-solid fa-chevron-up'
+            button.rightIcon ? button.rightIcon : 'fa-solid fa-chevron-up f-xl'
           "
         />
-        <i v-else class="fa-solid fa-chevron-down"></i>
+        <i v-else class="fa-solid fa-chevron-down f-xl"></i>
       </div>
     </div>
   </div>
@@ -41,7 +41,7 @@ export default {
 .tooltip-button-main-container {
   position: relative;
   width: fit-content;
-  padding: 0.5rem;
+  padding: 1rem;
   border: 1px solid transparent;
   background-image: none;
   transition: all 0.4s ease-in-out;

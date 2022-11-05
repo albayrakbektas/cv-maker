@@ -9,7 +9,7 @@
       {{ getPersonalInformationProperties.givenName }}
       {{ getPersonalInformationProperties.familyName }}
     </h1>
-    <h4>{{ getPersonalInformationProperties.headline }}</h4>
+    <div class="f-l">{{ getPersonalInformationProperties.headline }}</div>
     <div class="header-bottom">
       <AnchorIcon
         v-for="(item, index) of anchorList"
@@ -122,9 +122,9 @@ export default {
   display: grid;
   grid-template-rows: auto auto 1fr;
   align-items: end;
-  height: 5.5rem;
+  height: 9.5rem;
   box-sizing: border-box;
-  padding: 1rem;
+  padding: 2rem 1.5rem;
 }
 .header-name {
   line-height: 1.1rem;
@@ -134,19 +134,19 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, auto);
   justify-content: start;
-  margin-top: 15px;
+  margin-top: 5px;
   gap: 10px;
 }
 h1,
-h4 {
+.f-l {
   margin: 0;
   color: #fff;
   text-align: left;
   margin-block-start: 0;
   margin-block-end: 0;
 }
-h4 {
+.f-l {
   padding-top: 5px;
-  filter: brightness(50%);
+  filter: brightness(80%);
 }
 </style>

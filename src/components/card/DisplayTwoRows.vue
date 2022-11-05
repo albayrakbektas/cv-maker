@@ -1,17 +1,19 @@
 <template>
   <div v-if="card && (card.content || range)">
     <div v-if="isAnchor(card.subtitle[0])">
-      <a target="_blank" :href="card.content" class="display-two-rows">
-        <span class="card-subtitle"
+      <a target="_blank" :href="card.content" class="display-two-rows f-m">
+        <span class="card-subtitle f-m"
           >{{ card.subtitle[0]
           }}{{ card.subtitle[1] ? ` - ${card.subtitle[1]}` : "" }}</span
         >
         <!--    <progress v-if="range" :value="Number(range)" max="5"></progress>-->
-        <span v-if="card.content" class="card-content">{{ card.content }}</span>
+        <span v-if="card.content" class="card-content f-m">{{
+          card.content
+        }}</span>
       </a>
     </div>
     <div v-else class="display-two-rows">
-      <span class="card-subtitle"
+      <span class="card-subtitle f-m"
         >{{ card.subtitle[0]
         }}{{ card.subtitle[1] ? ` - ${card.subtitle[1]}` : "" }}</span
       >
@@ -19,7 +21,7 @@
       <div v-if="range" class="progress-out">
         <div ref="progress-in" class="progress-in"></div>
       </div>
-      <span v-else class="card-content">{{ card.content }}</span>
+      <span v-else class="card-content f-m">{{ card.content }}</span>
     </div>
   </div>
 </template>
@@ -80,16 +82,17 @@ a {
   padding: 5px 0;
 }
 span {
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 .card-subtitle {
-  font-size: 0.6rem;
+  padding-bottom: 0.2rem;
   color: #8c8c8e;
 }
 .card-content {
   filter: brightness(60%);
-  font-size: 0.6rem;
+  display: inline-block;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 progress {
   accent-color: #2b2b35;

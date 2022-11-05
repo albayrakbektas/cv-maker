@@ -1,5 +1,5 @@
 <template>
-  <div id="app" ref="app">
+  <div id="app" style="font-family: Poppins, sans-serif" ref="app">
     <router-view />
   </div>
 </template>
@@ -30,8 +30,8 @@ export default {
   },
   methods: {
     setFontFamily(type) {
-      document.body.style.fontFamily = `"${type}, sans-serif !important"`;
-      this.$refs.app.style.fontFamily = `"${type}, sans-serif !important"`;
+      document.body.style.fontFamily = `${type}`;
+      this.$refs.app.style.fontFamily = `${type}`;
     },
     setColor(type) {
       let titles = document.getElementsByTagName("h4");
@@ -61,7 +61,7 @@ i {
   font-weight: 900;
 }
 .pd {
-  padding: 30px;
+  padding: 2rem;
 }
 .f-xxl,
 .f-xl,
@@ -69,10 +69,9 @@ i {
 .f-m,
 .f-s {
   letter-spacing: 0;
-  white-space: pre;
 }
 h4 {
-  font-size: 0.8rem;
+  font-size: 1.5rem;
 }
 form {
   //padding: 0 0 15px 0;

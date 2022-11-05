@@ -27,7 +27,6 @@
     </div>
     <div class="body">
       <CardMain />
-      <CanvasDisplay style="display: none" />
       <SavedDisplay ref="cv" />
     </div>
   </div>
@@ -39,24 +38,23 @@ import { getCv, writeUserData } from "@/firebaseMethods";
 import SavedDisplay from "@/components/display/SavedDisplay";
 import SpanIcon from "@/components/button/SpanIcon";
 import html2pdf from "html2pdf.js/src";
-import CanvasDisplay from "@/components/display/CanvasDisplay";
 
 export default {
   name: "CvView",
-  components: { CanvasDisplay, SpanIcon, SavedDisplay, CardMain },
+  components: { SpanIcon, SavedDisplay, CardMain },
   data() {
     return {
       output: null,
       iconStyle: {
         color: "#ffffff",
         fontWeight: "900",
-        fontSize: "1.1rem",
+        fontSize: "1.6rem",
         marginRight: "0.2rem",
       },
       spanStyle: {
         color: "#ffffff",
         fontWeight: "900",
-        fontSize: "1rem",
+        fontSize: "1.6rem",
       },
       buttonPrimaryStyle: {
         background: "transparent",
@@ -66,7 +64,7 @@ export default {
         backgroundImage:
           "linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3))",
         height: "45px",
-        marginLeft: "1rem",
+        marginLeft: "1.5rem",
       },
       backToCvButton: {
         grid: "is",
@@ -159,7 +157,7 @@ export default {
   grid-template-columns: auto auto;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 0 2rem;
   background-color: #000000;
 }
 .body {

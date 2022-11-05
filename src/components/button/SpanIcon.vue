@@ -4,8 +4,10 @@
     @button-handler="$emit('button-handler')"
   >
     <div class="span-icon" :class="[button.grid === 'si' ? 'si' : 'is']">
-      <i :style="iconStyle" :class="button.iconClass"></i>
-      <span :style="spanStyle" v-if="button.span">{{ button.span }}</span>
+      <i :style="iconStyle" :class="button.iconClass" class="f-xl"></i>
+      <span :style="spanStyle" v-if="button.span" class="f-xl">{{
+        button.span
+      }}</span>
     </div>
   </ButtonMain>
 </template>

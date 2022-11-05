@@ -184,21 +184,22 @@ export default {
   //width: 50vw;
   position: absolute;
   opacity: 0;
+  pointer-events: none;
 }
 .display-container {
   background-color: #ffffff;
   position: fixed;
   top: calc(70px + 1rem);
   bottom: calc(70px + 2rem);
-  left: 60%;
-  right: 10%;
+  left: 0;
+  right: 70%;
   overflow: hidden;
   box-shadow: -5px 5px 15px #808080;
 }
 .display-header-container {
   display: grid;
   grid-template-columns: auto 5fr;
-  height: 5.5rem;
+  height: 9.5rem;
   box-sizing: border-box;
 }
 .display-main-body {
@@ -218,6 +219,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 0.5rem;
+  border-radius: 8px;
   z-index: 99999999999999999;
 }
 .display-footer-mid {
@@ -225,6 +227,7 @@ export default {
   grid-template-columns: repeat(2, auto);
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 .cc {
   position: absolute;

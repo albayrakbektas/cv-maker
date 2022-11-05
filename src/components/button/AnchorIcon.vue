@@ -1,6 +1,6 @@
 <template>
-  <a target="_blank" :href="anchor.href">
-    <i v-show="anchor.content" :class="anchor.iconClass"></i>
+  <a class="f-s" target="_blank" :href="anchor.href">
+    <i class="f-s" v-show="anchor.content" :class="anchor.iconClass"></i>
     {{ anchor.content }}
   </a>
 </template>
@@ -22,11 +22,10 @@ a {
   align-items: center;
   color: #8c8c8e;
   text-decoration: none;
-  font-size: 0.55rem;
 }
 i {
   color: #8c8c8e;
-  padding-right: 5px;
-  font-size: 0.5rem;
+  padding-right: 2px;
+  font-size: 0.65rem;
 }
 </style>

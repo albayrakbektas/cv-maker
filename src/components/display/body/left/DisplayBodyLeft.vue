@@ -1,13 +1,19 @@
 <template>
   <div v-if="$route.name === 'cv'" class="display-body-left pd">
-    <BodyRowCard :title="getSection.education.title">
+    <BodyRowCard
+      v-if="getSection.education"
+      :title="getSection.education.title || 'Education'"
+    >
       <DisplayRowCard
         v-for="(item, index) of getSection.education.cards"
         :card="item"
         :key="index"
       />
     </BodyRowCard>
-    <BodyRowCard :title="getSection.employment.title">
+    <BodyRowCard
+      v-if="getSection.employment"
+      :title="getSection.employment.title || 'Employment'"
+    >
       <DisplayRowCard
         v-for="(item, index) of getSection.employment.cards"
         :card="item"
@@ -79,6 +85,7 @@ export default {
 
 <style scoped lang="scss">
 .display-body-left {
+  min-width: 200px;
   * {
     padding: 15px 0 0 0;
   }
