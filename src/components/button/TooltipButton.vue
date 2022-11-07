@@ -1,16 +1,23 @@
 <template>
-  <div @click="changeTooltipVisibility" class="tooltip-button-main-container">
-    <TooltipMain v-if="isShown" :tool-tip="button.toolTip" />
-    <div class="button">
-      <i :class="button.leftIcon" class="f-xl" />
-      <div v-if="!button.isRemoveIcon">
-        <i
-          v-if="isShown"
-          :class="
-            button.rightIcon ? button.rightIcon : 'fa-solid fa-chevron-up f-xl'
-          "
-        />
-        <i v-else class="fa-solid fa-chevron-down f-xl"></i>
+  <div>
+    <div
+      @click.stop="changeTooltipVisibility"
+      class="tooltip-button-main-container"
+    >
+      <TooltipMain v-if="isShown" :tool-tip="button.toolTip" />
+      <div class="button">
+        <i :class="button.leftIcon" class="f-xl" />
+        <div v-if="!button.isRemoveIcon">
+          <i
+            v-if="isShown"
+            :class="
+              button.rightIcon
+                ? button.rightIcon
+                : 'fa-solid fa-chevron-up f-xl'
+            "
+          />
+          <i v-else class="fa-solid fa-chevron-down f-xl"></i>
+        </div>
       </div>
     </div>
   </div>

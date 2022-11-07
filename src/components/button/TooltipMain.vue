@@ -2,15 +2,16 @@
   <div class="tooltip-main-container">
     <ul>
       <li
-        @click="setStyle(toolTip.type, item)"
         v-for="(item, index) in toolTip.list"
+        @click="setStyle(toolTip.type, item)"
         :key="index"
       >
         <i
-          v-if="getCvStyle(toolTip.type) === item"
+          v-if="getCvStyle(toolTip.type).key === item.key"
           class="fa-solid fa-check f-xl"
         ></i>
-        <div class="item f-xl">{{ item }}</div>
+        <div v-else></div>
+        <div :style="{}" class="item f-xl">{{ item.key }}</div>
       </li>
     </ul>
   </div>
@@ -22,6 +23,12 @@ export default {
   props: {
     toolTip: Object,
   },
+  data() {
+    return {
+      colorValue: "",
+    };
+  },
+  mounted() {},
   computed: {
     getCvStyle() {
       return (type) => this.$store.getters.getCvStyleProperty(type);
@@ -40,7 +47,7 @@ export default {
   position: absolute;
   border: 1px solid #000000;
   left: 0;
-  bottom: 2rem;
+  bottom: 4rem;
   min-width: 70px;
   border-radius: 8px;
   background-color: #ffffff;
@@ -71,5 +78,8 @@ li {
       rgba(255, 0, 0, 0.6)
     );
   }
+}
+.item {
+  white-space: nowrap;
 }
 </style>
