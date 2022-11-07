@@ -31,10 +31,10 @@ export default new Vuex.Store({
     },
     cvData: {
       style: {
-        fontFamily: "Poppins",
-        fontSize: "",
-        color: "",
-        lineHeight: "",
+        fontFamily: {},
+        fontSize: {},
+        color: {},
+        lineHeight: {},
       },
       personalInformation: {
         profilePicture: "",
