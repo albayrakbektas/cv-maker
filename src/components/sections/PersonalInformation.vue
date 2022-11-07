@@ -260,6 +260,7 @@ export default {
 .photo-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 i {
   cursor: pointer;
@@ -268,7 +269,6 @@ form {
   text-align: left;
 }
 input {
-  padding: 0.5rem;
 }
 label {
   display: inline-block;

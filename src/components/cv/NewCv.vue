@@ -1,8 +1,8 @@
 <template>
   <div @click="createNewCv">
     <div class="new-cv-container">
-      <h3>Create new Cv</h3>
-      <i class="fa-solid fa-plus"></i>
+      <h3 class="f-xl">Create new Cv</h3>
+      <i class="fa-solid fa-plus f-xl"></i>
     </div>
   </div>
 </template>

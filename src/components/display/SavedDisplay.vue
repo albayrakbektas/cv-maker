@@ -4,7 +4,10 @@
     id="display-main"
     class="display-main"
     ref="document"
-    :class="{ isPreviewDisplayMain: $route.name === 'home' }"
+    :class="{
+      isPreviewDisplayMain: $route.name === 'home',
+      'zoomed-display-main': isZoomIn,
+    }"
   >
     <div
       class="display-main-container"
@@ -12,7 +15,9 @@
     >
       <div
         class="display-container"
-        :class="{ isPreviewDisplayContainer: $route.name === 'home' }"
+        :class="{
+          isPreviewDisplayContainer: $route.name === 'home',
+        }"
         ref="cv"
       >
         <div class="display-header-container">
@@ -35,7 +40,10 @@
     <div class="display-container footer">
       <div
         class="display-footer"
-        :class="{ isPreviewDisplayFooter: $route.name === 'home' }"
+        :class="{
+          isPreviewDisplayFooter: $route.name === 'home',
+          'zoomed-display-footer': isZoomIn,
+        }"
       >
         <TooltipButton
           v-for="(item, index) of footerLeftButtons"
@@ -48,16 +56,18 @@
             :button="item"
             :key="item.leftIcon + index"
           />
+          <ColorPicker />
         </div>
-        <TooltipButton
-          v-for="(item, index) of footerRightButtons"
-          :button="item"
-          :key="item.leftIcon + index"
-        />
+        <ZoomButton @event-handler="zoomImg" />
       </div>
     </div>
-    <div class="img-container">
-      <img class="img-canvas" :src="output" alt="canvas" />
+    <div class="img-container" :class="{ 'zoomed-img-container': isZoomIn }">
+      <img
+        class="img-canvas"
+        :class="{ 'zoomed-img-canvas': isZoomIn }"
+        :src="output"
+        alt="canvas"
+      />
     </div>
   </div>
 </template>
@@ -69,10 +79,14 @@ import DisplayBodyRight from "@/components/display/body/right/DisplayBodyRight";
 import html2pdf from "html2pdf.js/src";
 import HeaderImage from "@/components/display/header/HeaderImage";
 import TooltipButton from "@/components/button/TooltipButton";
+import ColorPicker from "@/components/button/ColorPicker";
+import ZoomButton from "@/components/button/ZoomButton";
 // import { getCv } from "@/firebaseMethods";
 export default {
   name: "SavedDisplay",
   components: {
+    ZoomButton,
+    ColorPicker,
     TooltipButton,
     HeaderImage,
     DisplayBodyRight,
@@ -86,11 +100,27 @@ export default {
   data() {
     return {
       output: null,
+      isZoomIn: false,
       footerLeftButtons: [
         {
           toolTip: {
             type: "fontFamily",
-            list: ["selam", "naber", "anslkdasdasda", "Poppins"],
+            list: [
+              { key: "Arial", value: "Arial" },
+              { key: "Cairo", value: "Cairo" },
+              { key: "Calibri", value: "Calibri" },
+              { key: "Courier New", value: "Courier New" },
+              { key: "DejaVu Sans", value: "DejaVu Sans" },
+              { key: "Garamond", value: "Garamond" },
+              { key: "Georgia", value: "Georgia" },
+              { key: "Helvetica", value: "Helvetica" },
+              { key: "Lato", value: "Lato" },
+              { key: "Noto Sans", value: "Noto Sans" },
+              { key: "Noto Serif", value: "Noto Serif" },
+              { key: "Poppins", value: "Poppins" },
+              { key: "Times New Roman", value: "Times New Roman" },
+              { key: "Trebuchet", value: "Trebuchet" },
+            ],
           },
           leftIcon: "fa-solid fa-table",
         },
@@ -99,17 +129,48 @@ export default {
         {
           toolTip: {
             type: "fontFamily",
-            list: ["Arial", "Garamond", "anslkdasdasda", "Poppins"],
+            list: [
+              { key: "Arial", value: "Arial" },
+              { key: "Cairo", value: "Cairo" },
+              { key: "Calibri", value: "Calibri" },
+              { key: "Courier New", value: "Courier New" },
+              { key: "DejaVu Sans", value: "DejaVu Sans" },
+              { key: "Garamond", value: "Garamond" },
+              { key: "Georgia", value: "Georgia" },
+              { key: "Helvetica", value: "Helvetica" },
+              { key: "Lato", value: "Lato" },
+              { key: "Noto Sans", value: "Noto Sans" },
+              { key: "Noto Serif", value: "Noto Serif" },
+              { key: "Poppins", value: "Poppins" },
+              { key: "Times New Roman", value: "Times New Roman" },
+              { key: "Trebuchet", value: "Trebuchet" },
+            ],
           },
           leftIcon: "fa-solid fa-font",
         },
         {
           toolTip: {
-            type: "color",
-            list: ["Red", "Blue", "Black", "Gray"],
+            type: "fontSize",
+            list: [
+              { key: "Xs", value: "1rem" },
+              { key: "S", value: "1.2rem" },
+              { key: "M", value: "1.4rem" },
+              { key: "L", value: "1.6rem" },
+              { key: "Xl", value: "1.8rem" },
+            ],
           },
-          leftIcon: "fa-solid fa-fill",
+          leftIcon: "fa-solid fa-font",
         },
+        // {
+        //   toolTip: {
+        //     type: "color",
+        //     list: [
+        //       { key: "Red", value: "#ff0000" },
+        //       { key: "Black", value: "#000000" },
+        //     ],
+        //   },
+        //   leftIcon: "fa-solid fa-fill",
+        // },
       ],
       footerRightButtons: [
         {
@@ -148,6 +209,9 @@ export default {
   // });
   // },
   methods: {
+    zoomImg() {
+      this.isZoomIn = !this.isZoomIn;
+    },
     async print() {
       const el = this.$refs.cv;
       // add option type to get the image version
@@ -171,12 +235,18 @@ export default {
 
 <style scoped lang="scss">
 .display-main {
-  //position: fixed;
-  //left: calc(60%);
-  //top: calc(70px + 1rem);
-  //overflow: visible;
-  //background-color: rgba(250, 250, 250, 1);
   margin: 80px auto 0;
+}
+.zoomed-display-main {
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  width: 100vw;
+  background-color: #8b8b8b;
+  top: 0;
+  overflow: scroll;
+  margin-top: 7rem;
+  padding: 2rem 0;
 }
 .display-main-container {
   //position: relative;
@@ -222,9 +292,12 @@ export default {
   border-radius: 8px;
   z-index: 99999999999999999;
 }
+.zoomed-display-footer {
+  left: 1rem;
+}
 .display-footer-mid {
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(3, auto);
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -264,6 +337,11 @@ export default {
   height: calc(100vh - 140px - 3rem);
   width: calc(30vw);
 }
+.zoomed-img-container {
+  width: 60vw;
+  height: inherit;
+  translate: 20vw;
+}
 .img-canvas {
   //position: fixed;
   //left: calc(55%);
@@ -277,6 +355,8 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
+}
+.zoomed-img-canvas {
 }
 .display-container.footer {
   z-index: 9999999;

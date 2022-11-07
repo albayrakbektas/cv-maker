@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="$route.name === 'cv'"
-    :style="{ backgroundColor: `${getStyleProperty}` }"
+    :style="{ backgroundColor: `${getStyleProperty.value}` }"
     id="display-header"
     class="display-header"
   >

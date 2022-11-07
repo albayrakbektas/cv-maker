@@ -1,7 +1,7 @@
 <template>
   <div class="cv-main-container">
     <div class="home-header">
-      <h1>Cv's</h1>
+      <h1 class="f-xxl">Cv's</h1>
       <SpanIcon
         @button-handler="signOut"
         :button="button"
@@ -38,7 +38,6 @@ export default {
       spanStyle: {
         color: "#ffffff",
         fontWeight: "900",
-        fontSize: "1rem",
       },
       buttonStyle: {
         backgroundColor: "rgba(0, 0, 0, 1)",

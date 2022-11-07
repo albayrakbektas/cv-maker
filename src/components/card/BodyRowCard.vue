@@ -1,6 +1,8 @@
 <template>
   <div class="body-row-card">
-    <h4>{{ title }}</h4>
+    <h4 :style="{ color: `${getStyleProperty.value}` }">
+      {{ title }}
+    </h4>
     <div class="content">
       <slot></slot>
     </div>
@@ -12,6 +14,11 @@ export default {
   name: "BodyRowCard",
   props: {
     title: String,
+  },
+  computed: {
+    getStyleProperty() {
+      return this.$store.getters.getCvStyleProperty("color");
+    },
   },
 };
 </script>

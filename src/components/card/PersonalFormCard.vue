@@ -106,7 +106,6 @@ form {
   text-align: left;
 }
 input {
-  padding: 0.5rem;
   margin: 0.1rem 0 1.2rem 0;
 }
 label {

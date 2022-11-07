@@ -81,8 +81,8 @@ input {
   border: 1px solid rgba(240, 248, 255, 1);
   width: 100%;
   box-sizing: border-box;
-  padding: 0.75rem 1rem;
-  margin: 0.2rem 0 1.3rem 0;
+  padding: 1rem;
+  margin: 0.2rem 0 0;
   font-size: 1.4rem;
 }
 a {
