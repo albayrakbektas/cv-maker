@@ -1,10 +1,13 @@
 <template>
-  <i @click="$emit('event-handler')" class="fa-solid fa-expand f-xl" />
+  <i @click="$emit('event-handler')" class="f-xl" :class="iconClass" />
 </template>
 
 <script>
 export default {
   name: "ZoomButton",
+  props: {
+    iconClass: String,
+  },
 };
 </script>
 

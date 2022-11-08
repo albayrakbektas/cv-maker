@@ -12,8 +12,21 @@ export default {
     getColor() {
       return this.$store.getters.getCvStyleProperty("color");
     },
+    getCvStyleProperty() {
+      return (type) => this.$store.getters.getCvStyleProperty(type);
+    },
+    getIsZoomed() {
+      return this.$store.state.isZoomed;
+    },
   },
   watch: {
+    getIsZoomed: function (val) {
+      if (val) {
+        document.querySelectorAll("*").forEach((node) => {
+          node.style.fontSize = "14px";
+        });
+      }
+    },
     getFontFamily: {
       handler: function (val) {
         this.setFontFamily(val);
@@ -22,7 +35,6 @@ export default {
     },
     getColor: {
       handler: function (val) {
-        console.log(val);
         this.setColor(val);
       },
       deep: true,
@@ -39,7 +51,9 @@ export default {
         title.style.color = `${type}`;
       });
       let header = document.getElementById("display-header");
-      header.style.backgroundColor = type;
+      if (header) {
+        header.style.backgroundColor = type;
+      }
     },
   },
 };
@@ -98,6 +112,8 @@ button {
 }
 * {
   font-size: 10px;
+  letter-spacing: 0;
+  line-height: 1.2;
 }
 .f-xxl {
   font-size: 2.5rem;

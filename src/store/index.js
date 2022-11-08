@@ -7,34 +7,14 @@ export default new Vuex.Store({
   state: {
     user: {},
     isChanging: false,
+    isZoomed: false,
     cv: {
-      personalInformation: {
-        profilePicture: "",
-        givenName: "",
-        familyName: "",
-        email: "",
-        headline: "",
-        phone: "",
-        address: "",
-        postCode: "",
-        city: "",
-        personalDetail: [],
-      },
-      education: {
-        title: "",
-        cards: [],
-      },
-      employment: {},
-      skills: {},
-      languages: {},
-      reference: {},
-    },
-    cvData: {
+      previewSrc: "",
       style: {
-        fontFamily: {},
-        fontSize: {},
-        color: {},
-        lineHeight: {},
+        fontFamily: { key: "Poppins", value: "Poppins" },
+        fontSize: { key: "M", value: "1rem" },
+        color: { key: "", value: "#000000" },
+        lineHeight: { key: "1", value: "1" },
       },
       personalInformation: {
         profilePicture: "",
@@ -65,10 +45,61 @@ export default new Vuex.Store({
         title: "",
         cards: [],
       },
-      employment: {},
+      employment: {
+        title: "",
+        cards: [],
+      },
+      skills: { cards: [] },
+      languages: { cards: [] },
+      reference: { cards: [] },
+    },
+    cvData: {
+      previewSrc: "",
+      style: {
+        fontFamily: { key: "Poppins", value: "Poppins" },
+        fontSize: { key: "M", value: "1rem" },
+        color: { key: "", value: "#000000" },
+        lineHeight: { key: "1", value: "1" },
+      },
+      personalInformation: {
+        profilePicture: "",
+        givenName: "",
+        familyName: "",
+        email: "",
+        headline: "",
+        phone: "",
+        address: "",
+        postCode: "",
+        city: "",
+        personalDetail: {
+          Website: {
+            content: "",
+            subtitle: ["", ""],
+          },
+          Linkedin: {
+            content: "",
+            subtitle: ["", ""],
+          },
+          Github: {
+            content: "",
+            subtitle: ["", ""],
+          },
+        },
+      },
+      education: {
+        title: "",
+        cards: [],
+      },
+      employment: {
+        title: "",
+        cards: [],
+      },
       skills: {},
       languages: {},
-      reference: {},
+      reference: {
+        title: "",
+        cards: [],
+      },
     },
   },
   getters: {
@@ -77,6 +108,9 @@ export default new Vuex.Store({
     },
     getCvId(state) {
       return state.cvData.id;
+    },
+    getPreviewSrc(state) {
+      return state.cvData.previewSrc;
     },
     getCvStyle(state) {
       return state.cvData.style;
@@ -130,6 +164,9 @@ export default new Vuex.Store({
     updateCvData: (state, payload) => {
       state.cvData = payload;
     },
+    setPreviewSrc: (state, payload) => {
+      state.cvData.previewSrc = payload;
+    },
     addCard: (state, payload) => {
       state.cvData[payload.section]["cards"][payload.card.id] = payload.card;
     },
@@ -153,6 +190,9 @@ export default new Vuex.Store({
   actions: {
     updateCvData: ({ commit }, payload) => {
       commit("updateCvData", payload);
+    },
+    setPreviewSrc: ({ commit }, payload) => {
+      commit("setPreviewSrc", payload);
     },
     addCard: ({ commit }, payload) => {
       commit("addCard", payload);
