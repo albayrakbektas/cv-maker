@@ -86,6 +86,7 @@ export default {
 <style scoped lang="scss">
 .display-body-left {
   min-width: 200px;
+  max-width: 500px;
   * {
     padding: 15px 0 0 0;
   }

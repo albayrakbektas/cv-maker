@@ -116,6 +116,9 @@ i {
   font-size: 11px;
   transition: 0.4s ease-in-out;
 }
+input {
+  margin: 0 !important;
+}
 .text-visibility {
   position: absolute;
   height: 50px;

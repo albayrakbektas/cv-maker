@@ -6,14 +6,14 @@
         <FormField :form-field="passwordField" v-model="passwordField.value" />
         <div class="form-row">
           <div class="form-button-field">
-            <button type="submit">Login</button>
+            <button class="f-l" type="submit">Login</button>
           </div>
         </div>
       </form>
       <div class="error-message">
         <div class="card">
-          <span>New to here?</span>
-          <router-link to="/register">Signup</router-link>
+          <span class="f-l">New to here?</span>
+          <router-link class="f-l" to="/register">Signup</router-link>
         </div>
       </div>
     </div>

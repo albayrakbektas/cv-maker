@@ -1,19 +1,26 @@
 <template>
-  <div class="cv-main-container">
-    <div class="home-header">
-      <h1 class="f-xxl">Cv's</h1>
-      <SpanIcon
-        @button-handler="signOut"
-        :button="button"
-        :span-style="spanStyle"
-        :icon-style="spanStyle"
-        :button-style="buttonStyle"
-      />
-    </div>
-    <div class="cv-container">
-      <NewCv />
-      <div v-for="(item, index) of cvList" :key="index">
-        <CvBox :cv="item" />
+  <div>
+    <MenuMain />
+    <div class="cv-main-container">
+      <div class="home-header">
+        <h1 class="f-xxl">Cv's</h1>
+        <!--        <SpanIcon-->
+        <!--          @button-handler="signOut"-->
+        <!--          :button="button"-->
+        <!--          :span-style="spanStyle"-->
+        <!--          :icon-style="spanStyle"-->
+        <!--          :button-style="buttonStyle"-->
+        <!--        />-->
+      </div>
+      <div class="cv-container">
+        <NewCv />
+        <div
+          class="cv-box-container"
+          v-for="(item, index) of cvList"
+          :key="index"
+        >
+          <CvBox :cv="item" />
+        </div>
       </div>
     </div>
   </div>
@@ -23,10 +30,10 @@
 import CvBox from "@/components/cv/CvBox";
 import NewCv from "@/components/cv/NewCv";
 import { getCvList, signout } from "@/firebaseMethods";
-import SpanIcon from "@/components/button/SpanIcon";
+import MenuMain from "@/components/menu/MenuMain";
 export default {
   name: "HomeView",
-  components: { SpanIcon, NewCv, CvBox },
+  components: { MenuMain, NewCv, CvBox },
   data() {
     return {
       cvList: [],
@@ -49,6 +56,48 @@ export default {
   },
   async mounted() {
     this.cvList = await getCvList(this.$store.state.user.uid);
+    this.$store.state.cvData = {
+      previewSrc: "",
+      style: {
+        fontFamily: {},
+        fontSize: {},
+        color: {},
+        lineHeight: {},
+      },
+      personalInformation: {
+        profilePicture: "",
+        givenName: "",
+        familyName: "",
+        email: "",
+        headline: "",
+        phone: "",
+        address: "",
+        postCode: "",
+        city: "",
+        personalDetail: {
+          Website: {
+            content: "",
+            subtitle: ["", ""],
+          },
+          Linkedin: {
+            content: "",
+            subtitle: ["", ""],
+          },
+          Github: {
+            content: "",
+            subtitle: ["", ""],
+          },
+        },
+      },
+      education: {
+        title: "",
+        cards: [],
+      },
+      employment: {},
+      skills: {},
+      languages: {},
+      reference: {},
+    };
   },
   methods: {
     async signOut() {
@@ -68,13 +117,15 @@ export default {
 }
 h1 {
   text-align: left;
+  margin-bottom: 4rem;
 }
 .cv-main-container {
   padding: 2rem;
+  margin-left: 18vw;
 }
 .cv-container {
-  display: flex;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 i {
   color: #2d2d3a;

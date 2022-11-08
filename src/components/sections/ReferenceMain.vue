@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <CollapsibleSection title="References">
-      <CollapsibleContent v-for="(item, index) of getSectionCards" :key="index">
+      <CollapsibleContent v-for="(item, index) in getSectionCards" :key="index">
         <CardEdit :card="item" section="reference" />
       </CollapsibleContent>
       <SpanIcon
@@ -52,7 +52,7 @@ export default {
         "reference",
         card
       );
-      this.$store.dispatch("addCard", { section: "reference", card });
+      this.$store.commit("addCard", { section: "reference", card });
       this.isNewForm = true;
     },
   },

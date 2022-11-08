@@ -63,7 +63,7 @@ export default {
         "education",
         card
       );
-      this.$store.dispatch("addCard", { section: "education", card });
+      this.$store.commit("addCard", { section: "education", card });
       this.isNewForm = true;
     },
   },

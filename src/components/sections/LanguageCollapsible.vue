@@ -46,7 +46,7 @@ export default {
         "languages",
         card
       );
-      this.$store.dispatch("addCard", { section: "languages", card });
+      this.$store.commit("addCard", { section: "languages", card });
       this.isNewForm = true;
     },
   },

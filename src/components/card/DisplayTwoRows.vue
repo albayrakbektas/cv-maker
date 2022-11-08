@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     isAnchor(title) {
-      let titles = ["Website", "LinkedIn", "Github"];
+      let titles = ["Website", "Linkedin", "Github"];
       if (titles.includes(title)) {
         return true;
       } else {

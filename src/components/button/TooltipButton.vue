@@ -7,6 +7,7 @@
       <TooltipMain v-if="isShown" :tool-tip="button.toolTip" />
       <div class="button">
         <i :class="button.leftIcon" class="f-xl" />
+        <span class="f-xl">{{ getCvStyle(button.toolTip.type).key }}</span>
         <div v-if="!button.isRemoveIcon">
           <i
             v-if="isShown"
@@ -36,10 +37,21 @@ export default {
       isShown: false,
     };
   },
+  computed: {
+    getCvStyle() {
+      return (type) => this.$store.getters.getCvStyleProperty(type);
+    },
+  },
   methods: {
     changeTooltipVisibility() {
       this.isShown = !this.isShown;
     },
+    getSelectedStyle() {
+      console.log(this.getCvStyle);
+    },
+  },
+  mounted() {
+    this.getSelectedStyle();
   },
 };
 </script>
@@ -65,12 +77,17 @@ export default {
 }
 .button {
   display: flex;
+  align-items: center;
 }
 i {
   color: #ffffff;
 }
 .fa-chevron-up,
 .fa-chevron-down {
+  padding-left: 0.8rem;
+}
+span {
+  color: #ffffff;
   padding-left: 0.4rem;
 }
 </style>

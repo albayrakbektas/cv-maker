@@ -1,5 +1,5 @@
 <template>
-  <div @click="createNewCv">
+  <div @click.prevent="createNewCv">
     <div class="new-cv-container">
       <h3 class="f-xl">Create new Cv</h3>
       <i class="fa-solid fa-plus f-xl"></i>
@@ -9,19 +9,23 @@
 
 <script>
 import { v4 as uuidv4 } from "uuid";
-import { writeUserData } from "@/firebaseMethods";
+import { getCv, writeUserData } from "@/firebaseMethods";
 export default {
   name: "NewCv",
   methods: {
     createUid() {
       return uuidv4().split("-").join("");
     },
-    createNewCv() {
+    async createNewCv() {
       let cvId = this.createUid();
       let newCv = this.$store.state.cv;
       newCv.id = cvId;
-      writeUserData(this.$store.state.user.uid, cvId, newCv);
-      this.$router.push("cv/" + cvId);
+      writeUserData(this.$store.state.user.uid, cvId, newCv).then(() => {
+        getCv(this.$store.state.user.uid, cvId).then(() => {
+          console.log(this.$store.state.cvData);
+        });
+      });
+      await this.$router.push("cv/" + cvId);
     },
   },
 };
@@ -30,11 +34,24 @@ export default {
 <style scoped lang="scss">
 .new-cv-container {
   border: 1px dashed #2b2b35;
-  height: 21rem;
-  width: 14rem;
+  height: 34rem;
+  width: 24rem;
   display: grid;
   grid-template-rows: auto auto;
   align-items: center;
+  transition: all 0.4s ease-in-out;
+  &:hover {
+    border: 1px dashed #800080;
+    * {
+      color: #800080;
+    }
+  }
+}
+h3,
+i {
+  color: #2b2b35;
+  font-size: 2rem;
+  transition: all 0.4s ease-in-out;
 }
 h3 {
   align-self: end;

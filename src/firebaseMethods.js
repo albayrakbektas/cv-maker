@@ -43,8 +43,8 @@ export const getUser = async () => {
   return userId;
 };
 
-export const writeUserData = (userId, cvId, cv) => {
-  set(ref(database, userId + "/" + cvId), cv).catch((error) => {
+export const writeUserData = async (userId, cvId, cv) => {
+  await set(ref(database, userId + "/" + cvId), cv).catch((error) => {
     console.log(error);
   });
 };
@@ -66,6 +66,11 @@ export const deleteSectionCard = (userId, cvId, section, cardId) => {
     console.log(error);
   });
 };
+export const deleteCv = (userId, cvId) => {
+  set(ref(database, userId + "/" + cvId), null).catch((error) => {
+    console.log(error);
+  });
+};
 
 export const signout = async () => {
   await signOut(auth).catch((error) => {
@@ -83,7 +88,7 @@ export const getCv = async (userId, cvId) => {
   return new Promise((resolve) => {
     const cvRef = ref(database, userId + "/" + cvId);
     onValue(cvRef, async (snapshot) => {
-      store.state.cvData = await snapshot.val();
+      store.commit("updateCvData", await snapshot.val());
       resolve(await snapshot.val());
     });
   });

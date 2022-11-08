@@ -20,14 +20,14 @@
           :icon-style="iconStyle"
           :span-style="spanStyle"
           :button-style="buttonSecondaryStyle"
-          @button-handler="exportToPDF"
           :button="DownloadButton"
+          @button-handler="download"
         />
       </div>
     </div>
     <div class="body">
       <CardMain />
-      <SavedDisplay ref="cv" />
+      <SavedDisplay :is-download="isDownload" ref="cv" />
     </div>
   </div>
 </template>
@@ -37,13 +37,13 @@ import CardMain from "@/components/card/CardMain";
 import { getCv, writeUserData } from "@/firebaseMethods";
 import SavedDisplay from "@/components/display/SavedDisplay";
 import SpanIcon from "@/components/button/SpanIcon";
-import html2pdf from "html2pdf.js/src";
 
 export default {
   name: "CvView",
   components: { SpanIcon, SavedDisplay, CardMain },
   data() {
     return {
+      isDownload: false,
       output: null,
       iconStyle: {
         color: "#ffffff",
@@ -84,21 +84,12 @@ export default {
     };
   },
   async created() {
-    await getCv(this.$store.state.user.uid, this.$route.params.id)
-      .then((res) => {
-        this.$store.dispatch("updateCvData", res);
-      })
-      .then(() => {
-        console.log(this.$store.state.cvData);
-      });
-    // await this.print();
+    await getCv(this.$store.state.user.uid, this.$route.params.id);
+    await this.print();
   },
   methods: {
     async print() {
       const el = this.$refs.cv;
-      // add option type to get the image version
-      // if not provided the promise will return
-      // the canvas.
       const options = {
         type: "dataURL",
       };
@@ -108,21 +99,20 @@ export default {
       this.$router.push("/");
     },
     download() {
-      document.addEventListener("click", () => {
-        this.$refs.cv.click();
-      });
+      this.isDownload = true;
     },
-    exportToPDF() {
-      const document = document.getElementById("display-main");
-      html2pdf(document, {
-        margin: 0,
-        filename: "vue-pdf",
-      });
-    },
+    // exportToPDF() {
+    //   const document = document.getElementById("display-main");
+    //   html2pdf(document, {
+    //     margin: 0,
+    //     filename: "vue-pdf",
+    //   });
+    // },
     save() {
       let userId = this.$store.state.user.uid;
       let cvId = this.$route.params.id;
       const {
+        previewSrc,
         style,
         personalInformation,
         education,
@@ -133,6 +123,7 @@ export default {
       } = this.$store.state.cvData;
       writeUserData(userId, cvId, {
         id: cvId,
+        previewSrc,
         style,
         personalInformation,
         education,
