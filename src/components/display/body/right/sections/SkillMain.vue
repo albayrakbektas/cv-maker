@@ -1,5 +1,8 @@
 <template>
-  <BodyRowCard title="Skills">
+  <BodyRowCard
+    v-if="getSectionCards('skills')"
+    :title="getSectionCards.title ? 'Skills' : ''"
+  >
     <DisplayTwoRows
       v-for="(item, index) of getSectionCards"
       :key="index"
@@ -18,7 +21,8 @@ export default {
   components: { DisplayTwoRows, BodyRowCard },
   computed: {
     getSectionCards() {
-      return this.$store.getters.getSectionCards("skills");
+      return (section) =>
+        this.$store.getters.getSectionCards(section || "skills");
     },
   },
   mounted() {

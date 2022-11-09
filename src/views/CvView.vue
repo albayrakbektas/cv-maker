@@ -84,8 +84,16 @@ export default {
     };
   },
   async created() {
-    await getCv(this.$store.state.user.uid, this.$route.params.id);
+    await getCv(this.getUser.uid, this.$route.params.id);
     await this.print();
+  },
+  computed: {
+    getUser() {
+      return this.$store.getters.getUser;
+    },
+    getCvData() {
+      return this.$store.getters.getCvData;
+    },
   },
   methods: {
     async print() {
@@ -99,17 +107,10 @@ export default {
       this.$router.push("/");
     },
     download() {
-      this.isDownload = true;
+      this.isDownload = !this.isDownload;
     },
-    // exportToPDF() {
-    //   const document = document.getElementById("display-main");
-    //   html2pdf(document, {
-    //     margin: 0,
-    //     filename: "vue-pdf",
-    //   });
-    // },
     save() {
-      let userId = this.$store.state.user.uid;
+      let userId = this.getUser.uid;
       let cvId = this.$route.params.id;
       const {
         previewSrc,
@@ -120,7 +121,7 @@ export default {
         skills,
         languages,
         reference,
-      } = this.$store.state.cvData;
+      } = this.getCvData;
       writeUserData(userId, cvId, {
         id: cvId,
         previewSrc,

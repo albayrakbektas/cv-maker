@@ -12,6 +12,11 @@ import { v4 as uuidv4 } from "uuid";
 import { getCv, writeUserData } from "@/firebaseMethods";
 export default {
   name: "NewCv",
+  computed: {
+    getUser() {
+      return this.$store.getters.getUser;
+    },
+  },
   methods: {
     createUid() {
       return uuidv4().split("-").join("");
@@ -20,11 +25,8 @@ export default {
       let cvId = this.createUid();
       let newCv = this.$store.state.cv;
       newCv.id = cvId;
-      writeUserData(this.$store.state.user.uid, cvId, newCv).then(() => {
-        getCv(this.$store.state.user.uid, cvId).then(() => {
-          console.log(this.$store.state.cvData);
-        });
-      });
+      await writeUserData(this.getUser.uid, cvId, newCv);
+      await getCv(this.getUser.uid, cvId);
       await this.$router.push("cv/" + cvId);
     },
   },

@@ -1,21 +1,21 @@
 <template>
   <div v-if="$route.name === 'cv'" class="display-body-left pd">
     <BodyRowCard
-      v-if="getSection.education"
+      v-if="getSectionCards('education')"
       :title="getSection.education.title || 'Education'"
     >
       <DisplayRowCard
-        v-for="(item, index) of getSection.education.cards"
+        v-for="(item, index) of getSectionCards('education')"
         :card="item"
         :key="index"
       />
     </BodyRowCard>
     <BodyRowCard
-      v-if="getSection.employment"
+      v-if="getSectionCards('employment')"
       :title="getSection.employment.title || 'Employment'"
     >
       <DisplayRowCard
-        v-for="(item, index) of getSection.employment.cards"
+        v-for="(item, index) of getSectionCards('employment')"
         :card="item"
         :key="index"
       />
@@ -44,6 +44,10 @@ export default {
         employment: this.$store.getters.getSection("employment"),
       };
     },
+    getSectionCards() {
+      return (section) =>
+        this.$store.getters.getSectionCards(section || "education");
+    },
   },
   // watch: {
   //   "$store.state.isChanging": {
@@ -58,7 +62,7 @@ export default {
   // },
   created() {},
   // async mounted() {
-  //   getCv(this.$store.state.user.uid, this.$route.params.id)
+  //   getCvData(this.$store.state.user.uid, this.$route.params.id)
   //     .then((res) => {
   //       this.education = res.education;
   //       this.employment = res.employment;

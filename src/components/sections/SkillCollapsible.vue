@@ -1,7 +1,10 @@
 <template>
   <div class="section">
     <CollapsibleSection title="Skills">
-      <CollapsibleContent v-for="(item, index) of getSectionCards" :key="index">
+      <CollapsibleContent
+        v-for="(item, index) of getSection.cards"
+        :key="index"
+      >
         <CardEdit
           :card="item"
           :is-skill="true"
@@ -34,8 +37,8 @@ export default {
     CollapsibleSection,
   },
   computed: {
-    getSectionCards() {
-      return this.$store.getters.getSectionCards("skills");
+    getSection() {
+      return this.$store.getters.getSection("skills");
     },
   },
   methods: {

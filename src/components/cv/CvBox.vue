@@ -40,19 +40,24 @@ export default {
     };
   },
   created() {
-    getCv(this.$store.state.user.uid, this.cv.id).then((res) => {
-      this.$store.state.cvData = res;
+    getCv(this.getUser.uid, this.cv.id).then((res) => {
+      this.$store.commit("updateCvData", res);
     });
+  },
+  computed: {
+    getUser() {
+      return this.$store.getters.getUser;
+    },
   },
   methods: {
     openCv() {
-      this.$router.push("/cv/" + this.$props.cv.id);
+      this.$router.push("/cv/" + this.cv.id);
     },
     showOptions() {
       this.isShown = !this.isShown;
     },
     deleteCv(cv) {
-      deleteCv(this.$store.state.user.uid, cv.id);
+      deleteCv(this.getUser.uid, cv.id);
       location.reload();
     },
   },

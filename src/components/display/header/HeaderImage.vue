@@ -1,14 +1,16 @@
 <template>
-  <img :src="getPersonalInformationProperties" alt="" />
+  <img
+    v-if="getPersonalInformationProperties"
+    :src="getPersonalInformationProperties"
+    alt=""
+  />
 </template>
 
 <script>
 export default {
   name: "HeaderImage",
   data() {
-    return {
-      file: "",
-    };
+    return {};
   },
   computed: {
     getPersonalInformationProperties() {
@@ -16,10 +18,6 @@ export default {
         "profilePicture"
       );
     },
-  },
-  mounted() {
-    this.file =
-      this.$store.getters.getPersonalInformationProperties("profilePicture");
   },
 };
 </script>

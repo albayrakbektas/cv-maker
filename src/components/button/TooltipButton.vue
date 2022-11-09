@@ -7,7 +7,9 @@
       <TooltipMain v-if="isShown" :tool-tip="button.toolTip" />
       <div class="button">
         <i :class="button.leftIcon" class="f-xl" />
-        <span class="f-xl">{{ getCvStyle(button.toolTip.type).key }}</span>
+        <span v-if="getIsZoomed" class="f-xl">{{
+          getCvStyle(button.toolTip.type).key
+        }}</span>
         <div v-if="!button.isRemoveIcon">
           <i
             v-if="isShown"
@@ -41,6 +43,9 @@ export default {
     getCvStyle() {
       return (type) => this.$store.getters.getCvStyleProperty(type);
     },
+    getIsZoomed() {
+      return this.$store.getters.getIsZoomed;
+    },
   },
   methods: {
     changeTooltipVisibility() {
@@ -60,7 +65,7 @@ export default {
 .tooltip-button-main-container {
   position: relative;
   width: fit-content;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   border: 1px solid transparent;
   background-image: none;
   transition: all 0.4s ease-in-out;

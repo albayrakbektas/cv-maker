@@ -24,6 +24,9 @@ export default {
   name: "ReferenceMain",
   components: { SpanIcon, CardEdit, CollapsibleContent, CollapsibleSection },
   computed: {
+    // getSectionCards() {
+    //   return this.$store.getters.getSectionCards("reference");
+    // },
     getSectionCards() {
       return this.$store.getters.getSectionCards("reference");
     },

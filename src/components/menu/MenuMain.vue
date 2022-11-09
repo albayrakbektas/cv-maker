@@ -1,30 +1,72 @@
 <template>
   <div class="menu-main-container">
+    <MenuHeader />
     <SpanIcon
-      @button-handler="signOut"
+      @button-handler="changeSubButtons"
       :button="button.type"
       :button-style="button.style"
-      :span-style="spanStyle"
-      :icon-style="iconStyle"
-    />
+      :span-style="button.spanStyle"
+      :icon-style="button.iconStyle"
+      :show-sub-buttons="showSubButtons"
+    >
+      <SpanIcon
+        :button="settingsButton.type"
+        :button-style="settingsButton.style"
+        :span-style="settingsButton.spanStyle"
+        :icon-style="settingsButton.iconStyle"
+      />
+      <SpanIcon
+        :button="logoutButton.type"
+        :button-style="logoutButton.style"
+        :span-style="logoutButton.spanStyle"
+        :icon-style="logoutButton.iconStyle"
+        @button-handler="signOut"
+      />
+    </SpanIcon>
   </div>
 </template>
 
 <script>
 import SpanIcon from "@/components/button/SpanIcon";
 import { signout } from "@/firebaseMethods";
+import MenuHeader from "@/components/menu/MenuHeader";
 export default {
   name: "MenuMain",
-  components: { SpanIcon },
+  components: { MenuHeader, SpanIcon },
   methods: {
     async signOut() {
       await signout();
       await this.$router.push("/login");
     },
+    changeSubButtons() {
+      this.showSubButtons = !this.showSubButtons;
+    },
   },
   data() {
     return {
-      button: {
+      showSubButtons: false,
+      settingsButton: {
+        type: {
+          grid: "is",
+          iconClass: "fa-solid fa-gear",
+          span: "Settings",
+        },
+        style: {
+          width: "100%",
+          backgroundColor: "rgba(0, 0, 0, 1)",
+          backgroundImage:
+            "linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3))",
+        },
+        spanStyle: {
+          color: "#ffffff",
+          fontSize: "2rem",
+        },
+        iconStyle: {
+          color: "#ffffff",
+          fontSize: "1.8rem",
+        },
+      },
+      logoutButton: {
         type: {
           grid: "is",
           iconClass: "fa-solid fa-right-from-bracket",
@@ -36,14 +78,79 @@ export default {
           backgroundImage:
             "linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3))",
         },
+        spanStyle: {
+          color: "#ffffff",
+          fontSize: "2rem",
+        },
+        iconStyle: {
+          color: "#ffffff",
+          fontSize: "1.8rem",
+        },
       },
-      spanStyle: {
-        color: "#ffffff",
-        fontSize: "2rem",
-      },
-      iconStyle: {
-        color: "#ffffff",
-        fontSize: "1.8rem",
+      button: {
+        type: {
+          grid: "is",
+          iconClass: "fa-solid fa-user",
+          span: "User",
+          subButtons: [
+            {
+              button: {
+                grid: "is",
+                iconClass: "fa-solid fa-profile",
+                span: "Settings",
+              },
+              buttonStyle: {
+                width: "100%",
+                backgroundColor: "rgba(0, 0, 0, 1)",
+                backgroundImage:
+                  "linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3))",
+              },
+              spanStyle: {
+                color: "#ffffff",
+                fontSize: "2rem",
+              },
+              iconStyle: {
+                color: "#ffffff",
+                fontSize: "1.8rem",
+              },
+            },
+            {
+              button: {
+                grid: "is",
+                iconClass: "fa-solid fa-right-from-bracket",
+                span: "Log out",
+              },
+              buttonStyle: {
+                width: "100%",
+                backgroundColor: "rgba(0, 0, 0, 1)",
+                backgroundImage:
+                  "linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3))",
+              },
+              spanStyle: {
+                color: "#ffffff",
+                fontSize: "2rem",
+              },
+              iconStyle: {
+                color: "#ffffff",
+                fontSize: "1.8rem",
+              },
+            },
+          ],
+        },
+        style: {
+          width: "100%",
+          backgroundColor: "rgba(0, 0, 0, 1)",
+          backgroundImage:
+            "linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3))",
+        },
+        spanStyle: {
+          color: "#ffffff",
+          fontSize: "2rem",
+        },
+        iconStyle: {
+          color: "#ffffff",
+          fontSize: "1.8rem",
+        },
       },
     };
   },

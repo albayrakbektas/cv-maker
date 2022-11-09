@@ -1,7 +1,7 @@
 <template>
-  <BodyRowCard v-if="$route.name === 'cv'" title="Languages">
+  <BodyRowCard v-if="$route.name === 'cv' && getSection" title="Languages">
     <DisplayTwoRows
-      v-for="(item, index) of getSectionCards"
+      v-for="(item, index) of getSection.cards"
       :key="index"
       :card="item"
       :range="Number(item.content)"
@@ -17,8 +17,8 @@ export default {
   name: "LanguageMain",
   components: { DisplayTwoRows, BodyRowCard },
   computed: {
-    getSectionCards() {
-      return this.$store.getters.getSectionCards("languages");
+    getSection() {
+      return this.$store.getters.getSection("languages");
     },
   },
 };

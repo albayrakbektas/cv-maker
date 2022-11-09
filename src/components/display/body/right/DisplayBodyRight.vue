@@ -3,10 +3,7 @@
     <PersonalDetails />
     <SkillMain />
     <LanguageMain />
-    <BodyRowCard
-      v-if="data"
-      :title="getSectionCards ? getSectionCards.title : null"
-    >
+    <BodyRowCard v-if="getSection" title="Reference">
       <DisplayRowCard
         v-for="(item, index) of getSectionCards"
         :card="item"
@@ -32,6 +29,9 @@ export default {
     PersonalDetails,
   },
   computed: {
+    getSection() {
+      return this.$store.getters.getSection("reference");
+    },
     getSectionCards() {
       return this.$store.getters.getSectionCards("reference");
     },

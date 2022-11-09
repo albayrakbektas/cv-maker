@@ -49,9 +49,12 @@ export default new Vuex.Store({
         title: "",
         cards: [],
       },
-      skills: { cards: [] },
-      languages: { cards: [] },
-      reference: { cards: [] },
+      skills: {},
+      languages: {},
+      reference: {
+        title: "",
+        cards: [],
+      },
     },
     cvData: {
       previewSrc: "",
@@ -103,7 +106,16 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    getIsZoomed(state) {
+      return state.isZoomed;
+    },
+    getUser(state) {
+      return state.user;
+    },
     getCv(state) {
+      return state.cv;
+    },
+    getCvData(state) {
       return state.cvData;
     },
     getCvId(state) {
@@ -161,6 +173,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setIsZoomed: (state, payload) => {
+      state.isZoomed = payload;
+    },
     updateCvData: (state, payload) => {
       state.cvData = payload;
     },
@@ -183,11 +198,12 @@ export default new Vuex.Store({
         content: payload.value,
         subtitle: [payload.title, ""],
       };
-
-      console.log(state.cvData.personalInformation.personalDetail);
     },
   },
   actions: {
+    setIsZoomed: ({ commit }, payload) => {
+      commit("setIsZoomed", payload);
+    },
     updateCvData: ({ commit }, payload) => {
       commit("updateCvData", payload);
     },

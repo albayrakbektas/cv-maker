@@ -6,17 +6,16 @@
     ref="document"
     :class="{
       isPreviewDisplayMain: $route.name === 'home',
-      'zoomed-display-main': isZoomIn,
+      'zoomed-display-main': getIsZoomed,
     }"
   >
-    <div class="img-container" :class="{ 'zoomed-img-container': isZoomIn }">
+    <div class="img-container" :class="{ 'zoomed-img-container': getIsZoomed }">
       <div
-        @click="exportToPDF"
         ref="display"
         class="display-main-container"
         :class="{
           isPreviewDisplayMainContainer: $route.name === 'home',
-          'zoomed-display-main-container': isZoomIn,
+          'zoomed-display-main-container': getIsZoomed,
         }"
       >
         <div
@@ -26,7 +25,10 @@
           }"
           ref="cv"
         >
-          <div class="display-header-container">
+          <div
+            class="display-header-container"
+            :class="{ 'dhc-one': !getPersonalInformationProperties }"
+          >
             <HeaderImage />
             <DisplayHeader />
           </div>
@@ -48,7 +50,7 @@
           class="display-footer"
           :class="{
             isPreviewDisplayFooter: $route.name === 'home',
-            'zoomed-display-footer': isZoomIn,
+            'zoomed-display-footer': getIsZoomed,
           }"
         >
           <TooltipButton
@@ -173,16 +175,6 @@ export default {
           },
           leftIcon: "fa-solid fa-font",
         },
-        // {
-        //   toolTip: {
-        //     type: "color",
-        //     list: [
-        //       { key: "Red", value: "#ff0000" },
-        //       { key: "Black", value: "#000000" },
-        //     ],
-        //   },
-        //   leftIcon: "fa-solid fa-fill",
-        // },
       ],
       footerRightButtons: [
         {
@@ -196,8 +188,16 @@ export default {
     };
   },
   computed: {
-    getCv() {
+    getCvData() {
       return this.$store.getters.getCv;
+    },
+    getIsZoomed() {
+      return this.$store.getters.getIsZoomed;
+    },
+    getPersonalInformationProperties() {
+      return this.$store.getters.getPersonalInformationProperties(
+        "profilePicture"
+      );
     },
   },
   watch: {
@@ -207,16 +207,17 @@ export default {
       },
       deep: true,
     },
-    isDownload: function (val) {
-      if (val) {
-        this.exportToPDF();
-      }
+    isDownload: function () {
+      this.exportToPDF();
     },
   },
   methods: {
     zoomImg() {
-      this.isZoomIn = !this.isZoomIn;
-      this.$store.state.isZoomed = !this.$store.state.isZoomed;
+      if (this.getIsZoomed) {
+        this.$store.commit("setIsZoomed", false);
+      } else {
+        this.$store.commit("setIsZoomed", true);
+      }
     },
     async print() {
       const el = this.$refs.cv;
@@ -255,21 +256,14 @@ export default {
 }
 .display-main-container {
   position: relative;
-  //height: calc(100vh - 70px);
-  //width: 50vw;
-  //position: absolute;
+  height: 100%;
 }
 .zoomed-display-main-container {
   height: 1187px;
 }
 .display-container {
   background-color: #ffffff;
-  //position: fixed;
-  //top: calc(70px + 1rem);
-  //bottom: calc(70px + 2rem);
-  //left: 0;
-  //right: 70%;
-  height: calc(100% - 70px - 2rem);
+  height: 100%;
   overflow: hidden;
   box-shadow: -5px 5px 15px #808080;
 }
@@ -278,6 +272,9 @@ export default {
   grid-template-columns: auto 5fr;
   height: 9.5rem;
   box-sizing: border-box;
+}
+.dhc-one {
+  grid-template-columns: 1fr;
 }
 .display-main-body {
   display: grid;
@@ -354,13 +351,6 @@ export default {
   overflow: hidden;
 }
 .img-canvas {
-  //position: fixed;
-  //left: calc(55%);
-  //top: calc(70px + 1rem);
-  //z-index: 999999;
-  //scale: 1;
-  //height: calc(100vh - 260px);
-  //object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;
