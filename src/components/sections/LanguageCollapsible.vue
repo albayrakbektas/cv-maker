@@ -1,7 +1,10 @@
 <template>
   <div class="section">
     <CollapsibleSection title="Languages">
-      <CollapsibleContent v-for="(item, index) of getSectionCards" :key="index">
+      <CollapsibleContent
+        v-for="(item, index) of getSection.cards"
+        :key="index"
+      >
         <CardEdit
           :card="item"
           :is-skill="true"
@@ -29,8 +32,8 @@ export default {
   name: "LanguageCollapsible",
   components: { SpanIcon, CardEdit, CollapsibleContent, CollapsibleSection },
   computed: {
-    getSectionCards() {
-      return this.$store.getters.getSectionCards("languages");
+    getSection() {
+      return this.$store.getters.getSection("languages");
     },
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <div class="spaai">
+  <div>
     <!--    <div-->
     <!--      v-if="button.subButtons && showSubButtons"-->
     <!--      class="dropdown-list-container"-->

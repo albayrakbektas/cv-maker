@@ -16,7 +16,7 @@
         <NewCv />
         <div
           class="cv-box-container"
-          v-for="(item, index) of cvList"
+          v-for="(item, index) of getCvList"
           :key="index"
         >
           <CvBox :cv="item" />
@@ -54,50 +54,59 @@ export default {
       },
     };
   },
+  computed: {
+    getCvList() {
+      return this.$store.getters.getCvList;
+    },
+  },
   async mounted() {
-    this.cvList = await getCvList(this.$store.state.user.uid);
-    this.$store.state.cvData = {
-      previewSrc: "",
-      style: {
-        fontFamily: {},
-        fontSize: {},
-        color: {},
-        lineHeight: {},
-      },
-      personalInformation: {
-        profilePicture: "",
-        givenName: "",
-        familyName: "",
-        email: "",
-        headline: "",
-        phone: "",
-        address: "",
-        postCode: "",
-        city: "",
-        personalDetail: {
-          Website: {
-            content: "",
-            subtitle: ["", ""],
-          },
-          Linkedin: {
-            content: "",
-            subtitle: ["", ""],
-          },
-          Github: {
-            content: "",
-            subtitle: ["", ""],
-          },
-        },
-      },
-      education: {
-        title: "",
-        cards: [],
-      },
-      employment: {},
-      skills: {},
-      languages: {},
-      reference: {},
-    };
+    this.$store.commit(
+      "setCvList",
+      await getCvList(this.$store.state.user.uid)
+    );
+    // this.cvList = await getCvList(this.$store.state.user.uid);
+    // this.$store.state.cvData = {
+    //   previewSrc: "",
+    //   style: {
+    //     fontFamily: {},
+    //     fontSize: {},
+    //     color: {},
+    //     lineHeight: {},
+    //   },
+    //   personalInformation: {
+    //     profilePicture: "",
+    //     givenName: "",
+    //     familyName: "",
+    //     email: "",
+    //     headline: "",
+    //     phone: "",
+    //     address: "",
+    //     postCode: "",
+    //     city: "",
+    //     personalDetail: {
+    //       Website: {
+    //         content: "",
+    //         subtitle: ["", ""],
+    //       },
+    //       Linkedin: {
+    //         content: "",
+    //         subtitle: ["", ""],
+    //       },
+    //       Github: {
+    //         content: "",
+    //         subtitle: ["", ""],
+    //       },
+    //     },
+    //   },
+    //   education: {
+    //     title: "",
+    //     cards: [],
+    //   },
+    //   employment: {},
+    //   skills: {},
+    //   languages: {},
+    //   reference: {},
+    // };
   },
   methods: {
     async signOut() {
@@ -126,6 +135,9 @@ h1 {
 .cv-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+}
+.cv-box-container {
+  margin-bottom: 2rem;
 }
 i {
   color: #2d2d3a;

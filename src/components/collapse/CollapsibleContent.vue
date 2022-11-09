@@ -1,6 +1,8 @@
 <template>
   <div class="collapsible-content">
+    <!--    <div v-if="condition">-->
     <slot></slot>
+    <!--    </div>-->
   </div>
 </template>
 
@@ -8,6 +10,9 @@
 export default {
   name: "CollapsibleContent",
   components: {},
+  props: {
+    condition: Boolean,
+  },
   data() {
     return {
       button: {

@@ -152,6 +152,9 @@ export default {
   padding: 0 2rem;
   background-color: #000000;
 }
+.header-right {
+  display: flex;
+}
 .body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

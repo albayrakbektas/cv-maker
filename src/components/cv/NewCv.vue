@@ -25,6 +25,7 @@ export default {
       let cvId = this.createUid();
       let newCv = this.$store.state.cv;
       newCv.id = cvId;
+      console.log(newCv);
       await writeUserData(this.getUser.uid, cvId, newCv);
       await getCv(this.getUser.uid, cvId);
       await this.$router.push("cv/" + cvId);

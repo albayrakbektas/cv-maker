@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { deleteCv, getCv } from "@/firebaseMethods";
+import { deleteCv, getCv, getCvList } from "@/firebaseMethods";
 import ZoomButton from "@/components/button/ZoomButton";
 import SpanIcon from "@/components/button/SpanIcon";
 export default {
@@ -56,9 +56,12 @@ export default {
     showOptions() {
       this.isShown = !this.isShown;
     },
-    deleteCv(cv) {
+    async deleteCv(cv) {
       deleteCv(this.getUser.uid, cv.id);
-      location.reload();
+      this.$store.commit(
+        "setCvList",
+        await getCvList(this.$store.state.user.uid)
+      );
     },
   },
 };
