@@ -99,6 +99,16 @@ img {
   filter: none;
   transition: all 0.4s ease-in-out;
 }
+@media (max-width: 500px) {
+  .cv-box-container {
+    height: 100%;
+    width: 100%;
+  }
+  img {
+    height: calc((50vw - 2rem) * 1.414);
+    width: 100%;
+  }
+}
 .options {
   position: absolute;
   right: 1rem;

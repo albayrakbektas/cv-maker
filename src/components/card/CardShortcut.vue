@@ -2,17 +2,23 @@
   <div @click="$emit('event-handler')" class="card-container">
     <div class="card-left">
       <div class="card-title">
-        <span v-if="card">{{ card.title }}</span>
+        <span class="f-l" v-if="card">{{ card.title }}</span>
       </div>
       <div class="card-row">
-        <span v-if="card && card.rowCard && card.rowCard.subtitle[0]"
+        <span
+          class="f-l"
+          v-if="card && card.rowCard && card.rowCard.subtitle[0]"
           >{{ card.rowCard.subtitle[0] }},
         </span>
-        <p v-if="card && card.subtitle">{{ card.subtitle[0] }}</p>
-        <p v-if="card && card.content">{{ valueToText(card.content) }}</p>
-        <span v-if="card && card.rowCard && card.rowCard.subtitle[1]">{{
-          card.rowCard.subtitle[1]
-        }}</span>
+        <p class="f-l" v-if="card && card.subtitle">{{ card.subtitle[0] }}</p>
+        <p class="f-l" v-if="card && card.content">
+          {{ valueToText(card.content) }}
+        </p>
+        <span
+          class="f-l"
+          v-if="card && card.rowCard && card.rowCard.subtitle[1]"
+          >{{ card.rowCard.subtitle[1] }}</span
+        >
       </div>
     </div>
     <div class="card-right">

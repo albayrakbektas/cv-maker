@@ -22,7 +22,11 @@
         />
       </div>
     </div>
-    <div v-if="section !== 'reference'" class="row-two">
+    <div
+      v-if="section !== 'reference'"
+      class="row-two"
+      :class="{ 'row-four': this.$store.state.isMobile }"
+    >
       <div class="row-two">
         <div class="input-container">
           <label class="f-il" for="startMonth">startMonth</label>
@@ -148,5 +152,8 @@ label {
 }
 .input-container {
   display: grid;
+}
+.row-four {
+  grid-template-columns: 1fr;
 }
 </style>

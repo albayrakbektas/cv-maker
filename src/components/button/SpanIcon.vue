@@ -35,9 +35,12 @@
     >
       <div class="span-icon" :class="[button.grid === 'si' ? 'si' : 'is']">
         <i :style="iconStyle" :class="button.iconClass" class="f-xl"></i>
-        <span :style="spanStyle" v-if="button.span" class="f-xl">{{
-          button.span
-        }}</span>
+        <span
+          :style="spanStyle"
+          v-if="button.span && !button.isMobile"
+          class="f-xl"
+          >{{ button.span }}</span
+        >
       </div>
     </ButtonMain>
   </div>
@@ -54,6 +57,16 @@ export default {
     spanStyle: Object,
     buttonStyle: Object,
     showSubButtons: Boolean,
+  },
+  computed: {
+    isMobile() {
+      return this.$store.getters.getIsMobile;
+    },
+  },
+  watch: {
+    // "window.innerWidth": function () {
+    //   this.isMobile;
+    // },
   },
   data() {
     return {};
@@ -78,6 +91,9 @@ slot {
   justify-content: space-between;
   align-items: center;
   width: fit-content;
+  span {
+    line-height: 0;
+  }
 }
 span {
   padding-left: 5px;
@@ -104,5 +120,25 @@ span {
   width: 80%;
   float: right;
   padding: 1rem 0;
+}
+@media (max-width: 500px) {
+  .wrapper {
+    position: fixed;
+    width: calc(100% - 2rem);
+    box-sizing: border-box;
+    left: 1rem;
+    padding: 2rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    z-index: 99999999;
+    gap: 1.5rem;
+    bottom: 1rem;
+    background-color: #ffffff;
+  }
+  .span-icon {
+    i {
+      margin-right: 0 !important;
+    }
+  }
 }
 </style>

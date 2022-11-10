@@ -12,6 +12,7 @@ export default {
 
 <style scoped lang="scss">
 .menu-header-container {
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -25,7 +26,7 @@ export default {
   );
   background-size: 200% 200%;
   animation: background 10s ease-in-out infinite;
-  display: grid;
+  //display: grid;
   align-items: center;
   justify-content: center;
 }

@@ -5,6 +5,7 @@ import LoginView from "@/views/LoginView";
 import RegisterView from "@/views/RegisterView";
 import CvView from "@/views/CvView";
 import { auth } from "@/main";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -56,6 +57,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  window.innerWidth <= 500
+    ? (store.state.isMobile = true)
+    : (store.state.isMobile = false);
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const isAuthenticated = auth.currentUser;
   if (requiresAuth && !isAuthenticated) {

@@ -85,8 +85,11 @@ export default {
   width: 30%;
   margin: auto;
   padding: 2rem 4rem;
-  translate: 0 50%;
+  translate: 0 90%;
   border: 1px solid black;
+  box-sizing: border-box;
+  box-shadow: -5px 5px 15px #000000;
+  border-radius: 8px;
 }
 .error-message {
   position: absolute;
@@ -114,6 +117,10 @@ button {
   );
   color: #ffffff;
 }
+span,
+a {
+  text-shadow: -2px 2px 5px #000000;
+}
 span {
   padding-right: 5px;
 }
@@ -124,6 +131,7 @@ a {
 @media (max-width: 500px) {
   .login {
     width: 90%;
+    padding: 2rem;
   }
 }
 </style>

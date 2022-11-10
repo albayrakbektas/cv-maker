@@ -54,7 +54,7 @@ export default {
       spanStyle: {
         color: "#ffffff",
         fontWeight: "900",
-        fontSize: "1rem",
+        fontSize: "1.5rem",
       },
       saveButtonStyle: {
         backgroundColor: "rgba(0, 0, 0, 1)",

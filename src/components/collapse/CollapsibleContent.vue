@@ -25,4 +25,8 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.collapsible-content {
+  //margin-bottom: 1rem;
+}
+</style>

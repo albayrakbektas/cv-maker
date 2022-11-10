@@ -143,4 +143,17 @@ i {
   color: #2d2d3a;
   font-size: 22px;
 }
+@media (max-width: 500px) {
+  .cv-main-container {
+    margin-left: 0;
+    padding: 6rem 2rem 0;
+  }
+  .cv-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 2rem;
+  }
+  h1 {
+    margin-bottom: revert;
+  }
+}
 </style>

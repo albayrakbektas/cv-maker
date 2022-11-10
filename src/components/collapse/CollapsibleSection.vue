@@ -7,7 +7,8 @@
     >
       <h1 class="f-xxl">{{ title }}</h1>
       <ButtonMain @button-handler="closeSlot">
-        <i class="fa-solid fa-chevron-down"></i>
+        <i v-if="isSlotActive" class="fa-solid fa-chevron-up"></i>
+        <i v-else class="fa-solid fa-chevron-down"></i>
       </ButtonMain>
     </div>
     <div class="slot-wrapper" :class="{ 'slot-active': isSlotActive }">
@@ -46,6 +47,7 @@ export default {
   border-bottom: 1px solid rgba(139, 139, 139, 0.3);
 }
 .section-active {
+  padding-bottom: 2rem;
 }
 .collapsible-section-header {
   display: grid;
@@ -57,6 +59,7 @@ export default {
 }
 .disabled-header {
   cursor: unset;
+  margin-bottom: 1rem;
 }
 .slot-wrapper {
   height: 0;
@@ -65,9 +68,9 @@ export default {
 }
 .slot-active {
   height: auto;
-  max-height: 100vh;
+  //max-height: 100vh;
   visibility: visible;
-  overflow: scroll;
+  //overflow: scroll;
   display: grid;
   gap: 15px;
 }

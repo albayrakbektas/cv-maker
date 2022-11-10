@@ -33,6 +33,11 @@ import MenuHeader from "@/components/menu/MenuHeader";
 export default {
   name: "MenuMain",
   components: { MenuHeader, SpanIcon },
+  computed: {
+    isMobile: function () {
+      return this.$store.getters.getIsMobile;
+    },
+  },
   methods: {
     async signOut() {
       await signout();
@@ -92,6 +97,7 @@ export default {
           grid: "is",
           iconClass: "fa-solid fa-user",
           span: "User",
+          isMobile: !!this.$store.state.isMobile,
           subButtons: [
             {
               button: {
@@ -168,5 +174,16 @@ export default {
   padding: 2rem 1rem;
   display: grid;
   align-items: end;
+}
+@media (max-width: 500px) {
+  .menu-main-container {
+    width: 100%;
+    right: 0;
+    bottom: unset;
+    box-sizing: border-box;
+    justify-content: end;
+    padding: 1rem;
+    z-index: 99;
+  }
 }
 </style>

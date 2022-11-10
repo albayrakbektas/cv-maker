@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    isMobile: null,
     user: {},
     isChanging: false,
     isZoomed: false,
@@ -110,6 +111,9 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    getIsMobile(state) {
+      return state.isMobile;
+    },
     getIsZoomed(state) {
       return state.isZoomed;
     },
@@ -180,6 +184,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setIsMobile: (state, payload) => {
+      state.isMobile = payload;
+    },
     setIsZoomed: (state, payload) => {
       state.isZoomed = payload;
     },
@@ -211,6 +218,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    setIsMobile: ({ commit }, payload) => {
+      commit("setIsMobile", payload);
+    },
     setIsZoomed: ({ commit }, payload) => {
       commit("setIsZoomed", payload);
     },

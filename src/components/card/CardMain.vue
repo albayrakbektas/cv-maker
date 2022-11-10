@@ -6,6 +6,7 @@
     <ReferenceMain />
     <LanguageCollapsible />
     <SkillCollapsible />
+    <ShowDisplay />
   </div>
 </template>
 
@@ -16,9 +17,11 @@ import EmploymentMain from "@/components/sections/EmploymentMain";
 import ReferenceMain from "@/components/sections/ReferenceMain";
 import LanguageCollapsible from "@/components/sections/LanguageCollapsible";
 import SkillCollapsible from "@/components/sections/SkillCollapsible";
+import ShowDisplay from "@/components/button/ShowDisplay";
 export default {
   name: "CardMain",
   components: {
+    ShowDisplay,
     SkillCollapsible,
     LanguageCollapsible,
     ReferenceMain,
@@ -31,9 +34,15 @@ export default {
 
 <style scoped lang="scss">
 .card-main {
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
   padding: 0.5rem 2rem;
   background-color: #ffffff;
   margin-top: 70px;
 }
+//@media (max-width: 500px) {
+//  .card-main {
+//    overflow: ;
+//  }
+//}
 </style>

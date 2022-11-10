@@ -364,4 +364,9 @@ export default {
   z-index: 9999999;
   top: unset;
 }
+@media (max-width: 500px) {
+  .display-main {
+    display: none;
+  }
+}
 </style>

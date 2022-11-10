@@ -40,7 +40,21 @@ export default {
       deep: true,
     },
   },
+  mounted() {
+    this.onResize();
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.onResize);
+    });
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
+  },
   methods: {
+    onResize() {
+      window.innerWidth <= 500
+        ? this.$store.commit("setIsMobile", true)
+        : this.$store.commit("setIsMobile", false);
+    },
     setFontFamily(type) {
       document.body.style.fontFamily = `${type}`;
       this.$refs.app.style.fontFamily = `${type}`;
@@ -70,6 +84,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   font-family: Poppins, sans-serif;
+  box-sizing: border-box;
 }
 i {
   font-weight: 900;

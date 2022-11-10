@@ -50,6 +50,12 @@ export default {
     }
   }
 }
+@media (max-width: 500px) {
+  .new-cv-container {
+    height: calc((50vw - 2rem) * 1.414);
+    width: 100%;
+  }
+}
 h3,
 i {
   color: #2b2b35;

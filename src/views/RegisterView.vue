@@ -94,6 +94,9 @@ export default {
   padding: 2rem 4rem;
   translate: 0 50%;
   border: 1px solid black;
+  box-sizing: border-box;
+  box-shadow: -5px 5px 15px #000000;
+  border-radius: 8px;
 }
 .error-message {
   position: absolute;
@@ -131,6 +134,7 @@ a {
 @media (max-width: 500px) {
   .login {
     width: 90%;
+    padding: 2rem;
   }
 }
 </style>

@@ -70,16 +70,19 @@ export default {
         grid: "is",
         span: "CV's",
         iconClass: "fa-solid fa-arrow-left",
+        isMobile: this.$store.state.isMobile,
       },
       saveButton: {
         grid: "is",
         span: "Save",
         iconClass: "fa-solid fa-floppy-disk",
+        isMobile: this.$store.state.isMobile,
       },
       DownloadButton: {
         grid: "is",
         span: "Download",
         iconClass: "fa-solid fa-download",
+        isMobile: this.$store.state.isMobile,
       },
     };
   },
@@ -161,5 +164,10 @@ export default {
   justify-content: center;
   height: 100vh;
   background-color: #a9a9a9;
+}
+@media (max-width: 500px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

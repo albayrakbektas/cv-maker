@@ -26,4 +26,9 @@ button {
   padding: 1rem;
   position: relative;
 }
+@media (max-width: 500px) {
+  button {
+    height: unset !important;
+  }
+}
 </style>
