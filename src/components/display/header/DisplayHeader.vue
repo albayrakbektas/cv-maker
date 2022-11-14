@@ -4,12 +4,15 @@
     :style="{ backgroundColor: `${getStyleProperty.value}` }"
     id="display-header"
     class="display-header"
+    :class="{ 'zoomed-display-header': getIsZoomed }"
   >
-    <h1 class="header-name f-xxl">
+    <h1 class="header-name f-xxl" :class="{ 'f-xxl-z': getIsZoomed }">
       {{ getPersonalInformationProperties.givenName }}
       {{ getPersonalInformationProperties.familyName }}
     </h1>
-    <div class="f-l">{{ getPersonalInformationProperties.headline }}</div>
+    <div class="headline f-l" :class="{ 'f-l-z': getIsZoomed }">
+      {{ getPersonalInformationProperties.headline }}
+    </div>
     <div class="header-bottom">
       <AnchorIcon
         v-for="(item, index) of anchorList"
@@ -38,6 +41,9 @@ export default {
     },
     getStyleProperty() {
       return this.$store.getters.getCvStyleProperty("color");
+    },
+    getIsZoomed() {
+      return this.$store.getters.getIsZoomed;
     },
   },
   watch: {
@@ -124,7 +130,10 @@ export default {
   align-items: end;
   height: 9.5rem;
   box-sizing: border-box;
-  padding: 2rem 1.5rem;
+  padding: 30px;
+}
+.zoomed-display-header {
+  height: 180px;
 }
 .header-name {
   line-height: 1.1rem;

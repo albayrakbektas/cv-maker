@@ -91,14 +91,19 @@ export default {
 .display-body-left {
   min-width: 200px;
   max-width: 500px;
-  * {
-    padding: 15px 0 0 0;
-  }
   :first-child {
     padding-top: 0 !important;
   }
+  * {
+    //padding: 25px 0 0 0;
+  }
   :last-child {
     border: none;
+  }
+}
+@media (max-width: 500px) {
+  .display-body-left {
+    min-width: unset;
   }
 }
 </style>

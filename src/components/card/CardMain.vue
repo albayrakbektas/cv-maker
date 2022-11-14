@@ -1,5 +1,8 @@
 <template>
-  <div class="card-main">
+  <div
+    class="card-main"
+    :class="{ 'card-main-mobile-hidden': getIsMobilePreview }"
+  >
     <PersonalInformation />
     <EducationMain />
     <EmploymentMain />
@@ -29,6 +32,11 @@ export default {
     EducationMain,
     PersonalInformation,
   },
+  computed: {
+    getIsMobilePreview() {
+      return this.$store.getters.getIsMobilePreview;
+    },
+  },
 };
 </script>
 
@@ -39,10 +47,16 @@ export default {
   padding: 0.5rem 2rem;
   background-color: #ffffff;
   margin-top: 70px;
+  translate: 0 0;
+  transition: 0.6s ease-in-out;
 }
-//@media (max-width: 500px) {
-//  .card-main {
-//    overflow: ;
-//  }
-//}
+@media (max-width: 500px) {
+  .card-main-mobile-hidden {
+    //width: 0;
+    //height: 0;
+    //opacity: 0;
+    padding: 0;
+    translate: -100vw;
+  }
+}
 </style>

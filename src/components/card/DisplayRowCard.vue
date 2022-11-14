@@ -1,8 +1,12 @@
 <template>
   <div class="display-row-card">
     <div class="row row-two">
-      <span class="card-title f-m">{{ card.title }}</span>
-      <span class="card-date f-m"
+      <span
+        class="card-title f-m"
+        :class="{ 'f-m-z': $store.state.isZoomed }"
+        >{{ card.title }}</span
+      >
+      <span class="card-date f-m" :class="{ 'f-m-z': $store.state.isZoomed }"
         >{{ card.dateStart.month }} {{ card.dateStart.year }}
         {{ card.dateStart.year && card.dateEnd.year ? "-" : "" }}
         {{ card.dateEnd.month }} {{ card.dateEnd.year }}</span

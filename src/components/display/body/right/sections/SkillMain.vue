@@ -1,10 +1,7 @@
 <template>
-  <BodyRowCard
-    v-if="getSectionCards('skills')"
-    :title="getSectionCards.title ? 'Skills' : ''"
-  >
+  <BodyRowCard v-if="$route.name === 'cv' && getSection" title="Skills">
     <DisplayTwoRows
-      v-for="(item, index) of getSectionCards"
+      v-for="(item, index) of getSection.cards"
       :key="index"
       :card="item"
       :range="Number(item.content)"
@@ -20,9 +17,8 @@ export default {
   name: "SkillMain",
   components: { DisplayTwoRows, BodyRowCard },
   computed: {
-    getSectionCards() {
-      return (section) =>
-        this.$store.getters.getSectionCards(section || "skills");
+    getSection() {
+      return this.$store.getters.getSection("skills");
     },
   },
   mounted() {

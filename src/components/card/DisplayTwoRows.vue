@@ -1,19 +1,31 @@
 <template>
   <div v-if="card && (card.content || range)">
     <div v-if="isAnchor(card.subtitle[0])">
-      <a target="_blank" :href="card.content" class="display-two-rows f-m">
-        <span class="card-subtitle f-m"
+      <a
+        target="_blank"
+        :href="card.content"
+        class="display-two-rows f-m"
+        :class="{ 'f-m-z': $store.state.isZoomed }"
+      >
+        <span
+          class="card-subtitle f-m"
+          :class="{ 'f-m-z': $store.state.isZoomed }"
           >{{ card.subtitle[0]
           }}{{ card.subtitle[1] ? ` - ${card.subtitle[1]}` : "" }}</span
         >
         <!--    <progress v-if="range" :value="Number(range)" max="5"></progress>-->
-        <span v-if="card.content" class="card-content f-m">{{
-          card.content
-        }}</span>
+        <span
+          v-if="card.content"
+          :class="{ 'f-m-z': $store.state.isZoomed }"
+          class="card-content f-m zoomed-app-f"
+          >{{ card.content }}</span
+        >
       </a>
     </div>
     <div v-else class="display-two-rows">
-      <span class="card-subtitle f-m"
+      <span
+        class="card-subtitle f-m"
+        :class="{ 'f-m-z': $store.state.isZoomed }"
         >{{ card.subtitle[0]
         }}{{ card.subtitle[1] ? ` - ${card.subtitle[1]}` : "" }}</span
       >
@@ -21,7 +33,12 @@
       <div v-if="range" class="progress-out">
         <div ref="progress-in" class="progress-in"></div>
       </div>
-      <span v-else class="card-content f-m">{{ card.content }}</span>
+      <span
+        v-else
+        class="card-content f-m zoomed-app-f"
+        :class="{ 'f-m-z': $store.state.isZoomed }"
+        >{{ card.content }}</span
+      >
     </div>
   </div>
 </template>
@@ -58,6 +75,7 @@ export default {
 .progress-out {
   width: 100%;
   height: 5px;
+  margin: 5px 0;
   background-color: #8b8b8b;
 }
 .progress-in {
@@ -79,7 +97,7 @@ a {
   text-align: left;
   line-height: 0.9rem;
   align-items: center;
-  padding: 5px 0;
+  padding: 1px 0;
 }
 span {
   font-weight: 500;

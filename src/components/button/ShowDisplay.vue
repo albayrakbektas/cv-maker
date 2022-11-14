@@ -1,5 +1,10 @@
 <template>
-  <div ref="con" class="show-display-container" v-if="isMobile">
+  <div
+    @click="showPreview"
+    ref="con"
+    class="show-display-container"
+    v-if="isMobile"
+  >
     <i class="fa-solid fa-play f-xl"></i>
     <span class="f-xl">Preview</span>
   </div>
@@ -12,24 +17,29 @@ export default {
     isMobile() {
       return this.$store.getters.getIsMobile;
     },
-    showY() {
-      return this.$refs.con.getBoundingClientRect().bottom;
-    },
+    // showY() {
+    //   return this.$refs.con.getBoundingClientRect().bottom;
+    // },
     windowInnerHeight() {
       return this.$refs.con.offsetHeight;
     },
   },
   watch: {
-    windowInnerHeight: function (val) {
-      console.log(val);
-    },
-    showY: function (val) {
-      console.log(val);
+    // windowInnerHeight: function (val) {
+    //   console.log(val);
+    // },
+    // showY: function (val) {
+    //   console.log(val);
+    // },
+  },
+  methods: {
+    showPreview() {
+      this.$store.commit("setIsMobilePreview", true);
     },
   },
   mounted() {
     console.log(this.windowInnerHeight);
-    console.log(this.showY);
+    // console.log(this.showY);
   },
 };
 </script>

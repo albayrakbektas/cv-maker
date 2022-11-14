@@ -7,9 +7,16 @@
     :class="{
       isPreviewDisplayMain: $route.name === 'home',
       'zoomed-display-main': getIsZoomed,
+      'mobile-active-display-main': getIsMobilePreview,
     }"
   >
-    <div class="img-container" :class="{ 'zoomed-img-container': getIsZoomed }">
+    <div
+      class="img-container"
+      :class="{
+        'zoomed-img-container': getIsZoomed,
+        'mobile-active-img-container': getIsMobilePreview,
+      }"
+    >
       <div
         ref="display"
         class="display-main-container"
@@ -27,7 +34,10 @@
         >
           <div
             class="display-header-container"
-            :class="{ 'dhc-one': !getPersonalInformationProperties }"
+            :class="{
+              'dhc-one': !getPersonalInformationProperties,
+              'zoomed-display-header-container': getIsZoomed,
+            }"
           >
             <HeaderImage />
             <DisplayHeader />
@@ -45,41 +55,16 @@
           </div>
         </div>
       </div>
-      <div class="footer">
-        <div
-          class="display-footer"
-          :class="{
-            isPreviewDisplayFooter: $route.name === 'home',
-            'zoomed-display-footer': getIsZoomed,
-          }"
-        >
-          <TooltipButton
-            v-for="(item, index) of footerLeftButtons"
-            :button="item"
-            :key="item.leftIcon + index"
-          />
-          <div class="display-footer-mid">
-            <TooltipButton
-              v-for="(item, index) of footerMidButtons"
-              :button="item"
-              :key="item.leftIcon + index"
-            />
-            <ColorPicker />
-          </div>
-          <ZoomButton
-            @event-handler="zoomImg"
-            icon-class="fa-solid fa-expand"
-          />
-        </div>
+      <div v-if="getIsMobilePreview" class="mobile-img-canvas">
+        <img
+          v-if="getIsMobilePreview"
+          ref="img-canvas"
+          class="img-canvas"
+          :class="{ 'zoomed-img-canvas': isZoomIn }"
+          :src="getPreviewSrc"
+          alt="canvas"
+        />
       </div>
-      <!--      <img-->
-      <!--        @click="imgToPdf"-->
-      <!--        ref="img-canvas"-->
-      <!--        class="img-canvas"-->
-      <!--        :class="{ 'zoomed-img-canvas': isZoomIn }"-->
-      <!--        :src="output"-->
-      <!--        alt="canvas"-->
-      <!--      />-->
     </div>
   </div>
 </template>
@@ -90,16 +75,10 @@ import DisplayBodyLeft from "@/components/display/body/left/DisplayBodyLeft";
 import DisplayBodyRight from "@/components/display/body/right/DisplayBodyRight";
 import html2pdf from "html2pdf.js/src";
 import HeaderImage from "@/components/display/header/HeaderImage";
-import TooltipButton from "@/components/button/TooltipButton";
-import ColorPicker from "@/components/button/ColorPicker";
-import ZoomButton from "@/components/button/ZoomButton";
 
 export default {
   name: "SavedDisplay",
   components: {
-    ZoomButton,
-    ColorPicker,
-    TooltipButton,
     HeaderImage,
     DisplayBodyRight,
     DisplayBodyLeft,
@@ -191,13 +170,28 @@ export default {
     getCvData() {
       return this.$store.getters.getCv;
     },
+    getCvStyle() {
+      return this.$store.getters.getCvStyle;
+    },
     getIsZoomed() {
       return this.$store.getters.getIsZoomed;
+    },
+    getZoomedStyle() {
+      return this.$store.getters.getZoomedStyle;
+    },
+    getPreviewSrc() {
+      return this.$store.getters.getPreviewSrc;
     },
     getPersonalInformationProperties() {
       return this.$store.getters.getPersonalInformationProperties(
         "profilePicture"
       );
+    },
+    getIsMobile() {
+      return this.$store.getters.getIsMobile;
+    },
+    getIsMobilePreview() {
+      return this.$store.getters.getIsMobilePreview;
     },
   },
   watch: {
@@ -210,15 +204,14 @@ export default {
     isDownload: function () {
       this.exportToPDF();
     },
+    getCvStyle: {
+      handler: async function () {
+        await this.print();
+      },
+      deep: true,
+    },
   },
   methods: {
-    zoomImg() {
-      if (this.getIsZoomed) {
-        this.$store.commit("setIsZoomed", false);
-      } else {
-        this.$store.commit("setIsZoomed", true);
-      }
-    },
     async print() {
       const el = this.$refs.cv;
       const options = {
@@ -228,11 +221,15 @@ export default {
       this.$store.commit("setPreviewSrc", await this.$html2canvas(el, options));
     },
     exportToPDF() {
-      const document = this.$refs.display;
-      html2pdf(document, {
-        margin: 0,
-        filename: "vue-pdf",
-      });
+      this.$store.commit("setZoomedStyle", true);
+      this.$store.commit("setIsZoomed", true);
+      if (this.$store.state.zoomedStyle) {
+        const document = this.$refs.cv;
+        html2pdf(document, {
+          margin: 0,
+          filename: "vue-pdf",
+        });
+      }
     },
   },
 };
@@ -250,7 +247,7 @@ export default {
   background-color: #8b8b8b;
   top: 0;
   overflow: scroll;
-  margin-top: 7rem;
+  margin-top: 70px;
   padding: 2rem;
   box-sizing: border-box;
 }
@@ -264,6 +261,7 @@ export default {
 .display-container {
   background-color: #ffffff;
   height: 100%;
+  width: fit-content;
   overflow: hidden;
   box-shadow: -5px 5px 15px #808080;
 }
@@ -273,6 +271,9 @@ export default {
   height: 9.5rem;
   box-sizing: border-box;
 }
+.zoomed-display-header-container {
+  height: 180px;
+}
 .dhc-one {
   grid-template-columns: 1fr;
 }
@@ -281,31 +282,6 @@ export default {
   background-color: #ffffff;
   grid-template-columns: minmax(240px, 500px) auto 1fr;
   height: 100%;
-}
-.display-footer {
-  height: 70px;
-  background-color: #2d2d3a;
-  position: fixed;
-  bottom: 1rem;
-  left: calc(50% + 1rem);
-  right: 1rem;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 0.5rem;
-  border-radius: 8px;
-  z-index: 99999999999999999;
-}
-.zoomed-display-footer {
-  left: 1rem;
-}
-.display-footer-mid {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
 }
 .cc {
   position: absolute;
@@ -334,18 +310,15 @@ export default {
   height: 21rem !important;
   width: 14rem !important;
 }
-.isPreviewDisplayFooter {
-  display: none !important;
-}
 .img-container {
   position: relative;
   height: calc(100vh - 140px - 3rem);
   width: calc(30vw);
+  margin: auto;
 }
 .zoomed-img-container {
   width: 60%;
   height: 1187px;
-  translate: 20vw;
   margin-bottom: 14rem;
   box-sizing: border-box;
   overflow: hidden;
@@ -356,17 +329,49 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
+  scale: 0.9;
 }
 .zoomed-img-canvas {
   height: 1187px;
 }
-.display-container.footer {
-  z-index: 9999999;
-  top: unset;
+.mobile-img-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #ffffff;
 }
 @media (max-width: 500px) {
   .display-main {
-    display: none;
+    opacity: 0;
+    width: 0;
+    translate: 100vw;
+    pointer-events: none;
+    transition: 0.4s ease-in-out;
+    margin: 70px auto 0;
+  }
+  .display-main-container {
+    //margin-bottom: 7rem;
+    //* {
+    //}
+  }
+  //.display-main-body {
+  //  grid-template-columns: 60vw auto 40vw;
+  //}
+  .mobile-active-display-main {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    opacity: 1;
+    translate: 0;
+    pointer-events: all;
+    padding: 0;
+  }
+  .mobile-active-img-container {
+    width: unset;
+    height: unset;
+    translate: 0;
   }
 }
 </style>

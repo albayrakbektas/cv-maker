@@ -27,7 +27,10 @@
     </div>
     <div class="body">
       <CardMain />
-      <SavedDisplay :is-download="isDownload" ref="cv" />
+      <div>
+        <SavedDisplay :is-download="isDownload" ref="cv" />
+        <DisplayFooter />
+      </div>
     </div>
   </div>
 </template>
@@ -37,10 +40,11 @@ import CardMain from "@/components/card/CardMain";
 import { getCv, writeUserData } from "@/firebaseMethods";
 import SavedDisplay from "@/components/display/SavedDisplay";
 import SpanIcon from "@/components/button/SpanIcon";
+import DisplayFooter from "@/components/display/body/right/footer/DisplayFooter";
 
 export default {
   name: "CvView",
-  components: { SpanIcon, SavedDisplay, CardMain },
+  components: { DisplayFooter, SpanIcon, SavedDisplay, CardMain },
   data() {
     return {
       isDownload: false,
@@ -167,7 +171,13 @@ export default {
 }
 @media (max-width: 500px) {
   .body {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, auto);
+    overflow-x: hidden;
   }
+}
+h1 {
+  position: fixed;
+  bottom: 1rem;
+  width: 100%;
 }
 </style>

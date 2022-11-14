@@ -2,7 +2,8 @@
   <img
     v-if="getPersonalInformationProperties"
     :src="getPersonalInformationProperties"
-    alt=""
+    alt="profile picture"
+    :class="{ 'zoomed-img': getZoomedStyle }"
   />
 </template>
 
@@ -18,6 +19,9 @@ export default {
         "profilePicture"
       );
     },
+    getZoomedStyle() {
+      return this.$store.getters.getZoomedStyle;
+    },
   },
 };
 </script>
@@ -27,5 +31,9 @@ img {
   height: 9.5rem;
   width: 9.5rem;
   object-fit: cover;
+}
+.zoomed-img {
+  height: 180px;
+  width: 180px;
 }
 </style>

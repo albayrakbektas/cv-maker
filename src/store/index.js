@@ -5,10 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    isMobile: null,
+    isMobile: window.innerWidth <= 500,
+    isMobilePreview: null,
     user: {},
     isChanging: false,
     isZoomed: false,
+    zoomedStyle: false,
     cvList: [],
     cv: {
       previewSrc: "",
@@ -114,8 +116,14 @@ export default new Vuex.Store({
     getIsMobile(state) {
       return state.isMobile;
     },
+    getIsMobilePreview(state) {
+      return state.isMobilePreview;
+    },
     getIsZoomed(state) {
       return state.isZoomed;
+    },
+    getZoomedStyle(state) {
+      return state.zoomedStyle;
     },
     getUser(state) {
       return state.user;
@@ -187,8 +195,14 @@ export default new Vuex.Store({
     setIsMobile: (state, payload) => {
       state.isMobile = payload;
     },
+    setIsMobilePreview: (state, payload) => {
+      state.isMobilePreview = payload;
+    },
     setIsZoomed: (state, payload) => {
       state.isZoomed = payload;
+    },
+    setZoomedStyle: (state, payload) => {
+      state.zoomedStyle = payload;
     },
     setCvList: (state, payload) => {
       state.cvList = payload;
@@ -221,8 +235,14 @@ export default new Vuex.Store({
     setIsMobile: ({ commit }, payload) => {
       commit("setIsMobile", payload);
     },
+    setIsMobilePreview: ({ commit }, payload) => {
+      commit("setIsMobilePreview", payload);
+    },
     setIsZoomed: ({ commit }, payload) => {
       commit("setIsZoomed", payload);
+    },
+    setZoomedStyle: ({ commit }, payload) => {
+      commit("setZoomedStyle", payload);
     },
     setCvList: ({ commit }, payload) => {
       commit("setCvList", payload);

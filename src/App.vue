@@ -1,10 +1,28 @@
 <template>
-  <div id="app" style="font-family: Poppins, sans-serif" ref="app">
+  <div
+    id="app"
+    style="font-family: Poppins, sans-serif"
+    ref="app"
+    :class="[
+      {
+        'zoomed-app': getIsZoomed,
+        'zoomed-style-app': getZoomedStyle,
+        zoomedAppF: getIsZoomed,
+      },
+    ]"
+  >
     <router-view />
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      zoomedAppF: {
+        backgroundColor: "red !important",
+      },
+    };
+  },
   computed: {
     getFontFamily() {
       return this.$store.getters.getCvStyleProperty("fontFamily");
@@ -18,15 +36,14 @@ export default {
     getIsZoomed() {
       return this.$store.state.isZoomed;
     },
+    getZoomedStyle() {
+      return this.$store.state.zoomedStyle;
+    },
   },
   watch: {
-    getIsZoomed: function (val) {
-      if (val) {
-        document.querySelectorAll("*").forEach((node) => {
-          node.style.fontSize = "14px";
-        });
-      }
-    },
+    // getIsZoomed: function (val) {
+    //   document.body.style.fontSize = val ? "20px" : "10px";
+    // },
     getFontFamily: {
       handler: function (val) {
         this.setFontFamily(val);
@@ -78,6 +95,10 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: Poppins, sans-serif;
+  font-size: 10px;
+  * {
+    //font-size: 10px;
+  }
 }
 #app {
   -webkit-font-smoothing: antialiased;
@@ -85,6 +106,52 @@ body {
   text-align: center;
   font-family: Poppins, sans-serif;
   box-sizing: border-box;
+}
+$downloadFontSize: 20px;
+* {
+  font-size: 10px;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+.f-xxl {
+  font-size: 2.5rem;
+}
+.f-xl {
+  font-size: 1.5rem;
+}
+.f-il {
+  font-size: 1.4rem;
+}
+.f-l {
+  font-size: 1.3rem;
+}
+.f-m {
+  font-size: 1rem;
+}
+.f-s {
+  font-size: 0.9rem;
+}
+.f-xxl-z {
+  font-size: 35px;
+  line-height: unset !important;
+}
+.f-xl-z {
+  font-size: 25px !important;
+}
+.f-l-z {
+  font-size: 20px !important;
+}
+.f-il-z {
+  font-size: 17px !important;
+}
+.f-m-z {
+  font-size: 15px !important;
+}
+.f-s-z {
+  font-size: 13px !important;
+}
+.display-header {
+  //padding: 25px 15px;
 }
 i {
   font-weight: 900;
@@ -124,28 +191,5 @@ button {
   &:hover {
     translate: 0 -2px;
   }
-}
-* {
-  font-size: 10px;
-  letter-spacing: 0;
-  line-height: 1.2;
-}
-.f-xxl {
-  font-size: 2.5rem;
-}
-.f-xl {
-  font-size: 1.5rem;
-}
-.f-il {
-  font-size: 1.4rem;
-}
-.f-l {
-  font-size: 1.3rem;
-}
-.f-m {
-  font-size: 1rem;
-}
-.f-s {
-  font-size: 0.9rem;
 }
 </style>

@@ -232,7 +232,7 @@ export default {
 
 <style scoped lang="scss">
 .section {
-  overflow: scroll;
+  //overflow: scroll;
 }
 .row {
   display: grid;

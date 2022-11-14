@@ -51,6 +51,15 @@ export default {
 .display-body-right {
   min-width: 120px;
   :first-child {
+    padding-top: 0 !important;
+  }
+  :last-child {
+    border: none;
+  }
+}
+@media (max-width: 500px) {
+  .display-body-right {
+    min-width: unset;
   }
 }
 </style>

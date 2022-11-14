@@ -1,5 +1,10 @@
 <template>
-  <a class="f-s" target="_blank" :href="anchor.href">
+  <a
+    :class="{ 'zoomed-anchor-icon': $store.state.zoomedStyle }"
+    class="f-s"
+    target="_blank"
+    :href="anchor.href"
+  >
     <i class="f-s" v-show="anchor.content" :class="anchor.iconClass"></i>
     {{ anchor.content }}
   </a>
@@ -15,6 +20,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.zoomed-anchor-icon {
+  font-size: 12px;
+  * {
+    font-size: 12px;
+  }
+}
 a {
   display: grid;
   grid-template-columns: auto 1fr;

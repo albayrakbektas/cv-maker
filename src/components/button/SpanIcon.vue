@@ -26,7 +26,7 @@
     <!--        </div>-->
     <!--      </ButtonMain>-->
     <!--    </div>-->
-    <div class="wrapper" v-if="showSubButtons">
+    <div class="wrapper" :class="{ 'active-wrapper': showSubButtons }">
       <slot></slot>
     </div>
     <ButtonMain
@@ -116,15 +116,24 @@ span {
 }
 .wrapper {
   display: grid;
-  gap: 1rem;
+  gap: 0;
+  opacity: 0;
   width: 80%;
   float: right;
+  pointer-events: none;
+  transition: all 1s ease-in-out;
+}
+.active-wrapper {
+  opacity: 1;
+  width: 80%;
+  pointer-events: all;
   padding: 1rem 0;
+  gap: 0.5rem;
 }
 @media (max-width: 500px) {
   .wrapper {
+    width: 0;
     position: fixed;
-    width: calc(100% - 2rem);
     box-sizing: border-box;
     left: 1rem;
     padding: 2rem 1rem;
@@ -134,6 +143,9 @@ span {
     gap: 1.5rem;
     bottom: 1rem;
     background-color: #ffffff;
+  }
+  .active-wrapper {
+    width: calc(100% - 2rem);
   }
   .span-icon {
     i {

@@ -65,7 +65,7 @@ export default {
 .tooltip-button-main-container {
   position: relative;
   width: fit-content;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   border: 1px solid transparent;
   background-image: none;
   transition: all 0.4s ease-in-out;

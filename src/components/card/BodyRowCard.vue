@@ -1,6 +1,10 @@
 <template>
   <div class="body-row-card">
-    <h4 :style="{ color: `${getStyleProperty.value}` }">
+    <h4
+      class="f-xl"
+      :class="{ 'f-xl-z': $store.state.isZoomed }"
+      :style="{ color: `${getStyleProperty.value}` }"
+    >
       {{ title }}
     </h4>
     <div class="content">
@@ -27,13 +31,16 @@ export default {
 h4 {
   text-align: left;
   margin: 0;
-  padding-bottom: 0.4rem;
+  padding-bottom: 2rem;
 }
 .body-row-card {
-  padding: 1rem 0;
+  padding: 25px 0;
   border-bottom: 1px solid #8c8c8e;
 }
 .content {
+  display: grid;
+  gap: 10px;
+  align-items: center;
   &:first-child {
     padding-top: 10px !important;
   }
