@@ -1,5 +1,5 @@
 <template>
-  <BodyRowCard v-if="$route.name === 'cv' && getSection" title="Skills">
+  <BodyRowCard v-if="$route.name === 'cv' && getSection.cards" title="Skills">
     <DisplayTwoRows
       v-for="(item, index) of getSection.cards"
       :key="index"

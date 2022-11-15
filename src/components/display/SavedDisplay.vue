@@ -227,7 +227,7 @@ export default {
         const document = this.$refs.cv;
         html2pdf(document, {
           margin: 0,
-          filename: "vue-pdf",
+          filename: "deneme-pdf",
         });
       }
     },
@@ -250,6 +250,9 @@ export default {
   margin-top: 70px;
   padding: 2rem;
   box-sizing: border-box;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .display-main-container {
   position: relative;

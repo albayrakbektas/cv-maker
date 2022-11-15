@@ -29,11 +29,9 @@ export default {
   methods: {
     async login(e) {
       try {
-        console.log("1");
         e.preventDefault();
         await signIn(this.username, this.password);
         await this.$router.replace({ name: "home" });
-        console.log("2");
       } catch (e) {
         console.log(e);
       }

@@ -5,8 +5,12 @@
     target="_blank"
     :href="anchor.href"
   >
-    <i class="f-s" v-show="anchor.content" :class="anchor.iconClass"></i>
-    {{ anchor.content }}
+    <i
+      class="f-s"
+      v-show="anchor.content.length > 3"
+      :class="anchor.iconClass"
+    ></i>
+    {{ anchor.content.length > 3 ? anchor.content : null }}
   </a>
 </template>
 

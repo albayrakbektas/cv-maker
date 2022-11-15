@@ -68,6 +68,31 @@
             <input name="github" v-model="github" />
           </div>
         </form>
+        <SpanIcon
+          :icon-style="spanStyle"
+          :span-style="spanStyle"
+          :button-style="saveButtonStyle"
+          @button-handler="
+            saveCard('personalInformation', {
+              profilePicture:
+                $store.state.cvData.personalInformation.profilePicture,
+              givenName,
+              familyName,
+              email,
+              headline,
+              phone,
+              address,
+              postCode,
+              city,
+              personalDetail: {
+                Website: { content: website, subtitle: ['Website', ''] },
+                Github: { content: github, subtitle: ['Github', ''] },
+                Linkedin: { content: linkedin, subtitle: ['Linkedin', ''] },
+              },
+            })
+          "
+          :button="saveButton"
+        />
       </CollapsibleContent>
     </CollapsibleSection>
   </div>
@@ -77,10 +102,13 @@
 import CollapsibleContent from "@/components/collapse/CollapsibleContent";
 import CollapsibleSection from "@/components/collapse/CollapsibleSection";
 import ProfileUpload from "@/components/display/header/ProfileUpload";
+import { writePersonalInformation } from "@/firebaseMethods";
+import SpanIcon from "@/components/button/SpanIcon";
 
 export default {
   name: "PersonalInformation",
   components: {
+    SpanIcon,
     ProfileUpload,
     CollapsibleContent,
     CollapsibleSection,
@@ -220,11 +248,34 @@ export default {
     edit() {
       this.isEditing = !this.isEditing;
     },
+    async saveCard(section, card) {
+      console.log(this.$store.state.cvData);
+      await writePersonalInformation(
+        this.$store.state.user.uid,
+        this.$route.params.id,
+        section,
+        card
+      );
+    },
   },
   data() {
     return {
       isEditing: false,
       isSlotActive: false,
+      saveButton: { iconClass: "fa-solid fa-save", grid: "is", span: "Save" },
+      spanStyle: {
+        color: "#ffffff",
+        fontWeight: "900",
+        fontSize: "1.5rem",
+      },
+      saveButtonStyle: {
+        backgroundColor: "rgba(0, 0, 0, 1)",
+        backgroundImage:
+          "linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3))",
+        height: "45px",
+        marginTop: "10px",
+        float: "right",
+      },
     };
   },
 };

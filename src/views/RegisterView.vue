@@ -22,11 +22,8 @@
 
 <script>
 import FormField from "@/components/form/FormField";
-// import * as firebase from "firebase/app";
 import "firebase/auth";
-import { getUser, register } from "@/firebaseMethods";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
-// import { auth } from "@/main";
+import { register } from "@/firebaseMethods";
 
 export default {
   name: "RegisterView",
@@ -40,9 +37,6 @@ export default {
       } catch (e) {
         console.log(e);
       }
-    },
-    async getUser() {
-      this.user = await getUser();
     },
   },
   watch: {

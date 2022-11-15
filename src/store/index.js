@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    isLoggedIn: false,
     isMobile: window.innerWidth <= 500,
     isMobilePreview: null,
     user: {},
@@ -55,12 +56,15 @@ export default new Vuex.Store({
       },
       skills: {
         cards: [],
+        title: "",
       },
       languages: {
         cards: [],
+        title: "",
       },
       reference: {
         cards: [],
+        title: "",
       },
     },
     cvData: {
@@ -221,8 +225,7 @@ export default new Vuex.Store({
       console.log(state.cvData.style);
     },
     setPersonalInformationProperties: (state, payload) => {
-      state.cvData.personalInformation[payload.property] =
-        payload.value.toLowerCase();
+      state.cvData.personalInformation[payload.property] = payload.value;
     },
     setPersonalDetails: (state, payload) => {
       state.cvData.personalInformation.personalDetail[payload.title] = {

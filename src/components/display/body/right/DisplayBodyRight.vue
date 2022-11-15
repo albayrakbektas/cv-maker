@@ -3,7 +3,7 @@
     <PersonalDetails />
     <SkillMain />
     <LanguageMain />
-    <BodyRowCard v-if="getSection" title="Reference">
+    <BodyRowCard v-if="getSection.cards" title="Reference">
       <DisplayRowCard
         v-for="(item, index) of getSectionCards"
         :card="item"

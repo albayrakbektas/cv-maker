@@ -56,16 +56,19 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   window.innerWidth <= 500
     ? (store.state.isMobile = true)
     : (store.state.isMobile = false);
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const isAuthenticated = auth.currentUser;
   if (requiresAuth && !isAuthenticated) {
-    return next("/login");
+    router.replace({ name: "login" }).catch((e) => {
+      console.log(e);
+    });
   } else {
-    return next();
+    store.state.isLoggedIn = true;
+    await next();
   }
 });
 
