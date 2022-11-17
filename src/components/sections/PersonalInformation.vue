@@ -272,7 +272,7 @@ export default {
         backgroundColor: "rgba(0, 0, 0, 1)",
         backgroundImage:
           "linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3))",
-        height: "45px",
+        // height: "45px",
         marginTop: "10px",
         float: "right",
       },

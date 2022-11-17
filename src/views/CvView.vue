@@ -52,23 +52,23 @@ export default {
       iconStyle: {
         color: "#ffffff",
         fontWeight: "900",
-        fontSize: "1.6rem",
-        marginRight: "0.2rem",
+        fontSize: "1.6em",
+        marginRight: "0.2em",
       },
       spanStyle: {
         color: "#ffffff",
         fontWeight: "900",
-        fontSize: "1.6rem",
+        fontSize: "1.6em",
       },
       buttonPrimaryStyle: {
         background: "transparent",
-        height: "45px",
+        // height: "45px",
       },
       buttonSecondaryStyle: {
         backgroundImage:
           "linear-gradient(to right, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.3))",
-        height: "45px",
-        marginLeft: "1.5rem",
+        // height: "45px",
+        marginLeft: "1.5em",
       },
       backToCvButton: {
         grid: "is",

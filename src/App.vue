@@ -30,6 +30,9 @@ export default {
     getColor() {
       return this.$store.getters.getCvStyleProperty("color");
     },
+    getFontSize() {
+      return this.$store.getters.getCvStyleProperty("fontSize");
+    },
     getCvStyleProperty() {
       return (type) => this.$store.getters.getCvStyleProperty(type);
     },
@@ -45,6 +48,14 @@ export default {
       handler: function (val) {
         if (val) {
           this.setFontFamily(val);
+        }
+      },
+      deep: true,
+    },
+    getFontSize: {
+      handler: function (val) {
+        if (val) {
+          this.setFontSize(val);
         }
       },
       deep: true,
@@ -77,6 +88,12 @@ export default {
       document.body.style.fontFamily = `${type.value}`;
       this.$refs.app.style.fontFamily = `${type.value}`;
     },
+    setFontSize(type) {
+      const root = document.querySelector(":root");
+      root.style.setProperty("--fontSize", type.value);
+      // console.log(type.value);
+      // document.body.style.fontSize = `${type.value}`;
+    },
     setColor(type) {
       let titles = document.getElementsByTagName("h4");
       Array.from(titles).map((title) => {
@@ -91,12 +108,15 @@ export default {
 };
 </script>
 <style lang="scss">
+:root {
+  --fontSize: "1em";
+}
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Poppins, sans-serif;
-  font-size: 10px;
+  font-size: var(--fontSize);
 }
 #app {
   -webkit-font-smoothing: antialiased;
@@ -106,46 +126,86 @@ body {
   box-sizing: border-box;
 }
 * {
-  font-size: 10px;
+  //font-size: 10px;
   letter-spacing: 0;
   line-height: 1.2;
 }
 .f-xxl {
-  font-size: 2.5rem;
+  font-size: 2.5em;
 }
 .f-xl {
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 .f-il {
-  font-size: 1.4rem;
+  font-size: 1.4em;
 }
 .f-l {
-  font-size: 1.3rem;
+  font-size: 1.3em;
 }
 .f-m {
-  font-size: 1rem;
+  font-size: 1em;
 }
 .f-s {
-  font-size: 0.9rem;
+  font-size: 0.9em;
 }
-.f-xxl-z {
-  font-size: 35px;
-  line-height: unset !important;
-}
-.f-xl-z {
-  font-size: 25px !important;
-}
-.f-l-z {
-  font-size: 20px !important;
-}
-.f-il-z {
-  font-size: 17px !important;
-}
-.f-m-z {
-  font-size: 15px !important;
-}
-.f-s-z {
-  font-size: 13px !important;
+//.f-xxl-z {
+//  font-size: 35px;
+//  line-height: unset !important;
+//}
+//.f-xl-z {
+//  font-size: 25px !important;
+//}
+//.f-l-z {
+//  font-size: 20px !important;
+//}
+//.f-il-z {
+//  font-size: 17px !important;
+//}
+//.f-m-z {
+//  font-size: 15px !important;
+//}
+//.f-s-z {
+//  font-size: 13px !important;
+//}
+#display-main {
+  .f-xxl {
+    font-size: calc(var(--fontSize) * 2.5);
+  }
+  .f-xl {
+    font-size: calc(var(--fontSize) * 1.5);
+  }
+  .f-il {
+    font-size: calc(var(--fontSize) * 1.4);
+  }
+  .f-l {
+    font-size: calc(var(--fontSize) * 1.3);
+  }
+  .f-m {
+    font-size: calc(var(--fontSize) * 1);
+  }
+  .f-s {
+    font-size: calc(var(--fontSize) * 0.9);
+  }
+
+  //.f-xxl-z {
+  //  font-size: calc(var(--fontSize) * 3.5) !important;
+  //  line-height: unset !important;
+  //}
+  //.f-xl-z {
+  //  font-size: calc(var(--fontSize) * 2.5) !important;
+  //}
+  //.f-l-z {
+  //  font-size: calc(var(--fontSize) * 2) !important;
+  //}
+  //.f-il-z {
+  //  font-size: calc(var(--fontSize) * 1.7) !important;
+  //}
+  //.f-m-z {
+  //  font-size: calc(var(--fontSize) * 1.5) !important;
+  //}
+  //.f-s-z {
+  //  font-size: calc(var(--fontSize) * 1.3) !important;
+  //}
 }
 .display-header {
   //padding: 25px 15px;

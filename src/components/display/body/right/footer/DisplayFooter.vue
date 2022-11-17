@@ -87,11 +87,11 @@ export default {
           toolTip: {
             type: "fontSize",
             list: [
-              { key: "Xs", value: "1rem" },
-              { key: "S", value: "1.2rem" },
-              { key: "M", value: "1.4rem" },
-              { key: "L", value: "1.6rem" },
-              { key: "Xl", value: "1.8rem" },
+              { key: "Xs", value: "8px" },
+              { key: "S", value: "9px" },
+              { key: "M", value: "10px" },
+              { key: "L", value: "12px" },
+              { key: "Xl", value: "14px" },
             ],
           },
           leftIcon: "fa-solid fa-font",
