@@ -11,7 +11,14 @@
           class="fa-solid fa-check f-xl"
         ></i>
         <div v-else></div>
-        <div :style="{}" class="item f-xl">{{ item.key }}</div>
+        <div
+          :style="{
+            fontFamily: toolTip.type === 'fontFamily' ? item.value : 'unset',
+          }"
+          class="item f-xl"
+        >
+          {{ item.key }}
+        </div>
       </li>
     </ul>
   </div>
@@ -81,5 +88,6 @@ li {
 }
 .item {
   white-space: nowrap;
+  font-weight: 600;
 }
 </style>

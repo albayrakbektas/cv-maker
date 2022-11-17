@@ -17,29 +17,11 @@ export default {
     isMobile() {
       return this.$store.getters.getIsMobile;
     },
-    // showY() {
-    //   return this.$refs.con.getBoundingClientRect().bottom;
-    // },
-    windowInnerHeight() {
-      return this.$refs.con.offsetHeight;
-    },
-  },
-  watch: {
-    // windowInnerHeight: function (val) {
-    //   console.log(val);
-    // },
-    // showY: function (val) {
-    //   console.log(val);
-    // },
   },
   methods: {
     showPreview() {
       this.$store.commit("setIsMobilePreview", true);
     },
-  },
-  mounted() {
-    console.log(this.windowInnerHeight);
-    // console.log(this.showY);
   },
 };
 </script>

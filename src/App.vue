@@ -41,18 +41,19 @@ export default {
     },
   },
   watch: {
-    // getIsZoomed: function (val) {
-    //   document.body.style.fontSize = val ? "20px" : "10px";
-    // },
     getFontFamily: {
       handler: function (val) {
-        this.setFontFamily(val);
+        if (val) {
+          this.setFontFamily(val);
+        }
       },
       deep: true,
     },
     getColor: {
       handler: function (val) {
-        this.setColor(val);
+        if (val) {
+          this.setColor(val);
+        }
       },
       deep: true,
     },
@@ -73,8 +74,8 @@ export default {
         : this.$store.commit("setIsMobile", false);
     },
     setFontFamily(type) {
-      document.body.style.fontFamily = `${type}`;
-      this.$refs.app.style.fontFamily = `${type}`;
+      document.body.style.fontFamily = `${type.value}`;
+      this.$refs.app.style.fontFamily = `${type.value}`;
     },
     setColor(type) {
       let titles = document.getElementsByTagName("h4");
@@ -96,9 +97,6 @@ body {
   box-sizing: border-box;
   font-family: Poppins, sans-serif;
   font-size: 10px;
-  * {
-    //font-size: 10px;
-  }
 }
 #app {
   -webkit-font-smoothing: antialiased;
@@ -107,7 +105,6 @@ body {
   font-family: Poppins, sans-serif;
   box-sizing: border-box;
 }
-$downloadFontSize: 20px;
 * {
   font-size: 10px;
   letter-spacing: 0;
@@ -168,9 +165,6 @@ i {
 }
 h4 {
   font-size: 1.5rem;
-}
-form {
-  //padding: 0 0 15px 0;
 }
 input {
   background-color: rgba(244, 244, 255, 1);
