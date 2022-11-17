@@ -126,10 +126,10 @@ export default {
 }
 h1 {
   text-align: left;
-  margin-bottom: 4rem;
+  margin-bottom: 4em;
 }
 .cv-main-container {
-  padding: 2rem;
+  padding: 2em;
   margin-left: 18vw;
 }
 .cv-container {
@@ -137,7 +137,7 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
 }
 .cv-box-container {
-  margin-bottom: 2rem;
+  margin-bottom: 2em;
 }
 i {
   color: #2d2d3a;
@@ -146,11 +146,11 @@ i {
 @media (max-width: 500px) {
   .cv-main-container {
     margin-left: 0;
-    padding: 6rem 2rem 0;
+    padding: 6em 2em 0;
   }
   .cv-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0 2rem;
+    gap: 0 2em;
   }
   h1 {
     margin-bottom: revert;

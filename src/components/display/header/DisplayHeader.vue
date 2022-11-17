@@ -6,11 +6,11 @@
     class="display-header"
     :class="{ 'zoomed-display-header': getIsZoomed }"
   >
-    <h1 class="header-name f-xxl" :class="{ 'f-xxl-z': getIsZoomed }">
+    <h1 class="header-name" :class="{ 'f-xxl-z': getIsZoomed }">
       {{ getPersonalInformationProperties.givenName }}
       {{ getPersonalInformationProperties.familyName }}
     </h1>
-    <div class="headline f-l" :class="{ 'f-l-z': getIsZoomed }">
+    <div class="headline" :class="{ 'f-l-z': getIsZoomed }">
       {{ getPersonalInformationProperties.headline }}
     </div>
     <div class="header-bottom">
@@ -128,15 +128,17 @@ export default {
   display: grid;
   grid-template-rows: auto auto 1fr;
   align-items: end;
-  height: 9.5rem;
+  height: 95px;
   box-sizing: border-box;
-  padding: 30px;
+  padding: 15px;
 }
 .zoomed-display-header {
   height: 180px;
+  padding: 30px;
 }
 .header-name {
-  line-height: 1.1rem;
+  line-height: 1;
+  font-size: 25px;
   font-weight: normal;
 }
 .header-bottom {
@@ -157,5 +159,12 @@ h1,
 .f-l {
   padding-top: 5px;
   filter: brightness(80%);
+}
+.headline {
+  font-size: 13px;
+  color: #ffffff;
+  padding-top: 5px;
+  filter: brightness(80%);
+  text-align: left;
 }
 </style>

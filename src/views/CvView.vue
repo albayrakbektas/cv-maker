@@ -156,7 +156,7 @@ export default {
   grid-template-columns: auto auto;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 2em;
   background-color: #000000;
 }
 .header-right {
@@ -177,7 +177,7 @@ export default {
 }
 h1 {
   position: fixed;
-  bottom: 1rem;
+  bottom: 1em;
   width: 100%;
 }
 </style>

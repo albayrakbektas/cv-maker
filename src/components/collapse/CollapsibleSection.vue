@@ -47,7 +47,7 @@ export default {
   border-bottom: 1px solid rgba(139, 139, 139, 0.3);
 }
 .section-active {
-  padding-bottom: 2rem;
+  padding-bottom: 2em;
 }
 .collapsible-section-header {
   display: grid;
@@ -59,7 +59,7 @@ export default {
 }
 .disabled-header {
   cursor: unset;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 .slot-wrapper {
   height: 0;

@@ -106,16 +106,16 @@ form {
   text-align: left;
 }
 input {
-  margin: 0.1rem 0 1.2rem 0;
+  margin: 0.1em 0 1.2em 0;
 }
 label {
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 1.4em;
 }
 .row-two {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  gap: 0.5em;
 }
 .input-container {
   display: grid;

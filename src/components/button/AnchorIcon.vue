@@ -41,6 +41,6 @@ a {
 i {
   color: #8c8c8e;
   padding-right: 2px;
-  font-size: 0.65rem;
+  font-size: 0.65em;
 }
 </style>

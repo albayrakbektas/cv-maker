@@ -28,8 +28,8 @@ export default {
 
 <style scoped>
 img {
-  height: 9.5rem;
-  width: 9.5rem;
+  height: 95px;
+  width: 95px;
   object-fit: cover;
 }
 .zoomed-img {

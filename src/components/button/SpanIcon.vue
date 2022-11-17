@@ -82,7 +82,7 @@ export default {
   }
 }
 slot {
-  gap: 2rem;
+  gap: 2em;
 }
 .span-icon {
   display: grid;
@@ -127,25 +127,25 @@ span {
   opacity: 1;
   width: 80%;
   pointer-events: all;
-  padding: 1rem 0;
-  gap: 0.5rem;
+  padding: 1em 0;
+  gap: 0.5em;
 }
 @media (max-width: 500px) {
   .wrapper {
     width: 0;
     position: fixed;
     box-sizing: border-box;
-    left: 1rem;
-    padding: 2rem 1rem;
+    left: 1em;
+    padding: 2em 1em;
     border-radius: 8px;
     border: 1px solid #000000;
     z-index: 99999999;
-    gap: 1.5rem;
-    bottom: 1rem;
+    gap: 1.5em;
+    bottom: 1em;
     background-color: #ffffff;
   }
   .active-wrapper {
-    width: calc(100% - 2rem);
+    width: calc(100% - 2em);
   }
   .span-icon {
     i {

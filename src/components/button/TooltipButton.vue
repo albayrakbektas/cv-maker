@@ -65,7 +65,7 @@ export default {
 .tooltip-button-main-container {
   position: relative;
   width: fit-content;
-  padding: 1rem;
+  padding: 1em;
   border: 1px solid transparent;
   background-image: none;
   transition: all 0.4s ease-in-out;
@@ -89,10 +89,10 @@ i {
 }
 .fa-chevron-up,
 .fa-chevron-down {
-  padding-left: 0.8rem;
+  padding-left: 0.8em;
 }
 span {
   color: #ffffff;
-  padding-left: 0.4rem;
+  padding-left: 0.4em;
 }
 </style>

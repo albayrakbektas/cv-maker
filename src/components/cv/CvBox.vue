@@ -70,8 +70,8 @@ export default {
 <style scoped lang="scss">
 .cv-box-container {
   border: 1px solid #2b2b35;
-  height: 34rem;
-  width: 24rem;
+  height: 34em;
+  width: 24em;
   display: grid;
   grid-template-rows: auto auto;
   align-items: center;
@@ -94,8 +94,8 @@ export default {
   display: none;
 }
 img {
-  height: 34rem;
-  width: 24rem;
+  height: 34em;
+  width: 24em;
   filter: none;
   transition: all 0.4s ease-in-out;
 }
@@ -105,14 +105,14 @@ img {
     width: 100%;
   }
   img {
-    height: calc((50vw - 2rem) * 1.414);
+    height: calc((50vw - 2em) * 1.414);
     width: 100%;
   }
 }
 .options {
   position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+  right: 1em;
+  bottom: 1em;
   z-index: 99;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 1);
@@ -131,6 +131,6 @@ img {
   background-color: #fff;
   border: 1px solid #2d2d3a;
   border-radius: 8px;
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
 }
 </style>

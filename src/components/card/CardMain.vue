@@ -44,7 +44,7 @@ export default {
 .card-main {
   overflow-y: scroll;
   overflow-x: hidden;
-  padding: 0.5rem 2rem;
+  padding: 0.5em 2em;
   background-color: #ffffff;
   margin-top: 70px;
   translate: 0 0;

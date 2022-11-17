@@ -12,12 +12,13 @@ export default new Vuex.Store({
     isChanging: false,
     isZoomed: false,
     zoomedStyle: false,
+    isDownloading: false,
     cvList: [],
     cv: {
       previewSrc: "",
       style: {
         fontFamily: { key: "Poppins", value: "Poppins" },
-        fontSize: { key: "M", value: "1rem" },
+        fontSize: { key: "M", value: "1em" },
         color: { key: "", value: "#000000" },
         lineHeight: { key: "1", value: "1" },
       },
@@ -71,7 +72,7 @@ export default new Vuex.Store({
       previewSrc: "",
       style: {
         fontFamily: { key: "Poppins", value: "Poppins" },
-        fontSize: { key: "M", value: "1rem" },
+        fontSize: { key: "M", value: "1em" },
         color: { key: "", value: "#000000" },
         lineHeight: { key: "1", value: "1" },
       },
@@ -119,6 +120,9 @@ export default new Vuex.Store({
   getters: {
     getIsMobile(state) {
       return state.isMobile;
+    },
+    getIsDownloading(state) {
+      return state.isDownloading;
     },
     getIsMobilePreview(state) {
       return state.isMobilePreview;
@@ -199,6 +203,9 @@ export default new Vuex.Store({
     setIsMobile: (state, payload) => {
       state.isMobile = payload;
     },
+    setIsDownloading: (state, payload) => {
+      state.isDownloading = payload;
+    },
     setIsMobilePreview: (state, payload) => {
       state.isMobilePreview = payload;
     },
@@ -237,6 +244,9 @@ export default new Vuex.Store({
   actions: {
     setIsMobile: ({ commit }, payload) => {
       commit("setIsMobile", payload);
+    },
+    setIsDownloading: ({ commit }, payload) => {
+      commit("setIsDownloading", payload);
     },
     setIsMobilePreview: ({ commit }, payload) => {
       commit("setIsMobilePreview", payload);

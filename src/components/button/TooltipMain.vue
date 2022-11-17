@@ -54,7 +54,7 @@ export default {
   position: absolute;
   border: 1px solid #000000;
   left: 0;
-  bottom: 4rem;
+  bottom: 4em;
   min-width: 70px;
   border-radius: 8px;
   background-color: #ffffff;
@@ -64,7 +64,7 @@ ul {
 }
 li {
   list-style: none;
-  padding: 1rem;
+  padding: 1em;
   box-sizing: border-box;
   text-align: left;
   text-decoration: none;

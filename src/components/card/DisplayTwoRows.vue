@@ -95,7 +95,7 @@ a {
 .display-two-rows {
   display: grid;
   text-align: left;
-  line-height: 0.9rem;
+  line-height: 0.9em;
   align-items: center;
   padding: 1px 0;
 }
@@ -103,7 +103,7 @@ span {
   font-weight: 500;
 }
 .card-subtitle {
-  padding-bottom: 0.2rem;
+  padding-bottom: 0.2em;
   color: #8c8c8e;
 }
 .card-content {

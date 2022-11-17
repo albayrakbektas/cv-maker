@@ -62,9 +62,9 @@ input {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  min-width: 4rem;
+  min-width: 4em;
   width: fit-content;
-  padding: 1rem;
+  padding: 1em;
   border: 1px solid transparent;
   background-image: none;
   transition: all 0.4s ease-in-out;
@@ -89,7 +89,7 @@ input {
 }
 i {
   color: #ffffff;
-  font-size: 2rem;
+  font-size: 2em;
 }
 .fa-chevron-up,
 .fa-chevron-down {

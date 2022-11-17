@@ -85,7 +85,7 @@ export default {
   position: relative;
   width: 30%;
   margin: auto;
-  padding: 2rem 4rem;
+  padding: 2em 4em;
   translate: 0 50%;
   border: 1px solid black;
   box-sizing: border-box;
@@ -94,8 +94,8 @@ export default {
 }
 .error-message {
   position: absolute;
-  bottom: 2rem;
-  right: 4rem;
+  bottom: 2em;
+  right: 4em;
 }
 .card {
   height: 45px;
@@ -128,7 +128,7 @@ a {
 @media (max-width: 500px) {
   .login {
     width: 90%;
-    padding: 2rem;
+    padding: 2em;
   }
 }
 </style>

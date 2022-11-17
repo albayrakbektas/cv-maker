@@ -60,7 +60,7 @@ export default {
 input {
   border-radius: 8px;
   width: 100%;
-  padding: 1rem;
+  padding: 1em;
   box-sizing: border-box;
 }
 </style>

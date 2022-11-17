@@ -34,7 +34,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   text-align: left;
-  line-height: 0.9rem;
+  line-height: 0.9em;
 }
 span {
   font-weight: 500;
@@ -43,7 +43,7 @@ span {
 }
 .card-title {
   filter: brightness(60%);
-  padding-bottom: 0.2rem;
+  padding-bottom: 0.2em;
 }
 .card-date {
   font-weight: 500;

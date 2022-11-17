@@ -27,6 +27,6 @@ export default {
 
 <style scoped lang="scss">
 .collapsible-content {
-  //margin-bottom: 1rem;
+  //margin-bottom: 1em;
 }
 </style>

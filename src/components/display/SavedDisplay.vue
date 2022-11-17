@@ -167,6 +167,9 @@ export default {
     };
   },
   computed: {
+    getFontSize() {
+      return this.$store.getters.getCvStyleProperty("fontSize");
+    },
     getCvData() {
       return this.$store.getters.getCv;
     },
@@ -195,6 +198,15 @@ export default {
     },
   },
   watch: {
+    getFontSize: {
+      handler: function (val) {
+        if (val) {
+          console.log(val);
+          this.setFontSize(val, "#display-main");
+        }
+      },
+      deep: true,
+    },
     getCv: {
       handler: async function () {
         await this.print();
@@ -212,6 +224,13 @@ export default {
     },
   },
   methods: {
+    setFontSize(type, selector) {
+      const root = document.querySelector(selector);
+      console.log(type.value);
+      root.style.fontSize = type.value;
+      // console.log(type.value);
+      // document.body.style.fontSize = `${type.value}`;
+    },
     async print() {
       const el = this.$refs.cv;
       const options = {
@@ -223,6 +242,7 @@ export default {
     exportToPDF() {
       this.$store.commit("setZoomedStyle", true);
       this.$store.commit("setIsZoomed", true);
+      this.$store.commit("setIsDownloading", true);
       if (this.$store.state.zoomedStyle) {
         const document = this.$refs.cv;
         html2pdf(document, {
@@ -230,6 +250,9 @@ export default {
           filename: "deneme-pdf",
         });
       }
+      setTimeout(() => {
+        this.$store.commit("setIsDownloading", false);
+      }, 2000);
     },
   },
 };
@@ -248,7 +271,7 @@ export default {
   top: 0;
   overflow: scroll;
   margin-top: 70px;
-  padding: 2rem;
+  padding: 2em;
   box-sizing: border-box;
   &::-webkit-scrollbar {
     display: none;
@@ -264,14 +287,14 @@ export default {
 .display-container {
   background-color: #ffffff;
   height: 100%;
-  width: fit-content;
+  //width: fit-content;
   overflow: hidden;
   box-shadow: -5px 5px 15px #808080;
 }
 .display-header-container {
   display: grid;
   grid-template-columns: auto 5fr;
-  height: 9.5rem;
+  height: 95px;
   box-sizing: border-box;
 }
 .zoomed-display-header-container {
@@ -300,18 +323,18 @@ export default {
   }
 }
 .isPreviewDisplayMain {
-  height: 21rem !important;
-  width: 14rem !important;
+  height: 21em !important;
+  width: 14em !important;
   position: unset !important;
 }
 .isPreviewDisplayMainContainer {
-  height: 21rem !important;
-  width: 14rem !important;
+  height: 21em !important;
+  width: 14em !important;
 }
 .isPreviewDisplayContainer {
   position: unset !important;
-  height: 21rem !important;
-  width: 14rem !important;
+  height: 21em !important;
+  width: 14em !important;
 }
 .img-container {
   position: relative;

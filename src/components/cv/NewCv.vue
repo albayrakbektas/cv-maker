@@ -37,8 +37,8 @@ export default {
 <style scoped lang="scss">
 .new-cv-container {
   border: 1px dashed #2b2b35;
-  height: 34rem;
-  width: 24rem;
+  height: 34em;
+  width: 24em;
   display: grid;
   grid-template-rows: auto auto;
   align-items: center;
@@ -52,14 +52,14 @@ export default {
 }
 @media (max-width: 500px) {
   .new-cv-container {
-    height: calc((50vw - 2rem) * 1.414);
+    height: calc((50vw - 2em) * 1.414);
     width: 100%;
   }
 }
 h3,
 i {
   color: #2b2b35;
-  font-size: 2rem;
+  font-size: 2em;
   transition: all 0.4s ease-in-out;
 }
 h3 {

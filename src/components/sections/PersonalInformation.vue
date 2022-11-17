@@ -266,7 +266,7 @@ export default {
       spanStyle: {
         color: "#ffffff",
         fontWeight: "900",
-        fontSize: "1.5rem",
+        fontSize: "1.5em",
       },
       saveButtonStyle: {
         backgroundColor: "rgba(0, 0, 0, 1)",
@@ -295,15 +295,15 @@ export default {
 }
 .two-columns {
   display: grid;
-  gap: 0.5rem;
+  gap: 0.5em;
   grid-template-columns: repeat(2, 1fr);
 }
 .photo-input {
   display: grid;
   grid-template-rows: auto 1fr;
   text-align: left;
-  margin-right: 1rem;
-  padding: 0.5rem 0;
+  margin-right: 1em;
+  padding: 0.5em 0;
   input {
     border-radius: 8px;
   }
@@ -323,15 +323,15 @@ input {
 }
 label {
   display: inline-block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.25em;
 }
 .row-two {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  gap: 0.5em;
 }
 .input-container {
   display: grid;
-  margin: 0.5rem 0;
+  margin: 0.5em 0;
 }
 </style>

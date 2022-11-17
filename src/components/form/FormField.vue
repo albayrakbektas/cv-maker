@@ -140,7 +140,7 @@ input {
 }
 input:-webkit-autofill {
   -webkit-text-fill-color: #ff0000 !important;
-  -webkit-box-shadow: 0 0 0 10rem #23232d inset !important;
+  -webkit-box-shadow: 0 0 0 10em #23232d inset !important;
   background-clip: content-box !important;
 }
 </style>

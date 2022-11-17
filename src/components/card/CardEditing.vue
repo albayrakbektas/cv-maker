@@ -54,7 +54,7 @@ export default {
       spanStyle: {
         color: "#ffffff",
         fontWeight: "900",
-        fontSize: "1.5rem",
+        fontSize: "1.5em",
       },
       saveButtonStyle: {
         backgroundColor: "rgba(0, 0, 0, 1)",
@@ -97,12 +97,12 @@ export default {
 .editing-form {
   border: 1px solid #8b8b8b;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1em;
 }
 .editing-form-bottom {
   display: grid;
   grid-template-columns: auto auto;
   justify-content: right;
-  gap: 0.5rem;
+  gap: 0.5em;
 }
 </style>

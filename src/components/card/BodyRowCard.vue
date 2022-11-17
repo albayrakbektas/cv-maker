@@ -31,7 +31,7 @@ export default {
 h4 {
   text-align: left;
   margin: 0;
-  padding-bottom: 2rem;
+  padding-bottom: 2em;
 }
 .body-row-card {
   padding: 25px 0;
