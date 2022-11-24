@@ -33,7 +33,7 @@ export default {
         await signIn(this.username, this.password);
         await this.$router.replace({ name: "home" });
       } catch (e) {
-        console.log(e);
+        console.log("5" + e);
       }
     },
   },

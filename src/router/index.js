@@ -62,9 +62,9 @@ router.beforeEach(async (to, from, next) => {
     : (store.state.isMobile = false);
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const isAuthenticated = auth.currentUser;
-  if (requiresAuth && !isAuthenticated) {
+  if (requiresAuth && !isAuthenticated && from.name !== "login") {
     router.replace({ name: "login" }).catch((e) => {
-      console.log(e);
+      console.log("main" + e);
     });
   } else {
     store.state.isLoggedIn = true;
