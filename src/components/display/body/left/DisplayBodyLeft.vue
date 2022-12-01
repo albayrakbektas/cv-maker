@@ -1,5 +1,6 @@
 <template>
   <div v-if="$route.name === 'cv'" class="display-body-left pd">
+    <slot></slot>
     <BodyRowCard
       v-if="getSectionCards('education')"
       :title="getSection.education.title || 'Education'"

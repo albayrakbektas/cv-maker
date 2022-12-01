@@ -1,23 +1,33 @@
 <template>
-  <div style="cursor: pointer" @click="openCv">
-    <div class="cv-box-container">
+  <div class="cv-box-main-container" style="cursor: pointer">
+    <div @click="openCv" class="cv-box-container">
       <img :src="cv.previewSrc" alt="" />
       <div @click.stop="showOptions" class="options">
         <ZoomButton icon-class="fa-solid fa-ellipsis-vertical" />
         <div v-if="isShown" class="cv-options-main">
           <SpanIcon
-            @button-handler="deleteCv(cv)"
+            @button-handler="deleteCv"
             :button="deleteButton"
             :button-style="buttonStyle"
           />
         </div>
       </div>
     </div>
+    <div class="resume-title">
+      <input
+        @focusout="handleFocusout"
+        @keyup.enter="handleFocusout"
+        ref="input-title"
+        class="input-title"
+        placeholder="Resume"
+        v-model="customFieldTitle"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import { deleteCv, getCv, getCvList } from "@/firebaseMethods";
+import { getCv, getCvName, setCvName } from "@/firebaseMethods";
 import ZoomButton from "@/components/button/ZoomButton";
 import SpanIcon from "@/components/button/SpanIcon";
 export default {
@@ -28,6 +38,7 @@ export default {
   },
   data() {
     return {
+      customFieldTitle: "",
       isShown: false,
       deleteButton: {
         grid: "is",
@@ -39,35 +50,56 @@ export default {
       },
     };
   },
-  created() {
+  async created() {
     getCv(this.getUser.uid, this.cv.id).then((res) => {
       this.$store.commit("updateCvData", res);
     });
+    this.customFieldTitle =
+      (await getCvName(this.getUser.uid, this.cv.id)) || "Resume";
   },
   computed: {
     getUser() {
       return this.$store.getters.getUser;
     },
   },
+  watch: {
+    customFieldTitle: function () {
+      this.resizeInput();
+    },
+  },
   methods: {
     openCv() {
-      this.$router.push("/cv/" + this.cv.id);
+      this.$store.state.cvData = this.cv;
+      this.$store.state.cvEditingP = this.cv;
+      this.$store.state.isEditing = true;
+    },
+    async resizeInput() {
+      const input = await this.$refs["input-title"];
+      if (input.value) {
+        input.style.width = input.value.length + 1 + "ch";
+      } else {
+        input.style.width = input.placeholder.length + 1 + "ch";
+      }
+    },
+    async handleFocusout(e) {
+      await setCvName(this.$store.state.user.uid, this.cv.id, e.target.value);
     },
     showOptions() {
       this.isShown = !this.isShown;
     },
-    async deleteCv(cv) {
-      deleteCv(this.getUser.uid, cv.id);
-      this.$store.commit(
-        "setCvList",
-        await getCvList(this.$store.state.user.uid)
-      );
+    async deleteCv() {
+      this.$store.state.cvEditingP = this.cv;
+      this.$store.state.isConfirmPopup = true;
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
+.cv-box-main-container {
+  position: relative;
+  overflow: visible;
+}
 .cv-box-container {
   border: 1px solid #2b2b35;
   height: 34em;
@@ -132,5 +164,26 @@ img {
   border: 1px solid #2d2d3a;
   border-radius: 8px;
   padding: 0.5em 1em;
+}
+.resume-title {
+  position: absolute;
+  left: 2%;
+  bottom: 0;
+  translate: 0 100%;
+  max-width: 23em;
+  input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    position: relative;
+    font-weight: 900;
+    padding: 1em 0;
+    margin: 0;
+    max-width: 30ch !important;
+    color: #2d2d3a !important;
+    &:focus {
+      border-bottom: 1px solid #20202a !important;
+    }
+  }
 }
 </style>

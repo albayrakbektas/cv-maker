@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="home-main">
     <MenuMain />
     <div class="cv-main-container">
       <div class="home-header">
-        <h1 class="f-xxl">Cv's</h1>
+        <h1 class="f-xxl">Resumes</h1>
         <!--        <SpanIcon-->
         <!--          @button-handler="signOut"-->
         <!--          :button="button"-->
@@ -23,19 +23,22 @@
         </div>
       </div>
     </div>
+    <ResumeEditing />
   </div>
 </template>
 
 <script>
 import CvBox from "@/components/cv/CvBox";
 import NewCv from "@/components/cv/NewCv";
-import { getCvList, signout } from "@/firebaseMethods";
+import { getCv, getCvList, signout } from "@/firebaseMethods";
 import MenuMain from "@/components/menu/MenuMain";
+import ResumeEditing from "@/components/ResumeEditing";
 export default {
   name: "HomeView",
-  components: { MenuMain, NewCv, CvBox },
+  components: { ResumeEditing, MenuMain, NewCv, CvBox },
   data() {
     return {
+      customFieldTitle: "Resume",
       cvList: [],
       button: {
         span: "Exit",
@@ -58,12 +61,22 @@ export default {
     getCvList() {
       return this.$store.getters.getCvList;
     },
+    getIsDownloading() {
+      return this.$store.getters.getIsDownloading;
+    },
+    getUser() {
+      return this.$store.getters.getUser;
+    },
+  },
+  async created() {
+    await getCv(this.getUser.uid, this.$store.state.cvEditingP.id);
   },
   async mounted() {
     this.$store.commit(
       "setCvList",
       await getCvList(this.$store.state.user.uid)
     );
+    await this.resizeInput();
     // this.cvList = await getCvList(this.$store.state.user.uid);
     // this.$store.state.cvData = {
     //   previewSrc: "",
@@ -114,10 +127,21 @@ export default {
       await this.$router.push("/login");
     },
   },
+  watch: {
+    // getIsDownloading: function (val) {
+    //   console.log("VALLL---->>>>>" + val);
+    //   if (val) {
+    //     getCv(this.getUser.uid, this.$store.state.cvEditingP.id);
+    //   }
+    // },
+  },
 };
 </script>
 
 <style scoped lang="scss">
+.home-main {
+  overflow-x: hidden;
+}
 .home-header {
   display: grid;
   grid-template-columns: auto auto;
@@ -126,7 +150,7 @@ export default {
 }
 h1 {
   text-align: left;
-  margin-bottom: 4em;
+  margin-bottom: 2em;
 }
 .cv-main-container {
   padding: 2em;
@@ -138,6 +162,7 @@ h1 {
 }
 .cv-box-container {
   margin-bottom: 2em;
+  position: relative;
 }
 i {
   color: #2d2d3a;

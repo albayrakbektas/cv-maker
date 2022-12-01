@@ -49,6 +49,20 @@ export const writeUserData = async (userId, cvId, cv) => {
   });
 };
 
+export const setCvName = async (userId, cvId, name) => {
+  await set(ref(database, userId + "/" + cvId + "/cvName/"), name).catch(
+    (error) => {
+      console.log(error);
+    }
+  );
+};
+
+export const getCvName = async (userId, cvId) => {
+  const cvRef = ref(database, userId + "/" + cvId + "/cvName/");
+  let snapshot = get(cvRef);
+  return (await snapshot).val();
+};
+
 export const writeSectionCard = (userId, cvId, section, card) => {
   set(
     ref(database, userId + "/" + cvId + "/" + section + "/cards/" + card.id),
@@ -56,6 +70,31 @@ export const writeSectionCard = (userId, cvId, section, card) => {
   ).catch((error) => {
     console.log(error);
   });
+};
+
+export const addCustomFields = async (userId, cvId, id, customField) => {
+  set(
+    ref(
+      database,
+      userId +
+        "/" +
+        cvId +
+        "/personalInformation/personalDetail/customFields/" +
+        id
+    ),
+    customField
+  ).catch((error) => {
+    console.log(error);
+  });
+};
+
+export const getCustomFields = async (userId, cvId) => {
+  const cvREf = ref(
+    database,
+    userId + "/" + cvId + "/personalInformation/personalDetail/customFields"
+  );
+  let snapshot = get(cvREf);
+  return (await snapshot).val();
 };
 
 export const writePersonalInformation = (userId, cvId, section, card) => {

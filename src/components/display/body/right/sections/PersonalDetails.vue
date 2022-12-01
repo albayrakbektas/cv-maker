@@ -1,7 +1,7 @@
 <template>
   <BodyRowCard
     v-if="$route.name === 'cv' && isTitle"
-    :title="isTitle ? 'Personal Details' : ''"
+    :title="isTitle && !isHeader ? 'Personal Details' : ''"
   >
     <DisplayTwoRows
       v-for="(item, index) of getAllPersonalDetail"
@@ -17,6 +17,9 @@ import DisplayTwoRows from "@/components/card/DisplayTwoRows";
 export default {
   name: "PersonalDetails",
   components: { DisplayTwoRows, BodyRowCard },
+  props: {
+    isHeader: Boolean,
+  },
   computed: {
     getAllPersonalDetail() {
       return this.$store.getters.getAllPersonalDetail;

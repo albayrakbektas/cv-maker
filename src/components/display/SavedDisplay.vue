@@ -47,12 +47,6 @@
             <hr />
             <DisplayBodyRight />
           </div>
-          <div class="cc">
-            <h6>This cv created by Bektas Albayrak</h6>
-            <a target="_blank" href="https://github.com/albayrakbektas/cv-maker"
-              >https://github.com/albayrakbektas/cv-maker</a
-            >
-          </div>
         </div>
       </div>
       <div v-if="getIsMobilePreview" class="mobile-img-canvas">

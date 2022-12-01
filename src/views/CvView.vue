@@ -28,6 +28,7 @@
     <div class="body">
       <CardMain />
       <div>
+        <SavedDisplayModern style="display: none" ref="cv" />
         <SavedDisplay :is-download="isDownload" ref="cv" />
         <DisplayFooter />
       </div>
@@ -41,10 +42,17 @@ import { getCv, writeUserData } from "@/firebaseMethods";
 import SavedDisplay from "@/components/display/SavedDisplay";
 import SpanIcon from "@/components/button/SpanIcon";
 import DisplayFooter from "@/components/display/body/right/footer/DisplayFooter";
+import SavedDisplayModern from "@/components/display/SavedDisplayModern";
 
 export default {
   name: "CvView",
-  components: { DisplayFooter, SpanIcon, SavedDisplay, CardMain },
+  components: {
+    SavedDisplayModern,
+    DisplayFooter,
+    SpanIcon,
+    SavedDisplay,
+    CardMain,
+  },
   data() {
     return {
       isDownload: false,
@@ -102,6 +110,13 @@ export default {
       return this.$store.getters.getCvData;
     },
   },
+  watch: {
+    "$store.state.isDownload": function (val) {
+      if (val) {
+        this.isDownload = true;
+      }
+    },
+  },
   methods: {
     async print() {
       const el = this.$refs.cv;
@@ -114,7 +129,8 @@ export default {
       this.$router.push("/");
     },
     download() {
-      this.isDownload = !this.isDownload;
+      this.$store.state.isDownload = !this.$store.state.isDownload;
+      // this.isDownload = !this.isDownload;
     },
     save() {
       let userId = this.getUser.uid;

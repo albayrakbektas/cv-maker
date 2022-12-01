@@ -9,12 +9,17 @@ export default new Vuex.Store({
     isMobile: window.innerWidth <= 500,
     isMobilePreview: null,
     user: {},
+    cvEditingP: {},
+    isEditing: false,
     isChanging: false,
     isZoomed: false,
     zoomedStyle: false,
     isDownloading: false,
+    isDownload: false,
+    isConfirmPopup: false,
     cvList: [],
     cv: {
+      cvName: "",
       previewSrc: "",
       style: {
         fontFamily: { key: "Poppins", value: "Poppins" },
@@ -69,6 +74,7 @@ export default new Vuex.Store({
       },
     },
     cvData: {
+      cvName: "",
       previewSrc: "",
       style: {
         fontFamily: { key: "Poppins", value: "Poppins" },
@@ -221,6 +227,9 @@ export default new Vuex.Store({
     updateCvData: (state, payload) => {
       state.cvData = payload;
     },
+    updateCvEditingP: (state, payload) => {
+      state.cvEditingP = payload;
+    },
     setPreviewSrc: (state, payload) => {
       state.cvData.previewSrc = payload;
     },
@@ -262,6 +271,9 @@ export default new Vuex.Store({
     },
     updateCvData: ({ commit }, payload) => {
       commit("updateCvData", payload);
+    },
+    updateCvEditingP: ({ commit }, payload) => {
+      commit("updateCvEditingP", payload);
     },
     setPreviewSrc: ({ commit }, payload) => {
       commit("setPreviewSrc", payload);

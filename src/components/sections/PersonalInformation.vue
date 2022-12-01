@@ -68,6 +68,13 @@
             <input name="github" v-model="github" />
           </div>
         </form>
+        <div
+          v-for="(item, index) of customFieldList"
+          :key="item.content + index"
+        >
+          <CustomField v-model="item.content" :custom-field="item" />
+        </div>
+        <AddFieldButton :button="newFieldButton" />
         <SpanIcon
           :icon-style="spanStyle"
           :span-style="spanStyle"
@@ -102,18 +109,28 @@
 import CollapsibleContent from "@/components/collapse/CollapsibleContent";
 import CollapsibleSection from "@/components/collapse/CollapsibleSection";
 import ProfileUpload from "@/components/display/header/ProfileUpload";
-import { writePersonalInformation } from "@/firebaseMethods";
+import { getCustomFields, writePersonalInformation } from "@/firebaseMethods";
 import SpanIcon from "@/components/button/SpanIcon";
+import CustomField from "@/components/CustomField";
+import AddFieldButton from "@/components/items/AddFieldButton";
 
 export default {
   name: "PersonalInformation",
   components: {
+    AddFieldButton,
+    CustomField,
     SpanIcon,
     ProfileUpload,
     CollapsibleContent,
     CollapsibleSection,
   },
+  async mounted() {
+    await this.getCustomFields();
+  },
   computed: {
+    customFields() {
+      return getCustomFields(this.$store.state.user.uid, this.$route.params.id);
+    },
     profilePicture: {
       get() {
         return this.$store.state.cvData.personalInformation.profilePicture;
@@ -248,6 +265,12 @@ export default {
     edit() {
       this.isEditing = !this.isEditing;
     },
+    async getCustomFields() {
+      this.customFieldList = await getCustomFields(
+        this.$store.state.user.uid,
+        this.$route.params.id
+      );
+    },
     async saveCard(section, card) {
       console.log(this.$store.state.cvData);
       await writePersonalInformation(
@@ -260,6 +283,15 @@ export default {
   },
   data() {
     return {
+      customFieldList: [],
+      newFieldButton: {
+        iconClass: "fa-solid fa-plus",
+        span: "Custom Field",
+      },
+      customField: {
+        name: "customField",
+        value: "",
+      },
       isEditing: false,
       isSlotActive: false,
       saveButton: { iconClass: "fa-solid fa-save", grid: "is", span: "Save" },

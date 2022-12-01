@@ -11,11 +11,14 @@
       },
     ]"
   >
+    <ConfirmPopup />
     <router-view />
   </div>
 </template>
 <script>
+import ConfirmPopup from "@/components/ConfirmPopup";
 export default {
+  components: { ConfirmPopup },
   data() {
     return {
       zoomedAppF: {
@@ -47,6 +50,11 @@ export default {
     },
   },
   watch: {
+    $route: function (val) {
+      if (val.name !== "home") {
+        this.$store.state.isEditing = false;
+      }
+    },
     getFontFamily: {
       handler: function (val) {
         if (val) {
@@ -55,9 +63,6 @@ export default {
       },
       deep: true,
     },
-    // getIsZoomed: function () {
-    //   this.setFontSize(this.$store.state.cvData.style.fontSize);
-    // },
     getIsDownloading: function (val) {
       console.log(val);
       if (val) {
@@ -68,14 +73,6 @@ export default {
         root.style.fontSize = "10px";
       }
     },
-    // getFontSize: {
-    //   handler: function (val) {
-    //     if (val) {
-    //       this.setFontSize(val);
-    //     }
-    //   },
-    //   deep: true,
-    // },
     getColor: {
       handler: function (val) {
         if (val) {
