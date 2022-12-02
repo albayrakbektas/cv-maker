@@ -9,11 +9,12 @@
         'display-footer-hidden': $store.state.isMobile && !getIsMobilePreview,
       }"
     >
-      <TooltipButton
-        v-for="(item, index) of footerLeftButtons"
-        :button="item"
-        :key="item.leftIcon + index"
-      />
+      <TemplateButton />
+      <!--      <TooltipButton-->
+      <!--        v-for="(item, index) of footerLeftButtons"-->
+      <!--        :button="item"-->
+      <!--        :key="item.leftIcon + index"-->
+      <!--      />-->
       <div class="display-footer-mid">
         <TooltipButton
           v-for="(item, index) of footerMidButtons"
@@ -31,9 +32,10 @@
 import TooltipButton from "@/components/button/TooltipButton";
 import ColorPicker from "@/components/button/ColorPicker";
 import ZoomButton from "@/components/button/ZoomButton";
+import TemplateButton from "@/components/items/TemplateButton";
 export default {
   name: "DisplayFooter",
-  components: { ZoomButton, ColorPicker, TooltipButton },
+  components: { TemplateButton, ZoomButton, ColorPicker, TooltipButton },
   data() {
     return {
       footerLeftButtons: [
@@ -41,20 +43,8 @@ export default {
           toolTip: {
             type: "fontFamily",
             list: [
-              { key: "Arial", value: "Arial" },
-              { key: "Cairo", value: "Cairo" },
-              { key: "Calibri", value: "Calibri" },
-              { key: "Courier New", value: "Courier New" },
-              { key: "DejaVu Sans", value: "DejaVu Sans" },
-              { key: "Garamond", value: "Garamond" },
-              { key: "Georgia", value: "Georgia" },
-              { key: "Helvetica", value: "Helvetica" },
-              { key: "Lato", value: "Lato" },
-              { key: "Noto Sans", value: "Noto Sans" },
-              { key: "Noto Serif", value: "Noto Serif" },
-              { key: "Poppins", value: "Poppins" },
-              { key: "Times New Roman", value: "Times New Roman" },
-              { key: "Trebuchet", value: "Trebuchet" },
+              { key: "Professional", value: "Professional" },
+              { key: "Modern", value: "Modern" },
             ],
           },
           leftIcon: "fa-solid fa-table",

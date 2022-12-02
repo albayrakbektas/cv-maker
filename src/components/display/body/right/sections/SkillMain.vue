@@ -1,5 +1,10 @@
 <template>
-  <BodyRowCard v-if="$route.name === 'cv' && getSection.cards" title="Skills">
+  <BodyRowCard
+    :hr-style="hrStyle"
+    title-style="c-white"
+    v-if="$route.name === 'cv' && getSection.cards"
+    title="Skills"
+  >
     <DisplayTwoRows
       v-for="(item, index) of getSection.cards"
       :key="index"
@@ -27,9 +32,14 @@ export default {
   data() {
     return {
       data: null,
+      titleStyle: "c-white",
+      hrStyle: {
+        backgroundColor: "#ffffff !important",
+        height: "1px",
+      },
     };
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

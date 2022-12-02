@@ -8,12 +8,17 @@
         class="f-xl"
         :class="{
           'f-xl-z': $store.state.isZoomed,
+          'c-white': titleStyle,
         }"
         :style="{ color: `${getStyleProperty.value}` }"
       >
         {{ title }}
       </h4>
-      <hr v-show="$store.state.cvTemplate ?? 'Modern'" />
+      <div
+        class="hr"
+        :style="hrStyle"
+        v-show="$store.state.cvTemplate ?? 'Modern'"
+      />
     </div>
     <div class="content">
       <slot></slot>
@@ -26,6 +31,8 @@ export default {
   name: "BodyRowCard",
   props: {
     title: String,
+    hrStyle: Object,
+    titleStyle: String,
   },
   computed: {
     getStyleProperty() {
@@ -62,12 +69,15 @@ h4 {
     align-items: center;
     padding-bottom: 1em;
     box-sizing: border-box;
-    hr {
-      height: 0;
-      width: calc(100% - 6em);
-      border-bottom: 1px solid #000000;
+    .hr {
+      height: 1px;
+      width: calc(100% - 4em);
+      background-color: #000000;
       padding: 0 2rem;
     }
   }
 }
+//.c-white {
+//  color: #ffffff;
+//}
 </style>

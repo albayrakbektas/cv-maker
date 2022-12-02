@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    cvTemplate: "Modern",
+    cvTemplate: "Professional",
     isLoggedIn: false,
     isMobile: window.innerWidth <= 500,
     isMobilePreview: null,
@@ -207,6 +207,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setCvTemplate: (state, payload) => {
+      state.cvTemplate = payload;
+    },
     setIsMobile: (state, payload) => {
       state.isMobile = payload;
     },
@@ -252,6 +255,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    setCvTemplate: ({ commit }, payload) => {
+      commit("setCvTemplate", payload);
+    },
     setIsMobile: ({ commit }, payload) => {
       commit("setIsMobile", payload);
     },

@@ -1,6 +1,9 @@
 <template>
   <div
-    v-if="$route.name === 'cv' || $route.name === 'home'"
+    v-if="
+      ($route.name === 'cv' || $route.name === 'home') &&
+      $store.state.cvTemplate === 'Modern'
+    "
     id="display-main"
     class="display-main"
     ref="document"
@@ -32,16 +35,6 @@
           }"
           ref="cv"
         >
-          <!--          <div-->
-          <!--            class="display-header-container"-->
-          <!--            :class="{-->
-          <!--              'dhc-one': !getPersonalInformationProperties,-->
-          <!--              'zoomed-display-header-container': getIsZoomed,-->
-          <!--            }"-->
-          <!--          >-->
-          <!--            <HeaderImage />-->
-          <!--            <DisplayHeader />-->
-          <!--          </div>-->
           <div class="display-main-body">
             <div class="display-main-body-left-container">
               <HeaderImage />

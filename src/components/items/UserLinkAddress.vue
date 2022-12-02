@@ -36,16 +36,34 @@ export default {
           href: "",
           iconClass: "fa-solid fa-phone",
           content: "",
+          style: {
+            fontSize: "1rem",
+          },
+          iconStyle: {
+            fontSize: "1rem",
+          },
         },
         {
           href: "",
           iconClass: "fa-solid fa-envelope",
           content: "",
+          style: {
+            fontSize: "1rem",
+          },
+          iconStyle: {
+            fontSize: "1rem",
+          },
         },
         {
           href: "",
           iconClass: "fa-solid fa-location-dot",
           content: "",
+          style: {
+            fontSize: "1rem",
+          },
+          iconStyle: {
+            fontSize: "1rem",
+          },
         },
       ],
     };

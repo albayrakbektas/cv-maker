@@ -1,6 +1,9 @@
 <template>
   <div
-    v-if="$route.name === 'cv' || $route.name === 'home'"
+    v-if="
+      ($route.name === 'cv' || $route.name === 'home') &&
+      $store.state.cvTemplate === 'Professional'
+    "
     id="display-main"
     class="display-main"
     ref="document"

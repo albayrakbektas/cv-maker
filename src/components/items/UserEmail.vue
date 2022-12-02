@@ -21,6 +21,12 @@ export default {
         href: "",
         iconClass: "fa-solid fa-envelope",
         content: "",
+        style: {
+          fontSize: "1rem",
+        },
+        iconStyle: {
+          fontSize: "1rem",
+        },
       },
     };
   },

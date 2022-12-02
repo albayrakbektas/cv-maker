@@ -7,6 +7,7 @@
     class="f-s"
     target="_blank"
     :href="anchor.href"
+    :style="anchor.style"
   >
     <i
       class="f-s"
@@ -15,6 +16,7 @@
         anchor.iconClass,
         { 'c-white': $store.state.cvTemplate === 'Modern' },
       ]"
+      :style="anchor.iconStyle"
     ></i>
     {{ anchor.content.length > 3 ? anchor.content : null }}
   </a>
