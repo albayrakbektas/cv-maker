@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    cvTemplate: "Modern",
     isLoggedIn: false,
     isMobile: window.innerWidth <= 500,
     isMobilePreview: null,

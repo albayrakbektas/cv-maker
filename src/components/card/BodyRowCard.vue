@@ -1,12 +1,20 @@
 <template>
-  <div class="body-row-card">
-    <h4
-      class="f-xl"
-      :class="{ 'f-xl-z': $store.state.isZoomed }"
-      :style="{ color: `${getStyleProperty.value}` }"
-    >
-      {{ title }}
-    </h4>
+  <div
+    class="body-row-card"
+    :class="{ modern: $store.state.cvTemplate ?? 'Modern' }"
+  >
+    <div class="card-title-container">
+      <h4
+        class="f-xl"
+        :class="{
+          'f-xl-z': $store.state.isZoomed,
+        }"
+        :style="{ color: `${getStyleProperty.value}` }"
+      >
+        {{ title }}
+      </h4>
+      <hr v-show="$store.state.cvTemplate ?? 'Modern'" />
+    </div>
     <div class="content">
       <slot></slot>
     </div>
@@ -31,7 +39,6 @@ export default {
 h4 {
   text-align: left;
   margin: 0;
-  padding-bottom: 2em;
 }
 .body-row-card {
   padding: 25px 0;
@@ -43,6 +50,24 @@ h4 {
   align-items: center;
   &:first-child {
     padding-top: 10px !important;
+  }
+}
+.modern {
+  padding: 0;
+  border-bottom: none;
+  .card-title-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding-bottom: 1em;
+    box-sizing: border-box;
+    hr {
+      height: 0;
+      width: calc(100% - 6em);
+      border-bottom: 1px solid #000000;
+      padding: 0 2rem;
+    }
   }
 }
 </style>

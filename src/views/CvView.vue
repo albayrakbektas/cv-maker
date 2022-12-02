@@ -28,8 +28,8 @@
     <div class="body">
       <CardMain />
       <div>
-        <SavedDisplayModern style="display: none" ref="cv" />
-        <SavedDisplay :is-download="isDownload" ref="cv" />
+        <SavedDisplayModern :is-download="isDownload" ref="cv" />
+        <SavedDisplay style="display: none" ref="cv" />
         <DisplayFooter />
       </div>
     </div>

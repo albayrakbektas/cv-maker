@@ -35,6 +35,7 @@ export default {
       iconStyle: {
         fontSize: "1rem",
         cursor: "unset",
+        color: "#ffffff",
       },
       button: {
         grid: "is",

@@ -128,7 +128,7 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   font-family: Poppins, sans-serif;
   font-size: var(--fontSize);
 }
@@ -137,12 +137,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   font-family: Poppins, sans-serif;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 * {
   //font-size: 10px;
   letter-spacing: 0;
   line-height: 1.2;
+}
+ul {
+  margin: 0;
+}
+li {
+  list-style: none;
 }
 .f-xxl {
   font-size: 2.5em;
@@ -259,5 +265,8 @@ button {
   &:hover {
     translate: 0 -2px;
   }
+}
+.c-white {
+  color: #ffffff !important;
 }
 </style>

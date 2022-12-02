@@ -43,7 +43,7 @@
           <!--            <DisplayHeader />-->
           <!--          </div>-->
           <div class="display-main-body">
-            <DisplayBodyLeft>
+            <div class="display-main-body-left-container">
               <HeaderImage />
               <UserHeadline />
               <HeaderHr header="Personal Details" />
@@ -51,10 +51,13 @@
               <UserEmail />
               <UserPhone />
               <UserLinkAddress />
-              <!--              <DisplayHeader />-->
-            </DisplayBodyLeft>
-            <hr />
-            <DisplayBodyRight />
+              <SkillMain />
+            </div>
+            <div class="display-main-body-right-container">
+              <DisplayEducation />
+              <DisplayEmployment />
+              <DisplayReferences />
+            </div>
           </div>
         </div>
       </div>
@@ -73,8 +76,6 @@
 </template>
 
 <script>
-import DisplayBodyLeft from "@/components/display/body/left/DisplayBodyLeft";
-import DisplayBodyRight from "@/components/display/body/right/DisplayBodyRight";
 import html2pdf from "html2pdf.js/src";
 import HeaderImage from "@/components/display/header/HeaderImage";
 import HeaderHr from "@/components/items/HeaderHr";
@@ -83,10 +84,18 @@ import UserName from "@/components/items/UserName";
 import UserEmail from "@/components/items/UserEmail";
 import UserPhone from "@/components/items/UserPhone";
 import UserLinkAddress from "@/components/items/UserLinkAddress";
+import DisplayEducation from "@/components/items/DisplayEducation";
+import DisplayEmployment from "@/components/items/DisplayEmployment";
+import DisplayReferences from "@/components/items/DisplayReferences";
+import SkillMain from "@/components/display/body/right/sections/SkillMain";
 
 export default {
   name: "SavedDisplayModern",
   components: {
+    SkillMain,
+    DisplayReferences,
+    DisplayEmployment,
+    DisplayEducation,
     UserLinkAddress,
     UserPhone,
     UserEmail,
@@ -94,8 +103,6 @@ export default {
     UserHeadline,
     HeaderHr,
     HeaderImage,
-    DisplayBodyRight,
-    DisplayBodyLeft,
   },
   props: {
     isDownload: Boolean,
@@ -319,7 +326,7 @@ export default {
 .display-main-body {
   display: grid;
   background-color: #ffffff;
-  grid-template-columns: 1fr auto minmax(240px, 500px);
+  grid-template-columns: 1fr 5fr;
   height: 100%;
 }
 .cc {
@@ -412,5 +419,16 @@ export default {
     height: unset;
     translate: 0;
   }
+}
+.display-main-body-left-container {
+  display: grid;
+  grid-auto-rows: max-content;
+  align-items: center;
+  justify-content: start;
+  background-color: #2d2d3a;
+}
+.display-main-body-right-container,
+.display-main-body-left-container {
+  padding: 2rem 1rem;
 }
 </style>

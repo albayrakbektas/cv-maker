@@ -22,7 +22,11 @@
         >
       </a>
     </div>
-    <div v-else class="display-two-rows">
+    <div
+      v-else
+      class="display-two-rows"
+      :class="{ 'modern-two-rows': $store.state.cvTemplate === 'Modern' }"
+    >
       <span
         class="card-subtitle f-m"
         :class="{ 'f-m-z': $store.state.isZoomed }"
@@ -30,11 +34,15 @@
         }}{{ card.subtitle[1] ? ` - ${card.subtitle[1]}` : "" }}</span
       >
       <!--      <progress v-if="range" :value="Number(range)" max="5"></progress>-->
-      <div v-if="range" class="progress-out">
+      <LevelDots :range="range" />
+      <div
+        v-if="$store.state.cvTemplate !== 'Modern' && range"
+        class="progress-out"
+      >
         <div ref="progress-in" class="progress-in"></div>
       </div>
       <span
-        v-else
+        v-if="!range"
         class="card-content f-m zoomed-app-f"
         :class="{ 'f-m-z': $store.state.isZoomed }"
         >{{ card.content }}</span
@@ -44,8 +52,10 @@
 </template>
 
 <script>
+import LevelDots from "@/components/items/LevelDots";
 export default {
   name: "DisplayTwoRows",
+  components: { LevelDots },
   props: {
     card: Object,
     range: Number,
@@ -117,5 +127,10 @@ progress {
 }
 ::-webkit-progress-bar {
   background-color: #8b8b8b;
+}
+.modern-two-rows {
+  grid-template-columns: repeat(2, auto);
+  align-items: center;
+  justify-content: space-between;
 }
 </style>

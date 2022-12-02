@@ -1,7 +1,12 @@
 <template>
   <div class="header-hr-container">
-    <h1>{{ header }}</h1>
-    <hr />
+    <h2 :class="{ 'c-white': $store.state.cvTemplate === 'Modern' }">
+      {{ header }}
+    </h2>
+    <div
+      class="hr"
+      :class="{ 'c-white': $store.state.cvTemplate === 'Modern' }"
+    />
   </div>
 </template>
 
@@ -22,9 +27,10 @@ export default {
   justify-content: space-around;
   gap: 10px;
 }
-hr {
-  border-bottom: 1px solid black !important;
+.hr {
+  //border-bottom: 1px solid black !important;
   width: 100%;
   height: 1px;
+  background-color: #ffffff;
 }
 </style>

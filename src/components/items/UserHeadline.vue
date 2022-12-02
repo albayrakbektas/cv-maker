@@ -1,6 +1,8 @@
 <template>
   <div class="user-headline">
-    <h3>{{ getPersonalInformationProperties }}</h3>
+    <h3 :class="{ 'c-white': $store.state.cvTemplate === 'Modern' }">
+      {{ getPersonalInformationProperties }}
+    </h3>
   </div>
 </template>
 

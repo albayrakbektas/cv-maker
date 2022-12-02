@@ -155,6 +155,8 @@ h1 {
 .cv-main-container {
   padding: 2em;
   margin-left: 18vw;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 .cv-container {
   display: grid;

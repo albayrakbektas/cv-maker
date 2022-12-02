@@ -3,7 +3,10 @@
     v-if="getPersonalInformationProperties"
     :src="getPersonalInformationProperties"
     alt="profile picture"
-    :class="{ 'zoomed-img': getZoomedStyle }"
+    :class="{
+      'zoomed-img': getZoomedStyle,
+      modern: $store.state.cvTemplate ?? 'Modern',
+    }"
   />
 </template>
 
@@ -35,5 +38,10 @@ img {
 .zoomed-img {
   height: 180px;
   width: 180px;
+}
+.modern {
+  border-radius: 50%;
+  object-fit: fill;
+  justify-self: center;
 }
 </style>

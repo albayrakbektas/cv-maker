@@ -1,6 +1,15 @@
 <template>
-  <div class="display-row-card">
-    <div class="row row-two">
+  <div
+    class="display-row-card"
+    :class="{ modern: $store.state.cvTemplate ?? 'Modern' }"
+  >
+    <div
+      class="row row-two"
+      :class="{
+        'modern-grid': $store.state.cvTemplate ?? 'Modern',
+        'references-modern-grid': section && (section ?? 'references'),
+      }"
+    >
       <span
         class="card-title f-m"
         :class="{ 'f-m-z': $store.state.isZoomed }"
@@ -12,7 +21,15 @@
         {{ card.dateEnd.month }} {{ card.dateEnd.year }}</span
       >
     </div>
-    <DisplayTwoRows class="dtr" :card="card.rowCard" />
+    <div
+      :class="{
+        'modern-grid': $store.state.cvTemplate ?? 'Modern',
+        'references-modern-grid': section && (section ?? 'references'),
+      }"
+    >
+      <div class="empty-div" v-if="$store.state.cvTemplate ?? 'Modern'" />
+      <DisplayTwoRows class="dtr" :card="card.rowCard" />
+    </div>
   </div>
 </template>
 
@@ -23,6 +40,7 @@ export default {
   components: { DisplayTwoRows },
   props: {
     card: Object,
+    section: String,
   },
 };
 </script>
@@ -53,5 +71,35 @@ span {
 }
 .dtr {
   padding-top: 0 !important;
+}
+.modern {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  .row-two {
+    grid-template-areas: "left right";
+  }
+  .card-title {
+    grid-area: right;
+  }
+  .card-date {
+    grid-area: left;
+  }
+  .modern-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    justify-content: space-between;
+  }
+  .references-modern-grid {
+    grid-template-columns: 1fr auto;
+    .card-title {
+      grid-area: left;
+    }
+    .card-date {
+      grid-area: right;
+    }
+    .empty-div {
+      grid-area: right;
+    }
+  }
 }
 </style>

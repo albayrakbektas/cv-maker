@@ -1,6 +1,9 @@
 <template>
   <a
-    :class="{ 'zoomed-anchor-icon': $store.state.zoomedStyle }"
+    :class="{
+      'zoomed-anchor-icon': $store.state.zoomedStyle,
+      'c-white': $store.state.cvTemplate === 'Modern',
+    }"
     class="f-s"
     target="_blank"
     :href="anchor.href"
@@ -8,7 +11,10 @@
     <i
       class="f-s"
       v-show="anchor.content.length > 3"
-      :class="anchor.iconClass"
+      :class="[
+        anchor.iconClass,
+        { 'c-white': $store.state.cvTemplate === 'Modern' },
+      ]"
     ></i>
     {{ anchor.content.length > 3 ? anchor.content : null }}
   </a>
